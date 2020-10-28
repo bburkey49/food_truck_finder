@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c4f63821-86b8-44d0-a45e-3642c33b7d06" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/food_truck_finder.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1jRdRHlnWlvi6q7qLeESYVU1wiE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="FlutterRunConfigurationType" factoryName="Flutter" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/food_truck_finder/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c4f63821-86b8-44d0-a45e-3642c33b7d06" name="Default Changelist" comment="" />
+      <created>1603770828219</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603770828219</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="672" y="188" key="#Inspections" timestamp="1603771255584">
+      <screen x="0" y="23" width="1680" height="963" />
+    </state>
+    <state x="672" y="188" key="#Inspections/0.23.1680.963@0.23.1680.963" timestamp="1603771255584" />
+    <state x="328" y="81" key="#Project_Structure" timestamp="1603849365371">
+      <screen x="0" y="23" width="1680" height="958" />
+    </state>
+    <state x="328" y="81" key="#Project_Structure/0.23.1680.958@0.23.1680.958" timestamp="1603849365371" />
+    <state x="472" y="246" key="#Unnamed" timestamp="1603772127052">
+      <screen x="0" y="23" width="1680" height="963" />
+    </state>
+    <state x="472" y="246" key="#Unnamed/0.23.1680.963@0.23.1680.963" timestamp="1603772127052" />
+    <state x="502" y="165" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603772095067">
+      <screen x="0" y="23" width="1680" height="963" />
+    </state>
+    <state x="376" y="76" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.961@0.23.1680.961" timestamp="1603772020642" />
+    <state x="502" y="165" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.963@0.23.1680.963" timestamp="1603772095067" />
+    <state x="775" y="300" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1603772124782">
+      <screen x="0" y="23" width="1680" height="963" />
+    </state>
+    <state x="775" y="300" key="#com.intellij.ide.util.TreeFileChooserDialog/0.23.1680.963@0.23.1680.963" timestamp="1603772124782" />
+    <state x="496" y="123" width="1084" height="760" key="AVDManager" timestamp="1603771496166">
+      <screen x="0" y="23" width="1680" height="963" />
+    </state>
+    <state x="496" y="123" width="1084" height="760" key="AVDManager/0.23.1680.963@0.23.1680.963" timestamp="1603771496166" />
+    <state width="1680" height="262" key="GridCell.Tab.0.bottom" timestamp="1603849590625">
+      <screen x="0" y="23" width="1680" height="958" />
+    </state>
+    <state width="1680" height="265" key="GridCell.Tab.0.bottom/0.23.1680.956@0.23.1680.956" timestamp="1603849227550" />
+    <state width="1680" height="262" key="GridCell.Tab.0.bottom/0.23.1680.958@0.23.1680.958" timestamp="1603849590625" />
+    <state width="1023" height="265" key="GridCell.Tab.0.bottom/0.23.1680.961@0.23.1680.961" timestamp="1603771944407" />
+    <state width="1023" height="265" key="GridCell.Tab.0.bottom/0.23.1680.963@0.23.1680.963" timestamp="1603771781554" />
+    <state width="1680" height="262" key="GridCell.Tab.0.center" timestamp="1603849590624">
+      <screen x="0" y="23" width="1680" height="958" />
+    </state>
+    <state width="1680" height="265" key="GridCell.Tab.0.center/0.23.1680.956@0.23.1680.956" timestamp="1603849227550" />
+    <state width="1680" height="262" key="GridCell.Tab.0.center/0.23.1680.958@0.23.1680.958" timestamp="1603849590624" />
+    <state width="1023" height="265" key="GridCell.Tab.0.center/0.23.1680.961@0.23.1680.961" timestamp="1603771944407" />
+    <state width="1023" height="265" key="GridCell.Tab.0.center/0.23.1680.963@0.23.1680.963" timestamp="1603771781553" />
+    <state width="1680" height="262" key="GridCell.Tab.0.left" timestamp="1603849590624">
+      <screen x="0" y="23" width="1680" height="958" />
+    </state>
+    <state width="1680" height="265" key="GridCell.Tab.0.left/0.23.1680.956@0.23.1680.956" timestamp="1603849227549" />
+    <state width="1680" height="262" key="GridCell.Tab.0.left/0.23.1680.958@0.23.1680.958" timestamp="1603849590624" />
+    <state width="1023" height="265" key="GridCell.Tab.0.left/0.23.1680.961@0.23.1680.961" timestamp="1603771944406" />
+    <state width="1023" height="265" key="GridCell.Tab.0.left/0.23.1680.963@0.23.1680.963" timestamp="1603771781552" />
+    <state width="1680" height="262" key="GridCell.Tab.0.right" timestamp="1603849590625">
+      <screen x="0" y="23" width="1680" height="958" />
+    </state>
+    <state width="1680" height="265" key="GridCell.Tab.0.right/0.23.1680.956@0.23.1680.956" timestamp="1603849227550" />
+    <state width="1680" height="262" key="GridCell.Tab.0.right/0.23.1680.958@0.23.1680.958" timestamp="1603849590625" />
+    <state width="1023" height="265" key="GridCell.Tab.0.right/0.23.1680.961@0.23.1680.961" timestamp="1603771944407" />
+    <state width="1023" height="265" key="GridCell.Tab.0.right/0.23.1680.963@0.23.1680.963" timestamp="1603771781554" />
+    <state x="683" y="71" key="SettingsEditor" timestamp="1603771356177">
+      <screen x="0" y="23" width="1680" height="963" />
+    </state>
+    <state x="683" y="71" key="SettingsEditor/0.23.1680.961@0.23.1680.961" timestamp="1603770965170" />
+    <state x="683" y="71" key="SettingsEditor/0.23.1680.963@0.23.1680.963" timestamp="1603771356177" />
+    <state x="558" y="421" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603850380835">
+      <screen x="0" y="23" width="1680" height="958" />
+    </state>
+    <state x="558" y="421" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.958@0.23.1680.958" timestamp="1603850380835" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/food_truck_finder/lib/main.dart</url>
+          <line>23</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
