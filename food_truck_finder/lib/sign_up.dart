@@ -14,7 +14,7 @@ class _SignUp extends State<SignUp> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: new AppBar(
-        title: Text('Food Truck App'),
+        title: Text('Food Truck Finder'),
         centerTitle: true,
       ), 
 
