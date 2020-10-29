@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'placeholder_widget.dart';
 import 'profile_widget.dart';
-
+//Brian is an idiot for understanding github
 class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
