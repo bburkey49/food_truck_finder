@@ -70,10 +70,24 @@ class _LoginState extends State<Login> {
                     hintText: 'Enter your password'
                 ),
               )
-          )
+          ),
+
         ]
     );
 
+  }
+
+  Widget _forgotPassword() {
+    return Container(
+      alignment: Alignment.centerRight,
+      child: FlatButton(
+        onPressed: () { },
+        padding: EdgeInsets.only(right: 0.0),
+        child: Text(
+          'Forgot Password?'
+        )
+      )
+    );
   }
 
   Widget _buildLoginButton() {
@@ -85,8 +99,25 @@ class _LoginState extends State<Login> {
         );
       },
       child: Text(
-          'Login'
+        'Login',
+
       ),
+    );
+  }
+
+  Widget _newUserButton() {
+    return Container(
+      alignment: Alignment.bottomLeft,
+      child: FlatButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(
+            '/sign_up'
+          );
+        },
+        child: Text(
+          'New User? Sign Up!'
+        )
+      )
     );
   }
 
@@ -133,11 +164,21 @@ class _LoginState extends State<Login> {
                   _buildEmail(),
                   SizedBox(height: 5.0),
                   _buildPassword(),
+                  _forgotPassword(),
                   SizedBox(height: 5.0),
                   _buildLoginButton(),
                 ],
               )
             )
+          ),
+          Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                _newUserButton()
+              ],
+            )
+
           )
         ],
       )
