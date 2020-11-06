@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'placeholder_widget.dart';
 import 'profile_widget.dart';
+//Brian is an idiot for understanding github
 import 'sign_up.dart';
 import 'bottom_navigation_bar.dart';
 
