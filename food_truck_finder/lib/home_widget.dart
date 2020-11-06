@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:food_truck_finder/map.dart';
 import 'placeholder_widget.dart';
 import 'profile_widget.dart';
 //Brian is an idiot for understanding github
-import 'sign_up.dart';
 import 'bottom_navigation_bar.dart';
 
 class Home extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _HomeState();
-  }
+  State<StatefulWidget> createState() => _HomeState();
 }
 
 
@@ -17,7 +15,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     PlaceholderWidget(Colors.white),
-    PlaceholderWidget(Colors.orange),
+    MapPage(),
     ProfileWidget()
   ];
 

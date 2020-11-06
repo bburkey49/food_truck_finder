@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/route_generator.dart';
-import 'home_widget.dart';
 
 void main() {
   runApp(MyApp());
