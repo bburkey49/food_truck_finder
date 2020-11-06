@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_truck_finder/route_generator.dart';
 import 'home_widget.dart';
 
 void main() {
@@ -11,6 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Food Truck Finder',
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -27,7 +30,6 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
     );
   }
 }
