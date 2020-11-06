@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
                     hintText: 'Enter your email'
                 ),
               )
-          )
+          ),
         ]
     );
 
@@ -74,6 +74,20 @@ class _LoginState extends State<Login> {
         ]
     );
 
+  }
+
+  Widget _buildLoginButton() {
+    return FloatingActionButton(
+      backgroundColor: Colors.lightBlue,
+      onPressed: () {
+        Navigator.of(context).pushNamed(
+            '/home'
+        );
+      },
+      child: Text(
+          'Login'
+      ),
+    );
   }
 
   @override
@@ -119,6 +133,8 @@ class _LoginState extends State<Login> {
                   _buildEmail(),
                   SizedBox(height: 5.0),
                   _buildPassword(),
+                  SizedBox(height: 5.0),
+                  _buildLoginButton(),
                 ],
               )
             )
