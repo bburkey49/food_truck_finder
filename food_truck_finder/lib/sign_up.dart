@@ -12,11 +12,11 @@ class _SignUp extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: new AppBar(
-        title: Text('Food Truck Finder'),
-        centerTitle: true,
-      ), 
+      // backgroundColor: Colors.white,
+      // appBar: new AppBar(
+      //   title: Text('Food Truck Finder'),
+      //   centerTitle: true,
+      // ), 
 
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
