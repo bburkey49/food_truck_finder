@@ -18,10 +18,10 @@ class _ProfileWidget extends State<ProfileWidget> {
           height: 1000,
           margin: EdgeInsets.all(0),
           padding: EdgeInsets.only(top: 100),
-        child: Center(
+      child: Center(
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
+            children: <Widget>[
                 Icon(Icons.person, size: 200),
                 Text("UserName"),
                 ButtonTheme(

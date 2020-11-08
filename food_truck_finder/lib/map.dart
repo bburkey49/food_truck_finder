@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:food_truck_finder/data_search.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
@@ -9,6 +10,9 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
+  bool isSearching = false;
+
+  //final _form_key = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -19,15 +23,23 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title:
+          TextField(
+            decoration: InputDecoration(
+              hintText: 'Search'
+            ),
+            onTap: () {
+              showSearch(context: context, delegate: DataSearch());
+            }
+          ),
         leading: IconButton(
           icon: Icon(Icons.arrow_left),
           onPressed: () { },
         ),
-        title: Text('Search'),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () { }
+            icon: Icon(Icons.search),
+            onPressed: () { }
           )
         ],
       ),
@@ -80,5 +92,7 @@ class _MapPageState extends State<MapPage> {
           BitmapDescriptor.hueBlue
       )
   );
+
+
 }
 

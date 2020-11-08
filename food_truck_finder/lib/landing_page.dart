@@ -23,7 +23,6 @@ class _LandingState extends State<Landing> {
           title: Text('Food Truck Finder'),
         ),
         body: _children[_currentIndex],
-        bottomNavigationBar: NavBar.generateNavBar(onTabTapped, _currentIndex)
     );
   }
 
