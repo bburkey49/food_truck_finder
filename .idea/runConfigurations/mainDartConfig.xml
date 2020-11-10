@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="mainDartConfig" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="filePath" value="$PROJECT_DIR$/food_truck_finder/lib/main.dart" />
+    <method v="2" />
+  </configuration>
+</component>
