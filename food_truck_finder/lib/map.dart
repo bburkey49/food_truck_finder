@@ -1,5 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:food_truck_finder/data_search.dart';
+import 'package:food_truck_finder/point_object.dart';
+import 'package:food_truck_finder/pop_up_route.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
@@ -9,6 +12,10 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
+  bool isSearching = false;
+
+  InfoWidgetRoute _infoWidgetRoute;
+
 
   @override
   void initState() {
@@ -19,15 +26,23 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title:
+          TextField(
+            decoration: InputDecoration(
+              hintText: 'Search'
+            ),
+            onTap: () {
+              showSearch(context: context, delegate: DataSearch());
+            }
+          ),
         leading: IconButton(
           icon: Icon(Icons.arrow_left),
           onPressed: () { },
         ),
-        title: Text('Search'),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () { }
+            icon: Icon(Icons.search),
+            onPressed: () { }
           )
         ],
       ),
@@ -63,9 +78,30 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+
+  Widget _horizontalContainer() {
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 20.0),
+        height: 150.0,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            SizedBox(width: 10.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+            )
+          ],
+        )
+      )
+    );
+  }
+
+
   Marker minneapolisMarker = Marker(
     markerId: MarkerId('minneapolisMarker'),
-    position: LatLng(44.9778, 93.2650),
+    position: LatLng(44.9798, -93.2610),
     infoWindow: InfoWindow(title: 'truck1'),
     icon: BitmapDescriptor.defaultMarkerWithHue(
       BitmapDescriptor.hueBlue
@@ -73,12 +109,53 @@ class _MapPageState extends State<MapPage> {
   );
 
   Marker minneapolisMarker2 = Marker(
-      markerId: MarkerId('minneapolisMarker2'),
-      position: LatLng(44.9778, 93.2650),
-      infoWindow: InfoWindow(title: 'truck2'),
-      icon: BitmapDescriptor.defaultMarkerWithHue(
-          BitmapDescriptor.hueBlue
-      )
+    markerId: MarkerId('minneapolisMarker2'),
+    position: LatLng(44.9728, -93.2620),
+    infoWindow: InfoWindow(title: 'truck2'),
+    icon: BitmapDescriptor.defaultMarkerWithHue(
+        BitmapDescriptor.hueBlue
+    ),
+    onTap: () { }
   );
+
+  onPointTap(PointObject point) async {
+    final RenderBox renderBox = context.findRenderObject();
+    Rect _itemRect = renderBox.localToGlobal(Offset.zero) & renderBox.size;
+
+    _infoWidgetRoute = InfoWidgetRoute(
+      child: point.child,
+      buildContext: context,
+      textStyle: const TextStyle(
+        fontSize: 14,
+        color: Colors.black,
+      ),
+      mapsWidgetSize: _itemRect,
+    );
+
+    // await _controller.animateCamera(
+    //   CameraUpdate.newCameraPosition(
+    //     CameraPosition(
+    //       target: LatLng(
+    //         point.location.latitude - 0.0001,
+    //         point.location.longitude,
+    //       ),
+    //       zoom: 15,
+    //     ),
+    //   ),
+    // );
+    // await _controller.animateCamera(
+    //   CameraUpdate.newCameraPosition(
+    //     CameraPosition(
+    //       target: LatLng(
+    //         point.location.latitude,
+    //         point.location.longitude,
+    //       ),
+    //       zoom: 15,
+    //     ),
+    //   ),
+    // );
+  }
 }
+
+
 

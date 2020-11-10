@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck_finder/landing_page.dart';
+import 'package:food_truck_finder/login.dart';
 import 'package:food_truck_finder/sign_up.dart';
 import 'home_widget.dart';
 
@@ -9,7 +9,7 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => Landing());
+        return MaterialPageRoute(builder: (_) => Login());
 
       case '/home':
         return MaterialPageRoute(builder: (_) => Home());
