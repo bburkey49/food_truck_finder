@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck_finder/map.dart';
-import 'placeholder_widget.dart';
-import 'profile_widget.dart';
-//Brian is an idiot for understanding github
 import 'bottom_navigation_bar.dart';
+import 'login.dart';
 
-class Home extends StatefulWidget {
+class Landing extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _HomeState();
+  State<StatefulWidget> createState() {
+    return _LandingState();
+  }
 }
 
 
-class _HomeState extends State<Home> {
+class _LandingState extends State<Landing> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    PlaceholderWidget(Colors.white),
-    MapPage(),
-    ProfileWidget()
+    Login()
   ];
 
   @override
@@ -29,6 +26,7 @@ class _HomeState extends State<Home> {
         bottomNavigationBar: NavBar.generateNavBar(onTabTapped, _currentIndex)
     );
   }
+
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -36,5 +34,4 @@ class _HomeState extends State<Home> {
   }
 
 }
-
 
