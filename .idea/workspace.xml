@@ -32,7 +32,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="c4f63821-86b8-44d0-a45e-3642c33b7d06" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+=======
     <list default="true" id="c4f63821-86b8-44d0-a45e-3642c33b7d06" name="Default Changelist" comment="" />
+>>>>>>> main
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +98,23 @@
       <map>
         <entry key="MAIN">
           <value>
+<<<<<<< HEAD
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/brianch" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+=======
             <State />
+>>>>>>> main
           </value>
         </entry>
       </map>
