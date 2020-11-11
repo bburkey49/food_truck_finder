@@ -23,6 +23,8 @@ environment:
 dependencies:
   google_maps_flutter: ^1.0.6
   flutter_search_bar: ^2.1.0
+  provider: ^4.3.2+2
+  clippy_flutter: ^1.1.1
   flutter:
     sdk: flutter
 
