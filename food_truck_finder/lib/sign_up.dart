@@ -61,7 +61,7 @@ class _SignUp extends State<SignUp> {
                   icon: Icon(
                     Icons.email
                   ),
-                  hintText: 'Email Adress'
+                  hintText: 'Email Address'
                 )
               ),
               SizedBox(height: 15),
