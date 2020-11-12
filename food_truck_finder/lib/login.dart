@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
 
   Widget _buildLoginButton() {
     return FloatingActionButton(
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Colors.tealAccent,
       onPressed: () {
         Navigator.of(context).pushNamed(
             '/home'
