@@ -1,14 +1,7 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/custom_info_window.dart';
 import 'package:food_truck_finder/data_search.dart';
-import 'package:food_truck_finder/point_object.dart';
-import 'package:food_truck_finder/pop_up_route.dart';
-import 'package:food_truck_finder/truck.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
 
-import 'info_window_model.dart';
 
 class MapPage extends StatefulWidget {
   @override
