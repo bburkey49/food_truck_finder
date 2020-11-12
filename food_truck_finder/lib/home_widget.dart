@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/map.dart';
+import 'search_bar.dart';
 import 'placeholder_widget.dart';
 import 'profile_widget.dart';
 //Brian is an idiot for understanding github
@@ -15,7 +16,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     PlaceholderWidget(Colors.white),
-    MapPage(),
+    TruckSearchBar(),
     ProfileWidget()
   ];
 

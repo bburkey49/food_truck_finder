@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/route_generator.dart';
+import 'search_b.dart';
+import 'login.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: SearchB(),
     );
   }
 }
