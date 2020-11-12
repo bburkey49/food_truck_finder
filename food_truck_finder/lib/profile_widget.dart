@@ -53,7 +53,21 @@ class _ProfileWidget extends State<ProfileWidget> {
                       color: Colors.white,
                       onPressed: () { },
                     )
-                )
+                ),
+                ButtonTheme(
+                    minWidth: 175.0,
+                    height: 35.0,
+                    child: RaisedButton(
+                      textColor: Colors.black,
+                      child: Text("Log Out"),
+                      color: Colors.redAccent,
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                            '/'
+                        );
+                      },
+                    )
+                ),
               ]
           )
         ),

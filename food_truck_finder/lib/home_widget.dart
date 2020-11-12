@@ -4,6 +4,7 @@ import 'placeholder_widget.dart';
 import 'profile_widget.dart';
 //Brian is an idiot for understanding github
 import 'bottom_navigation_bar.dart';
+import 'truck_info_page.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    PlaceholderWidget(Colors.white),
+    TruckInfo(),
     MapPage(),
     ProfileWidget()
   ];
