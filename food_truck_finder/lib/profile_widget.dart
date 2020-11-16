@@ -17,7 +17,7 @@ class _ProfileWidget extends State<ProfileWidget> {
           width: 400,
           height: 1000,
           margin: EdgeInsets.all(0),
-          padding: EdgeInsets.only(top: 100),
+          padding: EdgeInsets.only(top: 10),
       child: Center(
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -36,7 +36,7 @@ class _ProfileWidget extends State<ProfileWidget> {
                 ),
                 ButtonTheme(
                     minWidth: 175.0,
-                    height: 35.0,
+                    height: 25.0,
                     child: RaisedButton(
                       textColor: Colors.black,
                       child: Text("Trucks I've Tried"),
