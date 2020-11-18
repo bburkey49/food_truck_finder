@@ -35,6 +35,11 @@ class _HomeState extends State<Home> {
       _currentIndex = index;
     });
   }
+  void setIndex(int index){
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
 }
 
