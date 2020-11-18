@@ -109,8 +109,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                             width: 250,
                             padding: EdgeInsets.all(15),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Column(
                                   children: <Widget>[
@@ -144,6 +143,14 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                         ),
                                       ),
                                     ),
+                                    FlatButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pushNamed(
+                                            '/truck_info'
+                                        );
+                                      },
+                                      child: Text('go to page'),
+                                    )
                                   ],
                                 ),
                               ],

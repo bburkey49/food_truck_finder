@@ -51,7 +51,11 @@ class _ProfileWidget extends State<ProfileWidget> {
                       textColor: Colors.black,
                       child: Text("Settings"),
                       color: Colors.white,
-                      onPressed: () { },
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                            '/search_filter'
+                        );
+                      },
                     )
                 ),
                 ButtonTheme(

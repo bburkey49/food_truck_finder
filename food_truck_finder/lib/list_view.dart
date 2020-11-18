@@ -57,7 +57,7 @@ class _ListViewState extends State<ListViewPage> {
                           child: Image(
                             fit: BoxFit.contain,
                             alignment: Alignment.topRight,
-                            image: AssetImage('temp_images/other_candy_truck.jpg')
+                            image: AssetImage('assets/images/other_candy_truck.jpg')
                           )
                         )
                       )
@@ -89,7 +89,7 @@ class _ListViewState extends State<ListViewPage> {
                                   child: Image(
                                       fit: BoxFit.contain,
                                       alignment: Alignment.topRight,
-                                      image: AssetImage('temp_images/other_candy_truck.jpg')
+                                      image: AssetImage('assets/images/other_candy_truck.jpg')
                                   )
                               )
                           )
@@ -121,7 +121,7 @@ class _ListViewState extends State<ListViewPage> {
                                   child: Image(
                                       fit: BoxFit.contain,
                                       alignment: Alignment.topRight,
-                                      image: AssetImage('temp_images/other_candy_truck.jpg')
+                                      image: AssetImage('assets/images/other_candy_truck.jpg')
                                   )
                               )
                           )
@@ -153,7 +153,7 @@ class _ListViewState extends State<ListViewPage> {
                                   child: Image(
                                       fit: BoxFit.contain,
                                       alignment: Alignment.topRight,
-                                      image: AssetImage('temp_images/other_candy_truck.jpg')
+                                      image: AssetImage('assets/images/other_candy_truck.jpg')
                                   )
                               )
                           )
@@ -185,7 +185,7 @@ class _ListViewState extends State<ListViewPage> {
                                   child: Image(
                                       fit: BoxFit.contain,
                                       alignment: Alignment.topRight,
-                                      image: AssetImage('temp_images/other_candy_truck.jpg')
+                                      image: AssetImage('assets/images/other_candy_truck.jpg')
                                   )
                               )
                           )

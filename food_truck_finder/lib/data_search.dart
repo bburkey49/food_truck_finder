@@ -5,6 +5,21 @@ class DataSearch extends SearchDelegate<String> {
 
   final trucks = [
     'tacos',
+    'chicken',
+    'calzones',
+    'cake',
+    'cambodian',
+    'cheese',
+    'pizza',
+    'ice cream',
+    'fries',
+    'pancakes',
+    'hot dogs',
+    'wings',
+    'papaya',
+    'wasabi',
+    'wheatgrass juice',
+
     'waffles',
     'burgers',
   ];
