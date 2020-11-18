@@ -5,6 +5,21 @@ class DataSearch extends SearchDelegate<String> {
 
   final trucks = [
     'tacos',
+    'chicken',
+    'calzones',
+    'cake',
+    'cambodian',
+    'cheese',
+    'pizza',
+    'ice cream',
+    'fries',
+    'pancakes',
+    'hot dogs',
+    'wings',
+    'papaya',
+    'wasabi',
+    'wheatgrass juice',
+
     'waffles',
     'burgers',
   ];
@@ -55,7 +70,10 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestion_list = query.isEmpty ? recents : trucks.where((c) => c.startsWith(query)).toList();
+    final suggestionList =
+      query.isEmpty ?
+      recents :
+      trucks.where((c) => c.startsWith(query)).toList();
 
     return ListView.builder(
       itemBuilder: (context, index) =>
@@ -68,21 +86,21 @@ class DataSearch extends SearchDelegate<String> {
             ),
             title: RichText(
                 text: TextSpan(
-                    text: suggestion_list[index].substring(0, query.length),
+                    text: suggestionList[index].substring(0, query.length),
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                     children: [
                     TextSpan(
-                      text: suggestion_list[index].substring(query.length),
+                      text: suggestionList[index].substring(query.length),
                       style: TextStyle(color: Colors.grey)
                     )
                   ]
                 )
             )
           ),
-      itemCount: suggestion_list.length,
+      itemCount: suggestionList.length,
 
     );
 

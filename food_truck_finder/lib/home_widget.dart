@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/map.dart';
+import 'search_bar.dart';
 import 'placeholder_widget.dart';
+import 'list_view.dart';
 import 'profile_widget.dart';
 //Brian is an idiot for understanding github
 import 'bottom_navigation_bar.dart';
@@ -15,7 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    TruckInfo(),
+    ListViewPage(),
     MapPage(),
     ProfileWidget()
   ];

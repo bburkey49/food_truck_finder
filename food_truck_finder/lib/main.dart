@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/info_window_model.dart';
 import 'package:food_truck_finder/route_generator.dart';
+import 'search_b.dart';
+import 'login.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -13,7 +15,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of your application. 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
