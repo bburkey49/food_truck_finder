@@ -38,8 +38,6 @@ class _MapPageState extends State<MapPage> {
       body: Stack(
         children: <Widget>[
           _googleMap(context),
-          // _zoomIn(),
-          // _zoomOut(),
           // _horizontalContainer()
         ],
       ),
@@ -53,47 +51,6 @@ class _MapPageState extends State<MapPage> {
       child: CustomInfoWindow()
     );
   }
-
-
-  // Widget _horizontalContainer() {
-  //   return Align(
-  //     alignment: Alignment.bottomLeft,
-  //     child: Container(
-  //       margin: EdgeInsets.symmetric(vertical: 20.0),
-  //       height: 150.0,
-  //       child: ListView(
-  //         scrollDirection: Axis.horizontal,
-  //         children: <Widget>[
-  //           SizedBox(width: 10.0),
-  //           Padding(
-  //             padding: const EdgeInsets.all(8.0),
-  //           )
-  //         ],
-  //       )
-  //     )
-  //   );
-  // }
-
-
-  // Marker minneapolisMarker = Marker(
-  //   markerId: MarkerId('minneapolisMarker'),
-  //   position: LatLng(44.9798, -93.2610),
-  //   infoWindow: InfoWindow(title: 'truck1'),
-  //   icon: BitmapDescriptor.defaultMarkerWithHue(
-  //     BitmapDescriptor.hueBlue
-  //   )
-  // );
-  //
-  // Marker minneapolisMarker2 = Marker(
-  //   markerId: MarkerId('minneapolisMarker2'),
-  //   position: LatLng(44.9728, -93.2620),
-  //   infoWindow: InfoWindow(title: 'truck2'),
-  //   icon: BitmapDescriptor.defaultMarkerWithHue(
-  //       BitmapDescriptor.hueBlue
-  //   )
-  // );
-
-
 
 }
 
