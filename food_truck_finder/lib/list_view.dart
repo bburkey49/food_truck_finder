@@ -8,6 +8,50 @@ class ListViewPage extends StatefulWidget {
 }
 
 class _ListViewState extends State<ListViewPage> {
+
+  Widget _buildBlock() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.of(context).pushNamed(
+            '/truck_info'
+        );
+      },
+      child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+              child: FittedBox(
+                child: Material(
+                  color: Colors.white,
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child:
+                    Row(
+                      children: <Widget>[
+                        Container(
+                            child: myDetailsContainer1()
+                        ),
+                        Container(
+                            height: 250,
+                            width: 250,
+                            child: ClipRRect(
+                                borderRadius: new BorderRadius.circular(24.0),
+                                child: Image(
+                                    fit: BoxFit.contain,
+                                    alignment: Alignment.topRight,
+                                    image: AssetImage('assets/images/other_candy_truck.jpg')
+                                )
+                            )
+                        )
+                      ],
+                    ),
+                ),
+              )
+          )
+          ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,166 +79,12 @@ class _ListViewState extends State<ListViewPage> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: FittedBox(
-                child: Material(
-                  color: Colors.white,
-                  elevation: 14.0,
-                  borderRadius: BorderRadius.circular(24.0),
-                  shadowColor: Color(0x802196F3),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        child: myDetailsContainer1()
-                      ),
-                      Container(
-                        height: 250,
-                        width: 250,
-                        child: ClipRRect(
-                          borderRadius: new BorderRadius.circular(24.0),
-                          child: Image(
-                            fit: BoxFit.contain,
-                            alignment: Alignment.topRight,
-                            image: AssetImage('assets/images/other_candy_truck.jpg')
-                          )
-                        )
-                      )
-                    ],
-                  ),
-                ),
-              )
-            )
-          ),
-          Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                  child: FittedBox(
-                    child: Material(
-                      color: Colors.white,
-                      elevation: 14.0,
-                      borderRadius: BorderRadius.circular(24.0),
-                      shadowColor: Color(0x802196F3),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                              child: myDetailsContainer1()
-                          ),
-                          Container(
-                              height: 250,
-                              width: 250,
-                              child: ClipRRect(
-                                  borderRadius: new BorderRadius.circular(24.0),
-                                  child: Image(
-                                      fit: BoxFit.contain,
-                                      alignment: Alignment.topRight,
-                                      image: AssetImage('assets/images/other_candy_truck.jpg')
-                                  )
-                              )
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-              )
-          ),
-          Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                  child: FittedBox(
-                    child: Material(
-                      color: Colors.white,
-                      elevation: 14.0,
-                      borderRadius: BorderRadius.circular(24.0),
-                      shadowColor: Color(0x802196F3),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                              child: myDetailsContainer1()
-                          ),
-                          Container(
-                              height: 250,
-                              width: 250,
-                              child: ClipRRect(
-                                  borderRadius: new BorderRadius.circular(24.0),
-                                  child: Image(
-                                      fit: BoxFit.contain,
-                                      alignment: Alignment.topRight,
-                                      image: AssetImage('assets/images/other_candy_truck.jpg')
-                                  )
-                              )
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-              )
-          ),
-          Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                  child: FittedBox(
-                    child: Material(
-                      color: Colors.white,
-                      elevation: 14.0,
-                      borderRadius: BorderRadius.circular(24.0),
-                      shadowColor: Color(0x802196F3),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                              child: myDetailsContainer1()
-                          ),
-                          Container(
-                              height: 250,
-                              width: 250,
-                              child: ClipRRect(
-                                  borderRadius: new BorderRadius.circular(24.0),
-                                  child: Image(
-                                      fit: BoxFit.contain,
-                                      alignment: Alignment.topRight,
-                                      image: AssetImage('assets/images/other_candy_truck.jpg')
-                                  )
-                              )
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-              )
-          ),
-          Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                  child: FittedBox(
-                    child: Material(
-                      color: Colors.white,
-                      elevation: 14.0,
-                      borderRadius: BorderRadius.circular(24.0),
-                      shadowColor: Color(0x802196F3),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                              child: myDetailsContainer1()
-                          ),
-                          Container(
-                              height: 250,
-                              width: 250,
-                              child: ClipRRect(
-                                  borderRadius: new BorderRadius.circular(24.0),
-                                  child: Image(
-                                      fit: BoxFit.contain,
-                                      alignment: Alignment.topRight,
-                                      image: AssetImage('assets/images/other_candy_truck.jpg')
-                                  )
-                              )
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-              )
-          )
+          _buildBlock(),
+          _buildBlock(),
+          _buildBlock(),
+          _buildBlock(),
+          _buildBlock(),
+          _buildBlock()
         ],
       ),
     );
@@ -209,8 +99,9 @@ Widget myDetailsContainer1() {
     children: <Widget>[
       Padding(
         padding: const EdgeInsets.only(left: 8.0),
-        child: Container(child: Text("Candy Bliss",
-          style: TextStyle(color: Color(0xffe6020a), fontSize: 24.0,fontWeight: FontWeight.bold),)),
+        child: Container(
+          child: Text("Candy Bliss",
+            style: TextStyle(color: Color(0xffe6020a), fontSize: 24.0,fontWeight: FontWeight.bold),)),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 8.0),
@@ -246,32 +137,3 @@ Widget myDetailsContainer1() {
 }
 
 
-
-
-Widget myDetailsContainer2() {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Container(child: Text("Chocolate Haven",
-          style: TextStyle(color: Color(0xffe6020a), fontSize: 24.0,fontWeight: FontWeight.bold),)),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Container(child: Row(children: <Widget>[
-          Container(child: Text("4.3",
-            style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-          Container(child: Icon(
-            Icons.star, color: Colors.amber, size: 15.0,),),
-          Container(child: Icon(
-            Icons.star, color: Colors.amber, size: 15.0,),),
-          Container(child: Text("(75) \u00B7 1.2 mi",
-            style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-        ],)),
-      ),
-      Container(child: Text("Pastries \u00B7 Phoenix,AZ",
-        style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-    ],
-  );
-}

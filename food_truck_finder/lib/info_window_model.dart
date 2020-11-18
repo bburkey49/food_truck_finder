@@ -8,7 +8,7 @@ class InfoWindowModel extends ChangeNotifier {
   Truck _truck;
   double _leftMargin;
   double _topMargin;
-  GoogleMapController _controller;
+  //GoogleMapController _controller;
 
   void rebuildInfoWindow() {
     notifyListeners();
@@ -22,9 +22,9 @@ class InfoWindowModel extends ChangeNotifier {
     _showInfoWindow = visibility;
   }
 
-  void updateGoogleMapController(GoogleMapController controller) {
-    _controller = controller;
-  }
+  // void updateGoogleMapController(GoogleMapController controller) {
+  //   _controller = controller;
+  // }
 
   void updateInfoWindow(
       BuildContext context,
