@@ -140,9 +140,9 @@ class _ProfileWidget extends State<ProfileWidget> {
       color: Colors.white,
       child: OutlineButton(
         onPressed: () {
-          Navigator.of(context).pushNamed(
-              '/'
-          );
+          showAlertDialog(context);
+          //Navigator.of(context).pushNamed(
+             // '/'
         },
         borderSide: BorderSide(
           color: Colors.black,
@@ -169,7 +169,43 @@ class _ProfileWidget extends State<ProfileWidget> {
         ),
       ),
     );
+  }
 
+  showAlertDialog(BuildContext context) {
+
+    // set up the buttons
+    Widget cancelButton = FlatButton(
+      child: Text("No"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Yes"),
+      onPressed:  () {
+        Navigator.of(context).pushNamed(
+         '/'
+        );
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Confirmation"),
+      content: Text("Are you sure you would like to log out of WanderTruck?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
 
