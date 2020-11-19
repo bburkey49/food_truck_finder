@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/truck.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,28 +21,48 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   final double _infoWindowWidth = 250;
   final double _markerOffset = 220;
 
+  //Map truckMap = json.forEach((element))
+
   final Map<String, Truck> _truckList = {
-    "1": Truck(
-      "Timmy's Tacos",
-      "\$\$",
-      2,
-      "Mexican",
-      LatLng(44.9798, -93.2610),
+    "1" : Truck(
+        "El Fuego",
+        4,
+        "Mexican",
+        LatLng(44.9758, -93.2620),
+        "\$\$"
     ),
-    "2": Truck(
-      "Manny's Muffins",
-      "\$",
-      4,
-      "Baked Goods",
-      LatLng(44.9728, -93.2620),
+    "2" : Truck(
+        "Minneapolis Pizza Kitchen",
+        3,
+        "Italian",
+        LatLng(44.9728, -93.2610),
+        "\$\$\$"
+    ),
+    "3" : Truck(
+        "yum! kitchen mobile",
+        2,
+        "American",
+        LatLng(44.9738, -93.2690),
+        "\$\$"
     ),
   };
 
+
   Set<Marker> _markers = Set<Marker>();
+
+  // List<Truck> _getTrucks(String fileName) {
+  //   final json = jsonDecode(fileName);
+  //   List<Truck> trucks;
+  //   return json.forEach((element) {
+  //     trucks.add(Truck.fromJson(element));
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     final providerObject = Provider.of<InfoWindowModel>(context, listen: false);
+    //final List<Truck> temp = _getTrucks('assets/data/trucks.json');
+    //print(temp);
     _truckList.forEach(
           (k, v) => _markers.add(
             Marker(
@@ -126,7 +148,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                               textAlign: TextAlign.left,
                                             ),
                                             Text(
-                                              providerObject.truck.priceRange,
+                                              providerObject.truck.price,
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold,

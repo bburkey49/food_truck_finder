@@ -37,9 +37,13 @@ class RouteGenerator {
 
       case '/settings':
         return MaterialPageRoute(builder: (_) => SettingsWidget());
-
+        
       case '/forgot_password':
         return MaterialPageRoute(builder: (_) => ForgotPassword());
+
+      case '/filters':
+        return MaterialPageRoute(builder: (_) => SearchB());
+
 
     }
   }
