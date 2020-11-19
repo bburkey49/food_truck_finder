@@ -8,47 +8,55 @@ class SavedTrucksWidget extends StatefulWidget {
 }
 
 
+Widget _logo() {
 
-Widget _savedTrucksTitle() {
-  return Container(
-    alignment: Alignment.center,
-      child: Column(
-          children: <Widget>[
-            SizedBox(height: 30),
-            Icon(
-              Icons.airport_shuttle,
-              color: Colors.redAccent,
-              size: 100
-            ),
-            Container(
-                child: Stack(
-                  children: <Widget>[
-                    Text(
-                      'Saved Trucks',
-                      style: TextStyle(
-                        fontSize: 40,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 3
-                          ..color = Colors.redAccent,
-                      ),
-                    ),
-                    // Solid text as fill.
-                    Text(
-                      'Saved Trucks',
-                      style: TextStyle(
-                        fontSize: 40,
-                        color: Colors.white,
-                      ),
-                    )
-
-                  ],
-                )
-            ),
-          ]
-      )
+  return Image.asset(
+    'assets/images/savedTruck.png',
+    color: Colors.redAccent,
+    alignment: Alignment.topCenter,
+    semanticLabel: 'saved truck icon',
   );
 }
+// Widget _savedTrucksTitle() {
+//   return Container(
+//     alignment: Alignment.center,
+//       child: Column(
+//           children: <Widget>[
+//             SizedBox(height: 30),
+//             Icon(
+//               Icons.airport_shuttle,
+//               color: Colors.redAccent,
+//               size: 100
+//             ),
+//             Container(
+//                 child: Stack(
+//                   children: <Widget>[
+//                     Text(
+//                       'Saved Trucks',
+//                       style: TextStyle(
+//                         fontSize: 40,
+//                         foreground: Paint()
+//                           ..style = PaintingStyle.stroke
+//                           ..strokeWidth = 3
+//                           ..color = Colors.redAccent,
+//                       ),
+//                     ),
+//                     // Solid text as fill.
+//                     Text(
+//                       'Saved Trucks',
+//                       style: TextStyle(
+//                         fontSize: 40,
+//                         color: Colors.white,
+//                       ),
+//                     )
+//
+//                   ],
+//                 )
+//             ),
+//           ]
+//       )
+//   );
+// }
 
 class _SavedTrucksWidget extends State<SavedTrucksWidget> {
   @override
@@ -59,16 +67,7 @@ class _SavedTrucksWidget extends State<SavedTrucksWidget> {
             Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.white,
-                        Colors.greenAccent
-                      ]
-                  )
-              ),
+              color: Colors.white,
             ),
             Container(
                 height: MediaQuery.of(context).size.height,
@@ -83,7 +82,8 @@ class _SavedTrucksWidget extends State<SavedTrucksWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         SizedBox(height: 30.0),
-                        _savedTrucksTitle()
+                        _logo()
+                        // _savedTrucksTitle()
                       ],
                     )
                 )
@@ -97,36 +97,10 @@ class _SavedTrucksWidget extends State<SavedTrucksWidget> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Container(
-                          child: Stack(
-                            children: <Widget>[
-                              Text(
-                                'WanderTruck',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  foreground: Paint()
-                                    ..style = PaintingStyle.stroke
-                                    ..strokeWidth = 3
-                                    ..color = Colors.greenAccent,
-                                ),
-                              ),
-                              // Solid text as fill.
-                              Text(
-                                'WanderTruck',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              )
-
-                            ],
-                          )
+                      Image.asset(
+                          'assets/images/logo.png',
+                      width: 200.0,
                       ),
-                      Icon(
-                          Icons.airport_shuttle,
-                          color: Colors.greenAccent,
-                          size: 30
-                      )
                     ]
                 )
             ),
