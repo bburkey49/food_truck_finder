@@ -17,7 +17,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   final double _zoom = 15.0;
 
   final double _infoWindowWidth = 250;
-  final double _markerOffset = 170;
+  final double _markerOffset = 220;
 
   final Map<String, Truck> _truckList = {
     "1": Truck(
@@ -41,26 +41,25 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   @override
   Widget build(BuildContext context) {
     final providerObject = Provider.of<InfoWindowModel>(context, listen: false);
-    //final infoWindowModel = InfoWindowModel();
     _truckList.forEach(
           (k, v) => _markers.add(
-        Marker(
-          markerId: MarkerId(v.name),
-          position: v.location,
-          onTap: () {
-            providerObject.updateInfoWindow(
-              context,
-              mapController,
-              v.location,
-              _infoWindowWidth,
-              _markerOffset,
-            );
-            providerObject.updateTruck(v);
-            providerObject.updateVisibility(true);
-            providerObject.rebuildInfoWindow();
-          },
-        ),
-      ),
+            Marker(
+              markerId: MarkerId(v.name),
+              position: v.location,
+              onTap: () {
+                providerObject.updateInfoWindow(
+                  context,
+                  mapController,
+                  v.location,
+                  _infoWindowWidth,
+                  _markerOffset,
+                );
+                providerObject.updateTruck(v);
+                providerObject.updateVisibility(true);
+                providerObject.rebuildInfoWindow();
+              },
+            ),
+          ),
     );
 
     return Scaffold(
@@ -75,97 +74,141 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                   top: 0,
                   child: Visibility(
                     visible: providerObject.showInfoWindow,
-                    child: (providerObject.truck == null ||
-                        !providerObject.showInfoWindow)
-                        ? Container()
-                        : Container(
-                      margin: EdgeInsets.only(
-                        left: providerObject.leftMargin,
-                        top: providerObject.topMargin,
-                      ),
-                      // Custom InfoWindow Widget starts here
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: new LinearGradient(
-                                colors: [
-                                  Colors.white,
-                                  Color(0xffffe6cc),
+                    child: (providerObject.truck == null || !providerObject.showInfoWindow) ?
+                      Container() :
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: providerObject.leftMargin,
+                          top: providerObject.topMargin,
+                        ),
+                        // Custom InfoWindow Widget starts here
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                  gradient: new LinearGradient(
+                                    colors: [
+                                      Colors.white,
+                                      Color(0xffffe6cc),
+                                    ],
+                                    end: Alignment.bottomCenter,
+                                    begin: Alignment.topCenter,
+                                  ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    offset: Offset(0.0, 1.0),
+                                    blurRadius: 6.0,
+                                  ),
                                 ],
-                                end: Alignment.bottomCenter,
-                                begin: Alignment.topCenter,
                               ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(0.0, 1.0),
-                                  blurRadius: 6.0,
-                                ),
-                              ],
-                            ),
-                            height: 100,
-                            width: 250,
-                            padding: EdgeInsets.all(15),
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Column(
-                                  children: <Widget>[
-                                    Text(
-                                      providerObject.truck.name,
-                                      style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black45,
-                                      ),
-                                    ),
-                                    IconTheme(
-                                      data: IconThemeData(
-                                        color: Colors.red,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment
-                                            .spaceBetween,
-                                        children: List.generate(
-                                          5,
-                                              (index) {
-                                            return Icon(
-                                              index <
-                                                  providerObject
-                                                      .truck.rating
-                                                  ? Icons.star
-                                                  : Icons.star_border,
-                                            );
-                                          },
+                              height: 150,
+                              width: 250,
+                              padding: EdgeInsets.all(15),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget> [
+                                            Text(
+                                              providerObject.truck.name,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black45,
+                                              ),
+                                              textAlign: TextAlign.left,
+                                            ),
+                                            Text(
+                                              providerObject.truck.priceRange,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black45,
+                                              ),
+                                              textAlign: TextAlign.right,
+                                            ),
+                                          ]
                                         ),
-                                      ),
+                                        Text(
+                                          providerObject.truck.foodType,
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black45,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Text(
+                                          providerObject.truck.location.toString(),
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black45,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget> [
+                                            IconTheme(
+                                              data: IconThemeData(color: Colors.red,),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: List.generate(
+                                                  5, // length
+                                                      (index) {
+                                                    return Icon(
+                                                      index < providerObject.truck.rating
+                                                          ? Icons.star
+                                                          : Icons.star_border,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                            FloatingActionButton(
+                                              foregroundColor: Colors.green,
+                                              mini: true,
+                                              onPressed: () {
+                                                Navigator.of(context).pushNamed(
+                                                    '/truck_info'
+                                                );
+                                              },
+                                              child: Icon(Icons.arrow_right),
+                                            )
+                                          ]
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Triangle.isosceles(
-                            edge: Edge.BOTTOM,
-                            child: Container(
-                              color: Color(0xffffe6cc),
-                              width: 20.0,
-                              height: 15.0,
+                            Triangle.isosceles(
+                              edge: Edge.BOTTOM,
+                              child: Container(
+                                color: Color(0xffffe6cc),
+                                width: 20.0,
+                                height: 15.0,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                  // Custom InfoWindow Widget ends here
                       ),
-                      // Custom InfoWindow Widget ends here
-                    ),
                   ),
                 ),
               ],
             );
           },
+          // map
           child: Positioned(
             child: GoogleMap(
               onTap: (position) {

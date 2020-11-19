@@ -10,29 +10,43 @@ class Login extends StatefulWidget {
 
 
 class _LoginState extends State<Login> {
+  Widget _logo() {
+
+    return Image.asset(
+    'assets/images/logo.png',
+      alignment: Alignment.topCenter,
+      semanticLabel: 'logo',
+    );
+  }
 
   Widget _buildEmail() {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+
           Text(
               'Email'
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 5.0),
           Container(
               alignment: Alignment.centerLeft,
               height: 60.0,
               child: TextField(
                 keyboardType: TextInputType.emailAddress,
                 style: TextStyle(
-                    color: Colors.white
+                    color: Colors.black
                 ),
                 decoration: InputDecoration(
-                    border: InputBorder.none,
+                    enabledBorder: new OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.redAccent),
+                      borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)
+                      ),
+                    ),
                     contentPadding: EdgeInsets.only(top: 14.0),
                     prefixIcon: Icon(
                       Icons.email,
-                      color: Colors.white,
+                      color: Colors.redAccent,
                     ),
                     hintText: 'Enter your email'
                 ),
@@ -50,7 +64,7 @@ class _LoginState extends State<Login> {
           Text(
               'Password'
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 5.0),
           Container(
               alignment: Alignment.centerLeft,
               height: 60.0,
@@ -58,14 +72,19 @@ class _LoginState extends State<Login> {
                 obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
                 style: TextStyle(
-                    color: Colors.white
+                    color: Colors.black
                 ),
                 decoration: InputDecoration(
-                    border: InputBorder.none,
+                    enabledBorder: new OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.redAccent),
+                      borderRadius: const BorderRadius.all(
+                        const Radius.circular(10.0)
+                      ),
+                    ),
                     contentPadding: EdgeInsets.only(top: 14.0),
                     prefixIcon: Icon(
                       Icons.lock,
-                      color: Colors.white,
+                      color: Colors.redAccent,
                     ),
                     hintText: 'Enter your password'
                 ),
@@ -84,7 +103,10 @@ class _LoginState extends State<Login> {
         onPressed: () { },
         padding: EdgeInsets.only(right: 0.0),
         child: Text(
-          'Forgot Password?'
+          'Forgot Password?',
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+          ),
         )
       )
     );
@@ -92,7 +114,7 @@ class _LoginState extends State<Login> {
 
   Widget _buildLoginButton() {
     return FloatingActionButton(
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: Colors.teal,
       onPressed: () {
         Navigator.of(context).pushNamed(
             '/home'
@@ -115,7 +137,10 @@ class _LoginState extends State<Login> {
           );
         },
         child: Text(
-          'New User? Sign Up!'
+          'New User? Sign Up!',
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+          ),
         )
       )
     );
@@ -130,14 +155,7 @@ class _LoginState extends State<Login> {
             height: double.infinity,
             width: double.infinity,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.orange,
-                  Colors.red
-                ]
-              )
+              color: Colors.white,
             ),
           ),
           Container(
@@ -146,23 +164,15 @@ class _LoginState extends State<Login> {
               physics: AlwaysScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(
                 horizontal: 40.0,
-                vertical: 120.0
+                vertical: 40.0
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    'Sign In',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'OpenSans',
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold
-                    )
-                  ),
-                  SizedBox(height: 30.0),
+                  _logo(),
+                  SizedBox(height: 125.0),
                   _buildEmail(),
-                  SizedBox(height: 5.0),
+                  SizedBox(height: 12.0),
                   _buildPassword(),
                   _forgotPassword(),
                   SizedBox(height: 5.0),
