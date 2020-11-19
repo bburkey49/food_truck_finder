@@ -37,6 +37,9 @@ class RouteGenerator {
       case '/settings':
         return MaterialPageRoute(builder: (_) => SettingsWidget());
 
+      case '/filters':
+        return MaterialPageRoute(builder: (_) => SearchB());
+
     }
   }
 }

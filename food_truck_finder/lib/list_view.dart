@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_truck_finder/search_b.dart';
 import 'data_search.dart';
 
 class ListViewPage extends StatefulWidget {
@@ -8,6 +9,7 @@ class ListViewPage extends StatefulWidget {
 }
 
 class _ListViewState extends State<ListViewPage> {
+  bool filters = false;
 
   Widget _buildBlock() {
     return ElevatedButton(
@@ -80,22 +82,30 @@ class _ListViewState extends State<ListViewPage> {
         ),
         actions: <Widget>[
           IconButton(
+              icon: Icon(Icons.filter),
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  '/filters'
+                );
+              }
+          ),
+          IconButton(
               icon: Icon(Icons.search),
               onPressed: () { }
           )
         ],
       ),
       body: ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          _buildBlock(),
-          _buildBlock(),
-          _buildBlock(),
-          _buildBlock(),
-          _buildBlock(),
-          _buildBlock()
-        ],
-      ),
+              scrollDirection: Axis.vertical,
+              children: <Widget>[
+                _buildBlock(),
+                _buildBlock(),
+                _buildBlock(),
+                _buildBlock(),
+                _buildBlock(),
+                _buildBlock()
+              ],
+            )
     );
   }
 

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:food_truck_finder/data_search.dart';
 
 
 class SearchB extends StatefulWidget {
@@ -94,8 +95,8 @@ class _SearchB extends State<SearchB> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white, 
-        title: Text("Search Food Trucks", 
+        backgroundColor: Colors.white,
+        title: Text("Search Food Trucks",
         style: TextStyle(
           color: Colors.black,
         ),
@@ -106,15 +107,15 @@ class _SearchB extends State<SearchB> {
             color: Colors.black,
             icon: Icon(Icons.search),
             onPressed: () {
-              showSearch(context: context, delegate: DateSearch());
+              showSearch(context: context, delegate: DataSearch());
             },)
         ],
       ),
-      body: buildFiters(),
+      body: buildFilters(),
     );
   }
 
-  Container buildFiters() {
+  Container buildFilters() {
     return Container(
       child: Row(
         children: [
@@ -130,59 +131,59 @@ class _SearchB extends State<SearchB> {
   }
 }
 
-class DateSearch extends SearchDelegate<String>{
-  final List<String> foodTrucksList = [
-    "EL FUEGO",
-    "FETCH NE",
-    "MARKET BBQ",
-    "FOXY FALAFEL",
-    "THE SOUP COUP"
-  ];
-
-  final List<String> foodTrucks = [
-    "EL FUEGO",
-    "FOXY FALAFEL"
-  ];
-
-  @override
-  List<Widget> buildActions(BuildContext context) {
-      return[
-        IconButton(
-          icon: Icon(Icons.clear), 
-          onPressed: () {
-            query = '';
-           },
-          )
-        ];
-    }
-  
-    @override
-    Widget buildLeading(BuildContext context) {
-      return IconButton(
-        icon: BackButtonIcon(),
-        onPressed: () {
-          close(context, null);
-        },
-      );
-    }
-  
-    @override
-    Widget buildResults(BuildContext context) {
-      return Container(
-        // Return the truck info page 
-      );
-    }
-  
-    @override
-    Widget buildSuggestions(BuildContext context) {
-      final suggestionTrucks = query.isEmpty 
-      ? foodTrucks 
-      : foodTrucksList.where((p) => p.startsWith(query)).toList();
-        return ListView.builder(itemBuilder: (context,index) => ListTile(
-          title: Text(suggestionTrucks[index]),
-        ),
-        itemCount: suggestionTrucks.length ,
-      );
-
-    }
-}
+// class DateSearch extends SearchDelegate<String>{
+//   final List<String> foodTrucksList = [
+//     "EL FUEGO",
+//     "FETCH NE",
+//     "MARKET BBQ",
+//     "FOXY FALAFEL",
+//     "THE SOUP COUP"
+//   ];
+//
+//   final List<String> foodTrucks = [
+//     "EL FUEGO",
+//     "FOXY FALAFEL"
+//   ];
+//
+//   @override
+//   List<Widget> buildActions(BuildContext context) {
+//       return[
+//         IconButton(
+//           icon: Icon(Icons.clear),
+//           onPressed: () {
+//             query = '';
+//            },
+//           )
+//         ];
+//     }
+//
+//     @override
+//     Widget buildLeading(BuildContext context) {
+//       return IconButton(
+//         icon: BackButtonIcon(),
+//         onPressed: () {
+//           close(context, null);
+//         },
+//       );
+//     }
+//
+//     @override
+//     Widget buildResults(BuildContext context) {
+//       return Container(
+//         // Return the truck info page
+//       );
+//     }
+//
+//     @override
+//     Widget buildSuggestions(BuildContext context) {
+//       final suggestionTrucks = query.isEmpty
+//       ? foodTrucks
+//       : foodTrucksList.where((p) => p.startsWith(query)).toList();
+//         return ListView.builder(itemBuilder: (context,index) => ListTile(
+//           title: Text(suggestionTrucks[index]),
+//         ),
+//         itemCount: suggestionTrucks.length ,
+//       );
+//
+//     }
+// }
