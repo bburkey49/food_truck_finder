@@ -11,6 +11,15 @@ class _ListViewState extends State<ListViewPage> {
 
   Widget _buildBlock() {
     return ElevatedButton(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if(states.contains(MaterialState.hovered))
+                return Colors.greenAccent;
+              return null;
+            }
+        )
+      ),
       onPressed: () {
         Navigator.of(context).pushNamed(
             '/truck_info'
