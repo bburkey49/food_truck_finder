@@ -7,6 +7,7 @@ import 'home_widget.dart';
 import 'saved_trucks.dart';
 import 'tried_trucks.dart';
 import 'settings.dart';
+import 'forgot_password.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -36,6 +37,9 @@ class RouteGenerator {
 
       case '/settings':
         return MaterialPageRoute(builder: (_) => SettingsWidget());
+
+      case '/forgot_password':
+        return MaterialPageRoute(builder: (_) => ForgotPassword());
 
     }
   }

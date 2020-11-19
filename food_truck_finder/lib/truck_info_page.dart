@@ -10,7 +10,8 @@ class TruckInfo extends StatefulWidget {
 
 
 class _TruckInfoState extends State<TruckInfo> {
-
+  String personalizedTruck = 'New';
+  Color truckCol = Colors.grey;
 
   Widget _personalizedTruck() {
     return Container(
@@ -19,15 +20,46 @@ class _TruckInfoState extends State<TruckInfo> {
             children: <Widget>[
               Icon(
                   Icons.airport_shuttle,
-                  color: Colors.grey,
+                  color: truckCol,
                   size: 30
               ),
               SizedBox(width: 20),
-              Text(
-                  'Tried/Saved/New'
-              )
+              _dropdown(),
             ]
         )
+    );
+  }
+
+  Widget _dropdown() {
+    var _truckCategories = ["New", "Tried", "Saved"];
+
+    return Container(
+      child: DropdownButton<String>(
+        items: _truckCategories.map((String_dropDownStringItem) {
+          return DropdownMenuItem<String>(
+            value: String_dropDownStringItem,
+            child: Text(String_dropDownStringItem),
+          );
+        }).toList(),
+
+        onChanged:  (String newValueSelected ) {
+          setState(() {
+            personalizedTruck = newValueSelected;
+            if(newValueSelected == "Tried"){
+              truckCol = Colors.yellow;
+            }
+            if (newValueSelected == "Saved"){
+              truckCol = Colors.redAccent;
+            }
+            if (newValueSelected == "New"){
+              truckCol = Colors.grey;
+            }
+          });
+        },
+
+        value:  personalizedTruck,
+
+      ),
     );
   }
 
