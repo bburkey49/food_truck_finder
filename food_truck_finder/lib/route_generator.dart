@@ -4,6 +4,9 @@ import 'package:food_truck_finder/search_b.dart';
 import 'package:food_truck_finder/sign_up.dart';
 import 'package:food_truck_finder/truck_info_page.dart';
 import 'home_widget.dart';
+import 'saved_trucks.dart';
+import 'tried_trucks.dart';
+import 'settings.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -24,6 +27,16 @@ class RouteGenerator {
 
       case '/search_filter':
         return MaterialPageRoute(builder: (_) => SearchB());
+
+      case '/saved_trucks':
+        return MaterialPageRoute(builder: (_) => SavedTrucksWidget());
+
+      case '/tried_trucks':
+        return MaterialPageRoute(builder: (_) => TriedTrucksWidget());
+
+      case '/settings':
+        return MaterialPageRoute(builder: (_) => SettingsWidget());
+
     }
   }
 }

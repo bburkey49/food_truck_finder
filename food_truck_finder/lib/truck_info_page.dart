@@ -246,9 +246,9 @@ class _TruckInfoState extends State<TruckInfo> {
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(height: 30.0),
+                          SizedBox(height: 50.0),
                           _personalizedTruck(),
-                          SizedBox(height: 20.0),
+                          SizedBox(height: 10.0),
                           _nameOfTruck(),
                           SizedBox(height: 5.0),
                           _typeOfFood(),
@@ -276,7 +276,10 @@ class _TruckInfoState extends State<TruckInfo> {
               ),
               Container(
                 //alignment: Alignment.topRight,
-                  padding: EdgeInsets.all(12.0),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 40.0,
+                    horizontal: 20.0,
+                  ),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
@@ -312,7 +315,25 @@ class _TruckInfoState extends State<TruckInfo> {
                         )
                       ]
                   )
-              )
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 30.0,
+                  horizontal: 20.0,
+                ),
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                  ),
+                  iconSize: 40,
+                  color: Colors.green,
+                  splashColor: Colors.purple,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
             ]
         )
     );
