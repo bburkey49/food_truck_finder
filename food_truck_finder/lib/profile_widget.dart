@@ -257,19 +257,19 @@ class _ProfileWidget extends State<ProfileWidget> {
                   )
               )
           ),
-    Container(
-      alignment: Alignment.topRight,
-      padding: EdgeInsets.all(12.0),
-      child: Stack(
-        children: <Widget>[
-          Image.asset(
-            'assets/images/logo.png',
-            width: 200.0,
-            semanticLabel: 'logo',
-          )
-      ],
-      )
-    ),
+    // Container(
+    //   alignment: Alignment.topRight,
+    //   padding: EdgeInsets.all(12.0),
+    //   child: Stack(
+    //     children: <Widget>[
+    //       Image.asset(
+    //         'assets/images/logo.png',
+    //         width: 200.0,
+    //         semanticLabel: 'logo',
+    //       )
+    //   ],
+    //   )
+    // ),
           ]
       ),
     );
