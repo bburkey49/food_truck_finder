@@ -103,7 +103,7 @@ class _ProfileWidget extends State<ProfileWidget> {
                 children: <Widget>[
                   ImageIcon(
                     AssetImage('assets/images/triedTruck.png'),
-                    color: Colors.lime,
+                    color: Colors.lime[600],
                   ),
                   SizedBox(width: 5.0),
                   Text('Tried Trucks'),

@@ -25,21 +25,10 @@ class _SettingsWidget extends State<SettingsWidget> {
                 Text(
                   'Settings',
                   style: TextStyle(
-                    fontSize: 40,
-                    foreground: Paint()
-                      ..style = PaintingStyle.stroke
-                      ..strokeWidth = 3
-                      ..color = Colors.black,
+                    fontSize: 25,
+                    color: Colors.teal
                   ),
                 ),
-                // Solid text as fill.
-                Text(
-                  'Settings',
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: Colors.white,
-                  ),
-                )
               ],
             )
         ),
@@ -48,14 +37,14 @@ class _SettingsWidget extends State<SettingsWidget> {
 
   Widget _changeProfilePicButton() {
     return Container(
-      width: 200.0,
-      height: 40.0,
+      width: 225.0,
+      height: 50.0,
       alignment: Alignment.center,
       color: Colors.white,
       child: OutlineButton(
         onPressed: () {},
         borderSide: BorderSide(
-          color: Colors.black,
+          color: Colors.teal,
           width: 1.5,
         ),
         textColor: Colors.black,
@@ -73,14 +62,14 @@ class _SettingsWidget extends State<SettingsWidget> {
 
   Widget _changePasswordButton() {
     return Container(
-      width: 200.0,
-      height: 40.0,
+      width: 225.0,
+      height: 50.0,
       alignment: Alignment.center,
       color: Colors.white,
       child: OutlineButton(
         onPressed: () {},
         borderSide: BorderSide(
-          color: Colors.black,
+          color: Colors.teal,
           width: 1.5,
         ),
         textColor: Colors.black,
@@ -98,14 +87,14 @@ class _SettingsWidget extends State<SettingsWidget> {
 
   Widget _dietaryButton() {
     return Container(
-      width: 200.0,
-      height: 40.0,
+      width: 225.0,
+      height: 50.0,
       alignment: Alignment.center,
       color: Colors.white,
       child: OutlineButton(
         onPressed: () {},
         borderSide: BorderSide(
-          color: Colors.black,
+          color: Colors.teal,
           width: 1.5,
         ),
         textColor: Colors.black,
@@ -123,14 +112,14 @@ class _SettingsWidget extends State<SettingsWidget> {
 
   Widget _locationSettingsButton() {
     return Container(
-      width: 200.0,
-      height: 40.0,
+      width: 225.0,
+      height: 50.0,
       alignment: Alignment.center,
       color: Colors.white,
       child: OutlineButton(
         onPressed: () {},
         borderSide: BorderSide(
-          color: Colors.black,
+          color: Colors.teal,
           width: 1.5,
         ),
         textColor: Colors.black,
@@ -157,16 +146,7 @@ class _SettingsWidget extends State<SettingsWidget> {
             Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.white,
-                        Colors.greenAccent
-                      ]
-                  )
-              ),
+              color: Colors.white,
             ),
             Container(
                 height: MediaQuery.of(context).size.height,
@@ -180,7 +160,7 @@ class _SettingsWidget extends State<SettingsWidget> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 50.0),
+                        SizedBox(height: 110.0),
                         _settingsIcon(),
                         _settingsTitle(),
                         SizedBox(height: 15.0),
@@ -204,36 +184,10 @@ class _SettingsWidget extends State<SettingsWidget> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Container(
-                          child: Stack(
-                            children: <Widget>[
-                              Text(
-                                'WanderTruck',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  foreground: Paint()
-                                    ..style = PaintingStyle.stroke
-                                    ..strokeWidth = 3
-                                    ..color = Colors.greenAccent,
-                                ),
-                              ),
-                              // Solid text as fill.
-                              Text(
-                                'WanderTruck',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              )
-
-                            ],
-                          )
+                      Image.asset(
+                        'assets/images/logo.png',
+                        width: 200.0,
                       ),
-                      Icon(
-                          Icons.airport_shuttle,
-                          color: Colors.greenAccent,
-                          size: 30
-                      )
                     ]
                 )
             ),
@@ -248,8 +202,8 @@ class _SettingsWidget extends State<SettingsWidget> {
                   Icons.arrow_back,
                 ),
                 iconSize: 40,
-                color: Colors.green,
-                splashColor: Colors.purple,
+                color: Colors.teal,
+                splashColor: Colors.redAccent,
                 onPressed: () {
                   Navigator.pop(context);
                 },
