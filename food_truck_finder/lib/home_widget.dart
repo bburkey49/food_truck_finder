@@ -26,7 +26,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Food Truck Finder'),
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
+            title: Image.asset(
+                'assets/images/logo.png',
+                width: 200.0,
+              alignment: Alignment.centerRight
+            ),
         ),
         body: _children[_currentIndex],
         bottomNavigationBar: NavBar.generateNavBar(onTabTapped, _currentIndex)
