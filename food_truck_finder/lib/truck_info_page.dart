@@ -18,10 +18,10 @@ class _TruckInfoState extends State<TruckInfo> {
         alignment: Alignment.centerLeft,
         child: Row(
             children: <Widget>[
-              Icon(
-                  Icons.airport_shuttle,
+              ImageIcon(
+                  AssetImage('assets/images/triedTruck.png'),
                   color: truckCol,
-                  size: 30
+                  size: 30.0,
               ),
               SizedBox(width: 20),
               _dropdown(),
@@ -46,13 +46,13 @@ class _TruckInfoState extends State<TruckInfo> {
           setState(() {
             personalizedTruck = newValueSelected;
             if(newValueSelected == "Tried"){
-              truckCol = Colors.yellow;
+              truckCol = Colors.lime[600];
             }
             if (newValueSelected == "Saved"){
               truckCol = Colors.redAccent;
             }
             if (newValueSelected == "New"){
-              truckCol = Colors.grey;
+              truckCol = Colors.grey[800];
             }
           });
         },
@@ -255,16 +255,7 @@ class _TruckInfoState extends State<TruckInfo> {
               Container(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.white,
-                          Colors.greenAccent
-                        ]
-                    )
-                ),
+                color: Colors.white,
               ),
               Container(
                   height: MediaQuery.of(context).size.height,
@@ -315,36 +306,10 @@ class _TruckInfoState extends State<TruckInfo> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        Container(
-                            child: Stack(
-                              children: <Widget>[
-                                Text(
-                                  'WanderTruck',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    foreground: Paint()
-                                      ..style = PaintingStyle.stroke
-                                      ..strokeWidth = 3
-                                      ..color = Colors.greenAccent,
-                                  ),
-                                ),
-                                // Solid text as fill.
-                                Text(
-                                  'WanderTruck',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                )
-
-                              ],
-                            )
+                        Image.asset(
+                          'assets/images/logo.png',
+                          width: 200.0,
                         ),
-                        Icon(
-                            Icons.airport_shuttle,
-                            color: Colors.greenAccent,
-                            size: 30
-                        )
                       ]
                   )
               ),
@@ -359,8 +324,8 @@ class _TruckInfoState extends State<TruckInfo> {
                     Icons.arrow_back,
                   ),
                   iconSize: 40,
-                  color: Colors.green,
-                  splashColor: Colors.purple,
+                  color: Colors.teal,
+                  splashColor: Colors.redAccent,
                   onPressed: () {
                     Navigator.pop(context);
                   },

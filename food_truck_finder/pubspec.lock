@@ -255,7 +255,7 @@ packages:
       name: google_maps_flutter_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   graphs:
     dependency: transitive
     description:
@@ -326,7 +326,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.11.4"
-    version: "1.0.5"
   matcher:
     dependency: transitive
     description:

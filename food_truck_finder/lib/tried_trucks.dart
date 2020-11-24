@@ -7,48 +7,34 @@ class TriedTrucksWidget extends StatefulWidget {
   }
 }
 
+Widget _truck() {
 
+  return Image.asset(
+    'assets/images/triedTruck.png',
+    color: Colors.lime[600],
+    width: 200.0,
+    alignment: Alignment.topCenter,
+    semanticLabel: 'saved truck icon',
+  );
+}
 
 Widget _triedTrucksTitle() {
   return Container(
       alignment: Alignment.center,
       child: Column(
           children: <Widget>[
-            SizedBox(height: 30),
-            Icon(
-                Icons.airport_shuttle,
-                color: Colors.yellow,
-                size: 100
-            ),
-            Container(
-                child: Stack(
-                  children: <Widget>[
-                    Text(
-                      'Tried Trucks',
-                      style: TextStyle(
-                        fontSize: 40,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 3
-                          ..color = Colors.yellow,
-                      ),
-                    ),
-                    // Solid text as fill.
-                    Text(
-                      'Tried Trucks',
-                      style: TextStyle(
-                        fontSize: 40,
-                        color: Colors.white,
-                      ),
-                    )
-
-                  ],
+            Text(
+                'Tried Trucks',
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.teal,
                 )
-            ),
+            )
           ]
       )
   );
 }
+
 
 class _TriedTrucksWidget extends State<TriedTrucksWidget> {
   @override
@@ -59,16 +45,7 @@ class _TriedTrucksWidget extends State<TriedTrucksWidget> {
             Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.white,
-                        Colors.greenAccent
-                      ]
-                  )
-              ),
+              color: Colors.white,
             ),
             Container(
                 height: MediaQuery.of(context).size.height,
@@ -82,7 +59,8 @@ class _TriedTrucksWidget extends State<TriedTrucksWidget> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 30.0),
+                        SizedBox(height: 110.0),
+                        _truck(),
                         _triedTrucksTitle()
                       ],
                     )
@@ -97,36 +75,10 @@ class _TriedTrucksWidget extends State<TriedTrucksWidget> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Container(
-                          child: Stack(
-                            children: <Widget>[
-                              Text(
-                                'WanderTruck',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  foreground: Paint()
-                                    ..style = PaintingStyle.stroke
-                                    ..strokeWidth = 3
-                                    ..color = Colors.greenAccent,
-                                ),
-                              ),
-                              // Solid text as fill.
-                              Text(
-                                'WanderTruck',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              )
-
-                            ],
-                          )
+                      Image.asset(
+                        'assets/images/logo.png',
+                        width: 200.0,
                       ),
-                      Icon(
-                          Icons.airport_shuttle,
-                          color: Colors.greenAccent,
-                          size: 30
-                      )
                     ]
                 )
             ),
@@ -141,8 +93,8 @@ class _TriedTrucksWidget extends State<TriedTrucksWidget> {
                   Icons.arrow_back,
                 ),
                 iconSize: 40,
-                color: Colors.green,
-                splashColor: Colors.purple,
+                color: Colors.teal,
+                splashColor: Colors.redAccent,
                 onPressed: () {
                   Navigator.pop(context);
                 },
