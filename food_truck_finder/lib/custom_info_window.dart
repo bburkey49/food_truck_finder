@@ -109,14 +109,12 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                  gradient: new LinearGradient(
-                                    colors: [
-                                      Colors.white,
-                                      Color(0xffffe6cc),
-                                    ],
-                                    end: Alignment.bottomCenter,
-                                    begin: Alignment.topCenter,
-                                  ),
+                                  color: Colors.white,
+                                border: new Border.all(
+                                  color: Colors.teal,
+                                  width: 1.5,
+                                  style: BorderStyle.solid
+                                ),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey,
@@ -141,18 +139,18 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                             Text(
                                               providerObject.truck.name,
                                               style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.black45,
+                                                color: Colors.black,
                                               ),
                                               textAlign: TextAlign.left,
                                             ),
                                             Text(
                                               providerObject.truck.price,
                                               style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.black45,
+                                                color: Colors.black,
                                               ),
                                               textAlign: TextAlign.right,
                                             ),
@@ -161,9 +159,9 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                         Text(
                                           providerObject.truck.foodType,
                                           style: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.black45,
+                                            color: Colors.black,
                                           ),
                                           textAlign: TextAlign.left,
                                         ),
@@ -180,7 +178,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: <Widget> [
                                             IconTheme(
-                                              data: IconThemeData(color: Colors.red,),
+                                              data: IconThemeData(color: Colors.redAccent,),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: List.generate(
@@ -196,7 +194,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                               ),
                                             ),
                                             FloatingActionButton(
-                                              foregroundColor: Colors.green,
+                                              foregroundColor: Colors.white,
                                               mini: true,
                                               onPressed: () {
                                                 Navigator.of(context).pushNamed(
@@ -216,7 +214,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                             Triangle.isosceles(
                               edge: Edge.BOTTOM,
                               child: Container(
-                                color: Color(0xffffe6cc),
+                                color: Colors.white,
                                 width: 20.0,
                                 height: 15.0,
                               ),

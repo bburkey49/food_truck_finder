@@ -8,6 +8,7 @@ import 'saved_trucks.dart';
 import 'tried_trucks.dart';
 import 'settings.dart';
 import 'forgot_password.dart';
+import 'map.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -43,6 +44,9 @@ class RouteGenerator {
 
       case '/filters':
         return MaterialPageRoute(builder: (_) => SearchB());
+
+      case '/map':
+        return MaterialPageRoute(builder: (_) => MapPage());
 
 
     }

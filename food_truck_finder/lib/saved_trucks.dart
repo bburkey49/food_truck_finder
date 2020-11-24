@@ -8,55 +8,33 @@ class SavedTrucksWidget extends StatefulWidget {
 }
 
 
-Widget _logo() {
+Widget _truck() {
 
   return Image.asset(
     'assets/images/savedTruck.png',
     color: Colors.redAccent,
+    width: 200.0,
     alignment: Alignment.topCenter,
     semanticLabel: 'saved truck icon',
   );
 }
-// Widget _savedTrucksTitle() {
-//   return Container(
-//     alignment: Alignment.center,
-//       child: Column(
-//           children: <Widget>[
-//             SizedBox(height: 30),
-//             Icon(
-//               Icons.airport_shuttle,
-//               color: Colors.redAccent,
-//               size: 100
-//             ),
-//             Container(
-//                 child: Stack(
-//                   children: <Widget>[
-//                     Text(
-//                       'Saved Trucks',
-//                       style: TextStyle(
-//                         fontSize: 40,
-//                         foreground: Paint()
-//                           ..style = PaintingStyle.stroke
-//                           ..strokeWidth = 3
-//                           ..color = Colors.redAccent,
-//                       ),
-//                     ),
-//                     // Solid text as fill.
-//                     Text(
-//                       'Saved Trucks',
-//                       style: TextStyle(
-//                         fontSize: 40,
-//                         color: Colors.white,
-//                       ),
-//                     )
-//
-//                   ],
-//                 )
-//             ),
-//           ]
-//       )
-//   );
-// }
+
+Widget _savedTrucksTitle() {
+  return Container(
+    alignment: Alignment.center,
+    child: Column(
+      children: <Widget>[
+        Text(
+          'Saved Trucks',
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.teal,
+          )
+        )
+      ]
+    )
+  );
+}
 
 class _SavedTrucksWidget extends State<SavedTrucksWidget> {
   @override
@@ -81,9 +59,9 @@ class _SavedTrucksWidget extends State<SavedTrucksWidget> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 30.0),
-                        _logo()
-                        // _savedTrucksTitle()
+                        SizedBox(height: 110.0),
+                        _truck(),
+                        _savedTrucksTitle()
                       ],
                     )
                 )
@@ -115,8 +93,8 @@ class _SavedTrucksWidget extends State<SavedTrucksWidget> {
                   Icons.arrow_back,
                 ),
                 iconSize: 40,
-                color: Colors.green,
-                splashColor: Colors.purple,
+                color: Colors.teal,
+                splashColor: Colors.redAccent,
                 onPressed: () {
                   Navigator.pop(context);
                  },

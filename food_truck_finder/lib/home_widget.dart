@@ -28,6 +28,15 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
+          // title: IconButton(
+          //     icon: Image.asset('assets/images/logo.png'),
+          //   iconSize: 200.0,
+          //   onPressed: () {
+          //     Navigator.of(context).pushNamed(
+          //         '/map'
+          //     );
+          //   },
+          //   ),
             title: Image.asset(
                 'assets/images/logo.png',
                 width: 200.0,

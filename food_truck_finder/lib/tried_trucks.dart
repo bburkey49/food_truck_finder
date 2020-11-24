@@ -7,48 +7,34 @@ class TriedTrucksWidget extends StatefulWidget {
   }
 }
 
+Widget _truck() {
 
+  return Image.asset(
+    'assets/images/triedTruck.png',
+    color: Colors.lime[600],
+    width: 200.0,
+    alignment: Alignment.topCenter,
+    semanticLabel: 'saved truck icon',
+  );
+}
 
 Widget _triedTrucksTitle() {
   return Container(
       alignment: Alignment.center,
       child: Column(
           children: <Widget>[
-            SizedBox(height: 30),
-            Icon(
-                Icons.airport_shuttle,
-                color: Colors.yellow,
-                size: 100
-            ),
-            Container(
-                child: Stack(
-                  children: <Widget>[
-                    Text(
-                      'Tried Trucks',
-                      style: TextStyle(
-                        fontSize: 40,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 3
-                          ..color = Colors.yellow,
-                      ),
-                    ),
-                    // Solid text as fill.
-                    Text(
-                      'Tried Trucks',
-                      style: TextStyle(
-                        fontSize: 40,
-                        color: Colors.white,
-                      ),
-                    )
-
-                  ],
+            Text(
+                'Tried Trucks',
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.teal,
                 )
-            ),
+            )
           ]
       )
   );
 }
+
 
 class _TriedTrucksWidget extends State<TriedTrucksWidget> {
   @override
@@ -73,7 +59,8 @@ class _TriedTrucksWidget extends State<TriedTrucksWidget> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 30.0),
+                        SizedBox(height: 110.0),
+                        _truck(),
                         _triedTrucksTitle()
                       ],
                     )
@@ -106,8 +93,8 @@ class _TriedTrucksWidget extends State<TriedTrucksWidget> {
                   Icons.arrow_back,
                 ),
                 iconSize: 40,
-                color: Colors.green,
-                splashColor: Colors.purple,
+                color: Colors.teal,
+                splashColor: Colors.redAccent,
                 onPressed: () {
                   Navigator.pop(context);
                 },
