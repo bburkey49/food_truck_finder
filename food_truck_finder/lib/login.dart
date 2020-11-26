@@ -150,6 +150,25 @@ class _LoginState extends State<Login> {
     );
   }
 
+  Widget _continueAsGuestButton() {
+    return Container(
+        alignment: Alignment.bottomRight,
+        child: FlatButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                  '/home'
+              );
+            },
+            child: Text(
+              'Continue as Guest',
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+              ),
+            )
+        )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,10 +205,11 @@ class _LoginState extends State<Login> {
             )
           ),
           Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                _newUserButton()
+                _newUserButton(),
+                _continueAsGuestButton()
               ],
             )
 
