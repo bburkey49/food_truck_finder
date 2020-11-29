@@ -111,7 +111,7 @@ class _MapPageState extends State<MapPage> {
       ),
       body: Stack(
         children: <Widget>[
-          // _googleMap(context),
+          _googleMap(context),
           buildFilters(),
           // _horizontalContainer()
         ],
