@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/search_b.dart';
-// import 'data_search.dart';
+import 'package:food_truck_finder/truck.dart';
+import 'data_search.dart';
+import 'package:filter_list/filter_list.dart';
 
 class ListViewPage extends StatefulWidget {
   @override
@@ -198,10 +200,12 @@ class _ListViewState extends State<ListViewPage> {
               controller: _textController,
               decoration: InputDecoration(
                 hintText: 'Search',
+                // fillColor: Colors.teal,
               ),
               onChanged: onItemChanged,
             ),
           ),
+          buildFilters(),
           Expanded(
             child: ListView(
               padding: EdgeInsets.all(12.0),
@@ -265,12 +269,9 @@ class _ListViewState extends State<ListViewPage> {
     // );
   }
 
-<<<<<<< HEAD
-
-=======
   Container buildFilters() {
     return Container(
-      color: Colors.teal,
+      // color: Colors.teal,
       child: Row(
         children: [
           SizedBox(width: 50.0),
@@ -283,10 +284,9 @@ class _ListViewState extends State<ListViewPage> {
       ), 
     );
   }
->>>>>>> hmzDev
 }
 
-
+ 
 Widget myDetailsContainer(Truck truck) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -328,5 +328,4 @@ Widget myDetailsContainer(Truck truck) {
     ],
   );
 }
-
 
