@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/search_b.dart';
-import 'data_search.dart';
+// import 'data_search.dart';
 
 class ListViewPage extends StatefulWidget {
   @override
@@ -10,6 +10,81 @@ class ListViewPage extends StatefulWidget {
 
 class _ListViewState extends State<ListViewPage> {
   bool filters = false;
+      int price = 10;
+    var _currentPriceSelected = "\$";
+    var _currentStarSelected = "*****";
+    var _currentFoodSelected = "Mexican";
+    
+
+  Widget _priceFilter() {
+    var _prices = ["\$", "\$\$", "\$\$\$"];
+    return Container(
+      child: DropdownButton<String>(
+        items: _prices.map((String_dropDownStringItem) {
+          return DropdownMenuItem<String>(
+            value: String_dropDownStringItem,
+            child: Text(String_dropDownStringItem),
+          );
+        }).toList(),
+
+        onChanged:  (String newValueSelected ) {
+          setState(() {
+             _currentPriceSelected = newValueSelected;
+          });
+        },
+        value:  _currentPriceSelected,
+      ),
+    );
+  }
+
+  Widget _foodTypeFilter() { 
+    var _foods = ["Mexican", "Italian", "American"];
+
+    return Container(
+      child: DropdownButton<String>(
+        items: _foods.map((String_dropDownStringItem) {
+          return DropdownMenuItem<String>(
+            value: String_dropDownStringItem,
+            child: Text(String_dropDownStringItem),
+          );
+        }).toList(),
+
+        onChanged:  (String newValueSelected ) {
+          setState(() {
+             _currentFoodSelected = newValueSelected;
+          });
+        },
+
+        value:  _currentFoodSelected,
+
+      ),
+    );
+  }
+
+  Widget _reviewFilter() { 
+    var _reviews = ["*", "**", "***", "****", "*****"];
+
+    return Container(
+      // color: Colors.teal,
+      child: DropdownButton<String>(
+        items: _reviews.map((String_dropDownStringItem) {
+          return DropdownMenuItem<String>(
+            value: String_dropDownStringItem,
+            child: Text(String_dropDownStringItem),
+          );
+        }).toList(),
+
+        onChanged:  (String newValueSelected ) {
+          setState(() {
+             _currentStarSelected = newValueSelected;
+          });
+        },
+
+        value:  _currentStarSelected,
+
+      ),
+    );
+  }
 
   Widget _buildBlock() {
     return ElevatedButton(
@@ -74,7 +149,7 @@ class _ListViewState extends State<ListViewPage> {
                 hintText: 'Search'
             ),
             onTap: () {
-              showSearch(context: context, delegate: DataSearch());
+              showSearch(context: context, delegate: DateSearch());
             }
         ),
         leading: IconButton(
@@ -82,14 +157,14 @@ class _ListViewState extends State<ListViewPage> {
           onPressed: () { },
         ),
         actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.filter),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  '/filters'
-                );
-              }
-          ),
+          // IconButton(
+          //     icon: Icon(Icons.filter),
+          //     onPressed: () {
+          //       Navigator.of(context).pushNamed(
+          //         '/filters'
+          //       );
+          //     }
+          // ),
           IconButton(
               icon: Icon(Icons.search),
               onPressed: () { }
@@ -99,6 +174,7 @@ class _ListViewState extends State<ListViewPage> {
       body: ListView(
               scrollDirection: Axis.vertical,
               children: <Widget>[
+                buildFilters(),
                 _buildBlock(),
                 _buildBlock(),
                 _buildBlock(),
@@ -110,6 +186,21 @@ class _ListViewState extends State<ListViewPage> {
     );
   }
 
+  Container buildFilters() {
+    return Container(
+      color: Colors.teal,
+      child: Row(
+        children: [
+          SizedBox(width: 50.0),
+          _priceFilter(),
+          SizedBox(width: 50.0),
+          _foodTypeFilter(),
+          SizedBox(width: 50.0),
+          _reviewFilter(),
+        ],
+      ), 
+    );
+  }
 }
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'truck_info_page.dart';
 
 
 class DataSearch extends SearchDelegate<String> {
