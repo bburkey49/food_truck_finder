@@ -56,9 +56,9 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
       return BitmapDescriptor.fromAssetImage(
           ImageConfiguration(
             size: Size(1, 10),
-            devicePixelRatio: .1
+            devicePixelRatio: .1,
           ),
-          'assets/images/triedTruck.png');
+          'assets/images/smallTruck.png');
       }
     );
 
