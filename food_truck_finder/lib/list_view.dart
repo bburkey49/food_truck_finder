@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/search_b.dart';
+import 'package:food_truck_finder/truck.dart';
 // import 'data_search.dart';
 
 class ListViewPage extends StatefulWidget {
@@ -13,89 +14,90 @@ class ListViewPage extends StatefulWidget {
 
 class _ListViewState extends State<ListViewPage> {
   bool filters = false;
-      int price = 10;
-    var _currentPriceSelected = "\$";
-    var _currentStarSelected = "*****";
-    var _currentFoodSelected = "Mexican";
-    
 
-  Widget _priceFilter() {
-    var _prices = ["\$", "\$\$", "\$\$\$"];
-    return Container(
-      child: DropdownButton<String>(
-        items: _prices.map((String_dropDownStringItem) {
-          return DropdownMenuItem<String>(
-            value: String_dropDownStringItem,
-            child: Text(String_dropDownStringItem),
-          );
-        }).toList(),
+  //   int price = 10;
+  // var _currentPriceSelected = "\$";
+  // var _currentStarSelected = "*****";
+  // var _currentFoodSelected = "Mexican";
 
-        onChanged:  (String newValueSelected ) {
-          setState(() {
-             _currentPriceSelected = newValueSelected;
-          });
-        },
-        value:  _currentPriceSelected,
-      ),
-    );
-  }
 
-  Widget _foodTypeFilter() { 
-    var _foods = ["Mexican", "Italian", "American"];
+  // Widget _priceFilter() {
+  //   var _prices = ["\$", "\$\$", "\$\$\$"];
+  //   return Container(
+  //     child: DropdownButton<String>(
+  //       items: _prices.map((String_dropDownStringItem) {
+  //         return DropdownMenuItem<String>(
+  //           value: String_dropDownStringItem,
+  //           child: Text(String_dropDownStringItem),
+  //         );
+  //       }).toList(),
+  //
+  //       onChanged:  (String newValueSelected ) {
+  //         setState(() {
+  //            _currentPriceSelected = newValueSelected;
+  //         });
+  //       },
+  //       value:  _currentPriceSelected,
+  //     ),
+  //   );
+  // }
 
-    return Container(
-      child: DropdownButton<String>(
-        items: _foods.map((String_dropDownStringItem) {
-          return DropdownMenuItem<String>(
-            value: String_dropDownStringItem,
-            child: Text(String_dropDownStringItem),
-          );
-        }).toList(),
-
-        onChanged:  (String newValueSelected ) {
-          setState(() {
-             _currentFoodSelected = newValueSelected;
-          });
-        },
-
-        value:  _currentFoodSelected,
-
-      ),
-    );
-  }
-
-  Widget _reviewFilter() { 
-    var _reviews = ["*", "**", "***", "****", "*****"];
-
-    return Container(
-      // color: Colors.teal,
-      child: DropdownButton<String>(
-        items: _reviews.map((String_dropDownStringItem) {
-          return DropdownMenuItem<String>(
-            value: String_dropDownStringItem,
-            child: Text(String_dropDownStringItem),
-          );
-        }).toList(),
-
-        onChanged:  (String newValueSelected ) {
-          setState(() {
-             _currentStarSelected = newValueSelected;
-          });
-        },
-
-        value:  _currentStarSelected,
-
-      ),
-    );
-  }
+  // Widget _foodTypeFilter() {
+  //   var _foods = ["Mexican", "Italian", "American"];
+  //
+  //   return Container(
+  //     child: DropdownButton<String>(
+  //       items: _foods.map((String_dropDownStringItem) {
+  //         return DropdownMenuItem<String>(
+  //           value: String_dropDownStringItem,
+  //           child: Text(String_dropDownStringItem),
+  //         );
+  //       }).toList(),
+  //
+  //       onChanged:  (String newValueSelected ) {
+  //         setState(() {
+  //            _currentFoodSelected = newValueSelected;
+  //         });
+  //       },
+  //
+  //       value:  _currentFoodSelected,
+  //
+  //     ),
+  //   );
+  // }
+  //
+  // Widget _reviewFilter() {
+  //   var _reviews = ["*", "**", "***", "****", "*****"];
+  //
+  //   return Container(
+  //     // color: Colors.teal,
+  //     child: DropdownButton<String>(
+  //       items: _reviews.map((String_dropDownStringItem) {
+  //         return DropdownMenuItem<String>(
+  //           value: String_dropDownStringItem,
+  //           child: Text(String_dropDownStringItem),
+  //         );
+  //       }).toList(),
+  //
+  //       onChanged:  (String newValueSelected ) {
+  //         setState(() {
+  //            _currentStarSelected = newValueSelected;
+  //         });
+  //       },
+  //
+  //       value:  _currentStarSelected,
+  //
+  //     ),
+  //   );
+  // }
 
   TextEditingController _textController = TextEditingController();
   List<Truck> _trucks = [];
-  bool loaded= false;
+  bool loaded = false;
 
-  Future<String> loadAsset(BuildContext context) {
-    return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
-  }
+  // Future<String> loadAsset(BuildContext context) {
+  //   return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+  // }
 
   _getTrucks(String json) {
     List<dynamic> rawTrucks = jsonDecode(json) as List;
@@ -107,7 +109,6 @@ class _ListViewState extends State<ListViewPage> {
       });
     });
   }
-  
 
 
   List<Truck> prospectiveTrucks = [];
@@ -121,17 +122,16 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _buildBlock(Truck truck) {
-
     return ElevatedButton(
 
       style: ButtonStyle(
-        overlayColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-              if(states.contains(MaterialState.hovered))
-                return Colors.teal;
-              return null;
-            }
-        )
+          overlayColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.hovered))
+                  return Colors.teal;
+                return null;
+              }
+          )
       ),
       onPressed: () {
         Navigator.of(context).pushNamed(
@@ -148,29 +148,30 @@ class _ListViewState extends State<ListViewPage> {
                   borderRadius: BorderRadius.circular(24.0),
                   shadowColor: Colors.grey[600],
                   child:
-                    Row(
-                      children: <Widget>[
-                        Container(
-                            child: myDetailsContainer(truck)
-                        ),
-                        Container(
-                            height: 250,
-                            width: 250,
-                            child: ClipRRect(
-                                borderRadius: new BorderRadius.circular(24.0),
-                                child: Image(
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment.topRight,
-                                    image: AssetImage('assets/images/other_candy_truck.jpg')
-                                )
-                            )
-                        )
-                      ],
-                    ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                          child: myDetailsContainer(truck)
+                      ),
+                      Container(
+                          height: 250,
+                          width: 250,
+                          child: ClipRRect(
+                              borderRadius: new BorderRadius.circular(24.0),
+                              child: Image(
+                                  fit: BoxFit.contain,
+                                  alignment: Alignment.topRight,
+                                  image: AssetImage(
+                                      'assets/images/other_candy_truck.jpg')
+                              )
+                          )
+                      )
+                    ],
+                  ),
                 ),
               )
           )
-          ),
+      ),
     );
   }
 
@@ -178,10 +179,11 @@ class _ListViewState extends State<ListViewPage> {
   @override
   Widget build(BuildContext context) {
     Future<String> fileName = Future<String>.sync(() {
-      return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+      return DefaultAssetBundle.of(context).loadString(
+          'assets/data/trucks.json');
     });
     fileName.then((fN) {
-      if(!loaded) {
+      if (!loaded) {
         setState(() {
           _getTrucks(fN);
           loaded = true;
@@ -204,11 +206,11 @@ class _ListViewState extends State<ListViewPage> {
           ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.all(12.0),
-              children: List<Widget>.generate(
-                  prospectiveTrucks.length,
-                  (index) => _buildBlock(prospectiveTrucks[index])
-              )
+                padding: EdgeInsets.all(12.0),
+                children: List<Widget>.generate(
+                    prospectiveTrucks.length,
+                        (index) => _buildBlock(prospectiveTrucks[index])
+                )
               // children: newTrucks.map((data) {
               //   return ListTile(
               //     title: Text(data),
@@ -265,68 +267,74 @@ class _ListViewState extends State<ListViewPage> {
     // );
   }
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
+//
+// =======
+//   Container buildFilters() {
+//     return Container(
+//       color: Colors.teal,
+//       child: Row(
+//         children: [
+//           SizedBox(width: 50.0),
+//           _priceFilter(),
+//           SizedBox(width: 50.0),
+//           _foodTypeFilter(),
+//           SizedBox(width: 50.0),
+//           _reviewFilter(),
+//         ],
+//       ),
+//     );
+//   }
+// >>>>>>> hmzDev
+// }
 
-=======
-  Container buildFilters() {
-    return Container(
-      color: Colors.teal,
-      child: Row(
-        children: [
-          SizedBox(width: 50.0),
-          _priceFilter(),
-          SizedBox(width: 50.0),
-          _foodTypeFilter(),
-          SizedBox(width: 50.0),
-          _reviewFilter(),
-        ],
-      ), 
-    );
-  }
->>>>>>> hmzDev
-}
 
-
-Widget myDetailsContainer(Truck truck) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Container(
-          child: Text(truck.name,
-            style: TextStyle(color: Colors.redAccent, fontSize: 24.0,fontWeight: FontWeight.bold),)),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(child: Text(truck.rating.toStringAsFixed(1),
-                  style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-                IconTheme(
-                  data: IconThemeData(color: Colors.redAccent,),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(
-                      5, // length
-                          (index) {
-                        return Icon(
-                          index < truck.rating
-                              ? Icons.star
-                              : Icons.star_border,
-                        );
-                      },
+  Widget myDetailsContainer(Truck truck) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Container(
+              child: Text(truck.name,
+                style: TextStyle(color: Colors.redAccent,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold),)),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(child: Text(truck.rating.toStringAsFixed(1),
+                    style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
+                  IconTheme(
+                    data: IconThemeData(color: Colors.redAccent,),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(
+                        5, // length
+                            (index) {
+                          return Icon(
+                            index < truck.rating
+                                ? Icons.star
+                                : Icons.star_border,
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],)),
-      ),
-      Container(child: Text("${truck.foodType} \u00B7 Minneapolis, MN",
-        style: TextStyle(color: Colors.black, fontSize: 18.0,fontWeight: FontWeight.bold),)),
-    ],
-  );
+                ],)),
+        ),
+        Container(child: Text("${truck.foodType} \u00B7 Minneapolis, MN",
+          style: TextStyle(color: Colors.black,
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold),)),
+      ],
+    );
+  }
+
 }
 
 

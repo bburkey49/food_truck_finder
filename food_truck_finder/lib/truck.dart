@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:food_truck_finder/menu.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -42,6 +44,10 @@ class Truck {
   String price;
   Menu menu;
 
+  static List<Truck> _trucks;
+
+
+  static List<Truck> get trucks => _trucks;
 
   Truck({this.name,
     this.rating,
@@ -67,11 +73,27 @@ class Truck {
 
   String toString() => '\nName: ${this.name}\nPrice: ${this.price}\nRating: ${this.rating}\n\n';
 
-  // String getPriceString(int num){
-  //   return '\$' * num;
-  // }
+  static _getTrucks(String json) {
+    List<dynamic> rawTrucks = jsonDecode(json) as List;
+
+    rawTrucks.forEach((element) {
+        _trucks.add(Truck.fromJson(element));
+    });
+  }
+
+  static Future<List<Truck>> buildTrucks(BuildContext context) {
+    Future<String> fileName = Future<String>.sync(() {
+      return DefaultAssetBundle.of(context).loadString(
+          'assets/data/trucks.json');
+    });
+    fileName.then((fN) => _getTrucks(fN));
+
+    return Future.value(_trucks);
+  }
+
+
 
 }
-  // Map<String, dynamic> toJson() => _$TruckToJson(this);
+
 
 

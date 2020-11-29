@@ -13,16 +13,16 @@ class NavBar {
           items: [
             BottomNavigationBarItem(
               icon: new Icon(
-                  Icons.home,
+                  Icons.map,
                   color: Colors.white),
-              label: 'Home',
+              label: 'Map',
             ),
             BottomNavigationBarItem(
               icon: new Icon(
-                  Icons.map,
+                  Icons.format_list_bulleted_rounded,
                   color: Colors.white
               ),
-              label: 'Map',
+              label: 'List',
             ),
             BottomNavigationBarItem(
               icon: Icon(
