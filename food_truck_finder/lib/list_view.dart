@@ -2,9 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/search_b.dart';
-import 'package:food_truck_finder/truck.dart';
-import 'data_search.dart';
-import 'package:filter_list/filter_list.dart';
+// import 'data_search.dart';
 
 class ListViewPage extends StatefulWidget {
   @override
@@ -15,6 +13,81 @@ class ListViewPage extends StatefulWidget {
 
 class _ListViewState extends State<ListViewPage> {
   bool filters = false;
+      int price = 10;
+    var _currentPriceSelected = "\$";
+    var _currentStarSelected = "*****";
+    var _currentFoodSelected = "Mexican";
+    
+
+  Widget _priceFilter() {
+    var _prices = ["\$", "\$\$", "\$\$\$"];
+    return Container(
+      child: DropdownButton<String>(
+        items: _prices.map((String_dropDownStringItem) {
+          return DropdownMenuItem<String>(
+            value: String_dropDownStringItem,
+            child: Text(String_dropDownStringItem),
+          );
+        }).toList(),
+
+        onChanged:  (String newValueSelected ) {
+          setState(() {
+             _currentPriceSelected = newValueSelected;
+          });
+        },
+        value:  _currentPriceSelected,
+      ),
+    );
+  }
+
+  Widget _foodTypeFilter() { 
+    var _foods = ["Mexican", "Italian", "American"];
+
+    return Container(
+      child: DropdownButton<String>(
+        items: _foods.map((String_dropDownStringItem) {
+          return DropdownMenuItem<String>(
+            value: String_dropDownStringItem,
+            child: Text(String_dropDownStringItem),
+          );
+        }).toList(),
+
+        onChanged:  (String newValueSelected ) {
+          setState(() {
+             _currentFoodSelected = newValueSelected;
+          });
+        },
+
+        value:  _currentFoodSelected,
+
+      ),
+    );
+  }
+
+  Widget _reviewFilter() { 
+    var _reviews = ["*", "**", "***", "****", "*****"];
+
+    return Container(
+      // color: Colors.teal,
+      child: DropdownButton<String>(
+        items: _reviews.map((String_dropDownStringItem) {
+          return DropdownMenuItem<String>(
+            value: String_dropDownStringItem,
+            child: Text(String_dropDownStringItem),
+          );
+        }).toList(),
+
+        onChanged:  (String newValueSelected ) {
+          setState(() {
+             _currentStarSelected = newValueSelected;
+          });
+        },
+
+        value:  _currentStarSelected,
+
+      ),
+    );
+  }
 
   TextEditingController _textController = TextEditingController();
   List<Truck> _trucks = [];
@@ -192,7 +265,25 @@ class _ListViewState extends State<ListViewPage> {
     // );
   }
 
+<<<<<<< HEAD
 
+=======
+  Container buildFilters() {
+    return Container(
+      color: Colors.teal,
+      child: Row(
+        children: [
+          SizedBox(width: 50.0),
+          _priceFilter(),
+          SizedBox(width: 50.0),
+          _foodTypeFilter(),
+          SizedBox(width: 50.0),
+          _reviewFilter(),
+        ],
+      ), 
+    );
+  }
+>>>>>>> hmzDev
 }
 
 

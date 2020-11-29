@@ -1,4 +1,5 @@
 // This is a generated file; do not edit or check into version control.
+<<<<<<< HEAD
 FLUTTER_ROOT=/Users/bburkey49/Documents/sdks/flutter
 FLUTTER_APPLICATION_PATH=/Users/bburkey49/Documents/School/ui/food_truck_finder/food_truck_finder/food_truck_finder
 FLUTTER_TARGET=lib/main.dart
@@ -10,5 +11,19 @@ FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=false
+=======
+FLUTTER_ROOT=/Users/hamseabdi/Developer/flutter
+FLUTTER_APPLICATION_PATH=/Users/hamseabdi/Desktop/Food Truck/food_truck_finder
+FLUTTER_TARGET=/Users/hamseabdi/Desktop/Food Truck/food_truck_finder/lib/main.dart
+FLUTTER_BUILD_DIR=build
+SYMROOT=${SOURCE_ROOT}/../build/ios
+OTHER_LDFLAGS=$(inherited) -framework Flutter
+FLUTTER_FRAMEWORK_DIR=/Users/hamseabdi/Developer/flutter/bin/cache/artifacts/engine/ios
+FLUTTER_BUILD_NAME=1.0.0
+FLUTTER_BUILD_NUMBER=1
+DART_DEFINES=flutter.inspector.structuredErrors%3Dtrue
+DART_OBFUSCATION=false
+TRACK_WIDGET_CREATION=true
+>>>>>>> hmzDev
 TREE_SHAKE_ICONS=false
 PACKAGE_CONFIG=.packages

@@ -131,59 +131,65 @@ class _SearchB extends State<SearchB> {
   }
 }
 
-// class DateSearch extends SearchDelegate<String>{
-//   final List<String> foodTrucksList = [
-//     "EL FUEGO",
-//     "FETCH NE",
-//     "MARKET BBQ",
-//     "FOXY FALAFEL",
-//     "THE SOUP COUP"
-//   ];
-//
-//   final List<String> foodTrucks = [
-//     "EL FUEGO",
-//     "FOXY FALAFEL"
-//   ];
-//
-//   @override
-//   List<Widget> buildActions(BuildContext context) {
-//       return[
-//         IconButton(
-//           icon: Icon(Icons.clear),
-//           onPressed: () {
-//             query = '';
-//            },
-//           )
-//         ];
-//     }
-//
-//     @override
-//     Widget buildLeading(BuildContext context) {
-//       return IconButton(
-//         icon: BackButtonIcon(),
-//         onPressed: () {
-//           close(context, null);
-//         },
-//       );
-//     }
-//
-//     @override
-//     Widget buildResults(BuildContext context) {
-//       return Container(
-//         // Return the truck info page
-//       );
-//     }
-//
-//     @override
-//     Widget buildSuggestions(BuildContext context) {
-//       final suggestionTrucks = query.isEmpty
-//       ? foodTrucks
-//       : foodTrucksList.where((p) => p.startsWith(query)).toList();
-//         return ListView.builder(itemBuilder: (context,index) => ListTile(
-//           title: Text(suggestionTrucks[index]),
-//         ),
-//         itemCount: suggestionTrucks.length ,
-//       );
-//
-//     }
-// }
+class DateSearch extends SearchDelegate<String>{
+  final List<String> foodTrucksList = [
+    "EL FUEGO",
+    "FETCH NE",
+    "MARKET BBQ",
+    "FOXY FALAFEL",
+    "THE SOUP COUP"
+  ];
+
+  final List<String> foodTrucks = [
+    "EL FUEGO",
+    "FOXY FALAFEL"
+    "FETCH NE",
+    "MARKET BBQ",
+  ];
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+      return[
+        IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            query = '';
+           },
+          )
+        ];
+    }
+
+    @override
+    Widget buildLeading(BuildContext context) {
+      return IconButton(
+        icon: BackButtonIcon(),
+        onPressed: () {
+          close(context, null);
+        },
+      );
+    }
+
+    @override
+    Widget buildResults(BuildContext context) {
+       return Card(
+        color: Colors.redAccent,
+        shape: StadiumBorder(),
+        child: Center(
+          child: Text(query)
+        )
+      );
+    }
+
+    @override
+    Widget buildSuggestions(BuildContext context) {
+      final suggestionTrucks = query.isEmpty
+      ? foodTrucks
+      : foodTrucksList.where((p) => p.startsWith(query)).toList();
+        return ListView.builder(itemBuilder: (context,index) => ListTile(
+          title: Text(suggestionTrucks[index]),
+        ),
+        itemCount: suggestionTrucks.length ,
+      );
+
+    }
+}
