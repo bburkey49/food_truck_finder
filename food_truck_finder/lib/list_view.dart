@@ -1,17 +1,54 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/search_b.dart';
+import 'package:food_truck_finder/truck.dart';
 import 'data_search.dart';
+import 'package:filter_list/filter_list.dart';
 
 class ListViewPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _ListViewState();
+
 
 }
 
 class _ListViewState extends State<ListViewPage> {
   bool filters = false;
 
-  Widget _buildBlock() {
+  TextEditingController _textController = TextEditingController();
+  List<Truck> _trucks = [];
+  bool loaded= false;
+
+  Future<String> loadAsset(BuildContext context) {
+    return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+  }
+
+  _getTrucks(String json) {
+    List<dynamic> rawTrucks = jsonDecode(json) as List;
+
+    rawTrucks.forEach((element) {
+      setState(() {
+        _trucks.add(Truck.fromJson(element));
+        prospectiveTrucks = List.from(_trucks);
+      });
+    });
+  }
+  
+
+
+  List<Truck> prospectiveTrucks = [];
+
+  onItemChanged(String value) {
+    setState(() {
+      prospectiveTrucks = _trucks
+          .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
+
+  Widget _buildBlock(Truck truck) {
+
     return ElevatedButton(
 
       style: ButtonStyle(
@@ -41,7 +78,7 @@ class _ListViewState extends State<ListViewPage> {
                     Row(
                       children: <Widget>[
                         Container(
-                            child: myDetailsContainer1()
+                            child: myDetailsContainer(truck)
                         ),
                         Container(
                             height: 250,
@@ -64,63 +101,109 @@ class _ListViewState extends State<ListViewPage> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
+    Future<String> fileName = Future<String>.sync(() {
+      return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+    });
+    fileName.then((fN) {
+      if(!loaded) {
+        setState(() {
+          _getTrucks(fN);
+          loaded = true;
+        });
+      }
+    });
+
     return Scaffold(
-      appBar: AppBar(
-        title:
-        TextField(
-            decoration: InputDecoration(
-                hintText: 'Search'
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextField(
+              controller: _textController,
+              decoration: InputDecoration(
+                hintText: 'Search',
+              ),
+              onChanged: onItemChanged,
             ),
-            onTap: () {
-              showSearch(context: context, delegate: DataSearch());
-            }
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_left),
-          onPressed: () { },
-        ),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.filter),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  '/filters'
-                );
-              }
           ),
-          IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () { }
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.all(12.0),
+              children: List<Widget>.generate(
+                  prospectiveTrucks.length,
+                  (index) => _buildBlock(prospectiveTrucks[index])
+              )
+              // children: newTrucks.map((data) {
+              //   return ListTile(
+              //     title: Text(data),
+              //     onTap: ()=> print(data),);
+              // }).toList(),
+            ),
           )
         ],
       ),
-      body: ListView(
-              scrollDirection: Axis.vertical,
-              children: <Widget>[
-                _buildBlock(),
-                _buildBlock(),
-                _buildBlock(),
-                _buildBlock(),
-                _buildBlock(),
-                _buildBlock()
-              ],
-            )
     );
+    // return Scaffold(
+    //
+    //   appBar: AppBar(
+    //     title:
+    //     TextField(
+    //       //controller: TextEditingController(),
+    //       decoration: InputDecoration(
+    //           hintText: 'Search'
+    //       ),
+    //       onTap: () {
+    //         showSearch(context: context, delegate: DataSearch());
+    //       }
+    //     ),
+    //     leading: IconButton(
+    //       icon: Icon(Icons.arrow_left),
+    //       onPressed: () { },
+    //     ),
+    //     actions: <Widget>[
+    //       IconButton(
+    //           icon: Icon(Icons.filter),
+    //           onPressed: () {
+    //             Navigator.of(context).pushNamed(
+    //               '/filters'
+    //             );
+    //           }
+    //       ),
+    //       IconButton(
+    //           icon: Icon(Icons.search),
+    //           onPressed: () { }
+    //       )
+    //     ],
+    //   ),
+    //   body: ListView(
+    //           scrollDirection: Axis.vertical,
+    //           children: <Widget>[
+    //             _buildBlock(),
+    //             _buildBlock(),
+    //             _buildBlock(),
+    //             _buildBlock(),
+    //             _buildBlock(),
+    //             _buildBlock()
+    //           ],
+    //         )
+    // );
   }
+
 
 }
 
 
-Widget myDetailsContainer1() {
+Widget myDetailsContainer(Truck truck) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: <Widget>[
       Padding(
         padding: const EdgeInsets.only(left: 8.0),
         child: Container(
-          child: Text("Candy Bliss",
+          child: Text(truck.name,
             style: TextStyle(color: Colors.redAccent, fontSize: 24.0,fontWeight: FontWeight.bold),)),
       ),
       Padding(
@@ -129,28 +212,27 @@ Widget myDetailsContainer1() {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Container(child: Text("4.3",
+                Container(child: Text(truck.rating.toStringAsFixed(1),
                   style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-                Container(child: Icon(
-                  Icons.star, color: Colors.redAccent,
-                  size: 15.0,),),
-                Container(child: Icon(
-                  Icons.star, color: Colors.redAccent,
-                  size: 15.0,),),
-                Container(child: Icon(
-                  Icons.star, color: Colors.redAccent,
-                  size: 15.0,),),
-                Container(child: Icon(
-                  Icons.star, color: Colors.redAccent,
-                  size: 15.0,),),
-                Container(child: Icon(
-                  Icons.star_border, color: Colors.redAccent,
-                  size: 15.0,),),
-                Container(child: Text("(321) \u00B7 0.9 mi",
-                  style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
+                IconTheme(
+                  data: IconThemeData(color: Colors.redAccent,),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      5, // length
+                          (index) {
+                        return Icon(
+                          index < truck.rating
+                              ? Icons.star
+                              : Icons.star_border,
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ],)),
       ),
-      Container(child: Text("Pastries \u00B7 St Paul, MN",
+      Container(child: Text("${truck.foodType} \u00B7 Minneapolis, MN",
         style: TextStyle(color: Colors.black, fontSize: 18.0,fontWeight: FontWeight.bold),)),
     ],
   );

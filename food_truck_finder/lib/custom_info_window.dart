@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/truck.dart';
@@ -21,68 +23,80 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   final double _infoWindowWidth = 250;
   final double _markerOffset = 220;
 
-  //Map truckMap = json.forEach((element))
-
-  final Map<String, Truck> _truckList = {
-    "1" : Truck(
-        "El Fuego",
-        4,
-        "Mexican",
-        LatLng(44.9758, -93.2620),
-        "\$\$"
-    ),
-    "2" : Truck(
-        "Minneapolis Pizza Kitchen",
-        3,
-        "Italian",
-        LatLng(44.9728, -93.2610),
-        "\$\$\$"
-    ),
-    "3" : Truck(
-        "yum! kitchen mobile",
-        2,
-        "American",
-        LatLng(44.9738, -93.2690),
-        "\$\$"
-    ),
-  };
 
 
   Set<Marker> _markers = Set<Marker>();
+  List<Truck> _trucks = [];
+  bool loaded = false;
+  BitmapDescriptor icon;
 
-  // List<Truck> _getTrucks(String fileName) {
-  //   final json = jsonDecode(fileName);
-  //   List<Truck> trucks;
-  //   return json.forEach((element) {
-  //     trucks.add(Truck.fromJson(element));
-  //   });
-  // }
+  _getTrucks(String json) {
+    List<dynamic> rawTrucks = jsonDecode(json) as List;
+
+    rawTrucks.forEach((element) {
+      setState(() {
+        _trucks.add(Truck.fromJson(element));
+      });
+    });
+  }
+
+  Future<String> loadAsset(BuildContext context) {
+    return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+  }
+
 
   @override
   Widget build(BuildContext context) {
     final providerObject = Provider.of<InfoWindowModel>(context, listen: false);
-    //final List<Truck> temp = _getTrucks('assets/data/trucks.json');
-    //print(temp);
-    _truckList.forEach(
-          (k, v) => _markers.add(
-            Marker(
-              markerId: MarkerId(v.name),
-              position: v.location,
-              onTap: () {
-                providerObject.updateInfoWindow(
-                  context,
-                  mapController,
-                  v.location,
-                  _infoWindowWidth,
-                  _markerOffset,
-                );
-                providerObject.updateTruck(v);
-                providerObject.updateVisibility(true);
-                providerObject.rebuildInfoWindow();
-              },
-            ),
+    Future<String> fileName = Future<String>.sync(() {
+      return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+    });
+
+    Future<BitmapDescriptor> truckIcon = Future<BitmapDescriptor>.sync(() {
+      return BitmapDescriptor.fromAssetImage(
+          ImageConfiguration(
+            size: Size(1, 10),
+            devicePixelRatio: .1,
           ),
+          'assets/images/smallTruck.png');
+      }
     );
+
+    truckIcon.then((bD) {
+      setState(() {
+        icon = bD;
+      });
+    });
+
+    fileName.then((fN) {
+      if(!loaded) {
+        setState(() {
+          _getTrucks(fN);
+          _trucks.forEach((v) => _markers.add(
+              Marker(
+                markerId: MarkerId(v.name),
+                position: v.location,
+                onTap: () {
+                  providerObject.updateInfoWindow(
+                    context,
+                    mapController,
+                    v.location,
+                    _infoWindowWidth,
+                    _markerOffset,
+                  );
+                  providerObject.updateTruck(v);
+                  providerObject.updateVisibility(true);
+                  providerObject.rebuildInfoWindow();
+                },
+                icon: icon
+              )
+          ));
+          loaded = true;
+        });
+      }
+    });
+
+
 
     return Scaffold(
       body: Container(
