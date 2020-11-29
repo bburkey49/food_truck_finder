@@ -9,6 +9,32 @@ class SignUp extends StatefulWidget {
 
 
 class _SignUp extends State<SignUp> {
+
+  Widget _alreadyUser() {
+    return Container(
+        alignment: Alignment.bottomLeft,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Text(
+              "Already have an account?",
+            ),
+            FlatButton(
+              textColor: Colors.redAccent,
+              child: Text(
+                'Sign In',
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                    '/'
+                );
+              },
+            ),
+          ],
+        ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,16 +56,18 @@ class _SignUp extends State<SignUp> {
             ),
               child: Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: 60),
+                    SizedBox(height: 100),
                     Text('Register',
-                      style: TextStyle(fontWeight: FontWeight.w700, fontSize: 30.0),
+                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25.0, color: Colors.teal),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height: 20),
                     TextField(
                       decoration: InputDecoration(
                         icon: Icon(
                           Icons.person,
+                          color: Colors.redAccent,
                         ),
                         hintText: 'First Name'
                       )
@@ -49,6 +77,7 @@ class _SignUp extends State<SignUp> {
                       decoration: InputDecoration(
                         icon: Icon(
                           Icons.person,
+                          color: Colors.redAccent,
                         ),
                         hintText: 'Last Name'
                       )
@@ -58,6 +87,7 @@ class _SignUp extends State<SignUp> {
                       decoration: InputDecoration(
                         icon: Icon(
                           Icons.person,
+                          color: Colors.redAccent,
                         ),
                         hintText: 'Username'
                       )
@@ -66,66 +96,75 @@ class _SignUp extends State<SignUp> {
                     TextField(
                       decoration: InputDecoration(
                         icon: Icon(
-                          Icons.email
+                          Icons.email,
+                          color: Colors.redAccent,
                         ),
                         hintText: 'Email Address'
                       )
                     ),
                     SizedBox(height: 15),
                     TextField(
-                      decoration: InputDecoration(
+                        obscureText: true,
+                        decoration: InputDecoration(
                         icon: Icon(
                           Icons.lock,
+                          color: Colors.redAccent,
                         ),
                         hintText: 'Password'
                       )
                     ),
                     SizedBox(height: 20),
                     TextField(
+                      obscureText: true,
                       decoration: InputDecoration(
                         icon: Icon(
                           Icons.lock,
+                          color: Colors.redAccent,
                         ),
                         hintText: 'Confirm Password'
                       )
                     ),
-                    SizedBox(height: 15),
-                    RaisedButton(
+                    SizedBox(height: 20),
+                    FloatingActionButton.extended(
+                      backgroundColor: Colors.teal,
                       onPressed: () {
                         Navigator.of(context).pushNamed(
                            '/home'
                         );
                       },
-                      child: Text('Sign Up'),
-                      color: Colors.red,
+                      label: Text("Sign Up"),
                     ),
-                    SizedBox(height: 100),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Already have an account?",
-                          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
-                        ),
-                        FlatButton(
-                          textColor: Colors.red,
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(
-                                '/'
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                    SizedBox(height: 65),
                   ],
                 ),
               ),
             ),
           ),
+            Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    _alreadyUser(),
+                  ],
+                )
+
+            ),
+            Container(
+              //alignment: Alignment.topRight,
+                padding: EdgeInsets.symmetric(
+                  vertical: 40.0,
+                  horizontal: 20.0,
+                ),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/images/logo.png',
+                        width: 200.0,
+                      ),
+                    ]
+                )
+            ),
             Container(
               padding: EdgeInsets.symmetric(
                 vertical: 30.0,
@@ -137,8 +176,8 @@ class _SignUp extends State<SignUp> {
                   Icons.arrow_back,
                 ),
                 iconSize: 40,
-                color: Colors.black,
-                splashColor: Colors.purple,
+                color: Colors.teal,
+                splashColor: Colors.redAccent,
                 onPressed: () {
                   Navigator.pop(context);
                 },

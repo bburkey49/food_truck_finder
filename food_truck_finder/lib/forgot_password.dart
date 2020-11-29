@@ -10,13 +10,143 @@ class ForgotPassword extends StatefulWidget {
 
 
 class _ForgotPassword extends State<ForgotPassword> {
-  Widget _logo() {
-    return Image.asset(
-      'assets/images/logo.png',
-      alignment: Alignment.topCenter,
-      semanticLabel: 'logo',
+
+  Widget _haveVerificationCode() {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Text(
+            "Have your verification code?",
+            style: TextStyle(fontSize: 16.0),
+          ),
+          FlatButton(
+            textColor: Colors.redAccent,
+            child: Text(
+              'Enter it here',
+              style: TextStyle(fontSize: 16.0),
+            ),
+            onPressed: () {
+              sendVerCode(context);
+            },
+          ),
+        ],
+      ),
     );
   }
+
+  sendVerCode(BuildContext context){
+    Widget enterButton = FlatButton (
+        child: Text('Enter'),
+        onPressed: () {
+          passReset(context);
+        }
+    );
+
+    Widget cancelButton = FlatButton (
+        child: Text('Cancel'),
+        onPressed: () {
+          Navigator.of(context).pop();
+        }
+    );
+
+    AlertDialog verCode = AlertDialog(
+      title: Text('Enter Verification Code'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(height: 10.0),
+          TextField(
+          decoration: InputDecoration(
+            icon: Icon(
+              Icons.verified,
+              color: Colors.redAccent,
+            ),
+            hintText: 'Enter your code here',
+          ),
+        ),
+        ],
+      ),
+      actions: [
+        enterButton,
+        cancelButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return verCode;
+      },
+    );
+  }
+
+  passReset(BuildContext context){
+    Widget enterButton = FlatButton (
+        child: Text('Enter'),
+        onPressed: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        }
+    );
+
+    Widget cancelButton = FlatButton (
+        child: Text('Cancel'),
+        onPressed: () {
+          Navigator.of(context).pop();
+        }
+    );
+
+    AlertDialog passwordReset = AlertDialog(
+      title: Text('Reset Your Password'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(height: 10),
+          TextFormField(
+            obscureText: true,
+            decoration: InputDecoration(
+              icon: Icon(
+                Icons.lock,
+                color: Colors.redAccent,
+              ),
+              hintText: "Enter New Password",
+
+            ),
+          ),
+          SizedBox(height: 20),
+          TextFormField(
+            obscureText: true,
+            decoration: InputDecoration(
+              icon: Icon(
+                Icons.lock,
+                color: Colors.redAccent,
+              ),
+              hintText: "Reenter New Password",
+            ),
+          ),
+        ],
+      ),
+      // content: TextField(
+      //   decoration: InputDecoration(
+      //     border: InputBorder.none,
+      //     hintText: 'New Password',
+      //   ),
+      // ),
+      actions: [
+        enterButton,
+        cancelButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return passwordReset;
+      },
+    );
+  }
+
 
     Widget _buildEmail() {
       return Column(
@@ -26,7 +156,6 @@ class _ForgotPassword extends State<ForgotPassword> {
             Text(
                 'Email'
             ),
-            SizedBox(height: 5.0),
             Container(
                 alignment: Alignment.centerLeft,
                 height: 60.0,
@@ -97,6 +226,7 @@ class _ForgotPassword extends State<ForgotPassword> {
     );
   }
 
+
     @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -120,36 +250,40 @@ class _ForgotPassword extends State<ForgotPassword> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(height: 15.0),
-                          _logo(),
-                          SizedBox(height: 110.0),
+                          SizedBox(height: 200.0),
                           Text('Please enter your email and we will send you a verification code.',
                             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),),
                           SizedBox(height: 30.0),
                           _buildEmail(),
-                          SizedBox(height: 5.0),
+                          SizedBox(height: 15.0),
                           _buildSendButton(),
-                          SizedBox(height: 50.0),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                "Have your verification code?",
-                                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
-                              ),
-                              FlatButton(
-                                textColor: Colors.red,
-                                child: Text(
-                                  'Click Me!',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                onPressed: () {
-                                },
-                              ),
-                            ],
-                          ),
                         ],
                       )
+                  )
+              ),
+              Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      _haveVerificationCode(),
+                    ],
+                  )
+
+              ),
+              Container(
+                //alignment: Alignment.topRight,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 40.0,
+                    horizontal: 20.0,
+                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/images/logo.png',
+                          width: 200.0,
+                        ),
+                      ]
                   )
               ),
               Container(
@@ -163,8 +297,8 @@ class _ForgotPassword extends State<ForgotPassword> {
                     Icons.arrow_back,
                   ),
                   iconSize: 40,
-                  color: Colors.black,
-                  splashColor: Colors.purple,
+                  color: Colors.teal,
+                  splashColor: Colors.redAccent,
                   onPressed: () {
                     Navigator.pop(context);
                   },

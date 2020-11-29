@@ -13,11 +13,12 @@ class _ListViewState extends State<ListViewPage> {
 
   Widget _buildBlock() {
     return ElevatedButton(
+
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
               if(states.contains(MaterialState.hovered))
-                return Colors.greenAccent;
+                return Colors.teal;
               return null;
             }
         )
@@ -35,7 +36,7 @@ class _ListViewState extends State<ListViewPage> {
                   color: Colors.white,
                   elevation: 14.0,
                   borderRadius: BorderRadius.circular(24.0),
-                  shadowColor: Color(0x802196F3),
+                  shadowColor: Colors.grey[600],
                   child:
                     Row(
                       children: <Widget>[
@@ -120,7 +121,7 @@ Widget myDetailsContainer1() {
         padding: const EdgeInsets.only(left: 8.0),
         child: Container(
           child: Text("Candy Bliss",
-            style: TextStyle(color: Color(0xffe6020a), fontSize: 24.0,fontWeight: FontWeight.bold),)),
+            style: TextStyle(color: Colors.redAccent, fontSize: 24.0,fontWeight: FontWeight.bold),)),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 8.0),
@@ -131,26 +132,26 @@ Widget myDetailsContainer1() {
                 Container(child: Text("4.3",
                   style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
                 Container(child: Icon(
-                  Icons.star, color: Colors.amber,
+                  Icons.star, color: Colors.redAccent,
                   size: 15.0,),),
                 Container(child: Icon(
-                  Icons.star, color: Colors.amber,
+                  Icons.star, color: Colors.redAccent,
                   size: 15.0,),),
                 Container(child: Icon(
-                  Icons.star, color: Colors.amber,
+                  Icons.star, color: Colors.redAccent,
                   size: 15.0,),),
                 Container(child: Icon(
-                  Icons.star, color: Colors.amber,
+                  Icons.star, color: Colors.redAccent,
                   size: 15.0,),),
                 Container(child: Icon(
-                  Icons.star_border, color: Colors.amber,
+                  Icons.star_border, color: Colors.redAccent,
                   size: 15.0,),),
                 Container(child: Text("(321) \u00B7 0.9 mi",
                   style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
               ],)),
       ),
-      Container(child: Text("Pastries \u00B7 Phoenix,AZ",
-        style: TextStyle(color: Colors.black54, fontSize: 18.0,fontWeight: FontWeight.bold),)),
+      Container(child: Text("Pastries \u00B7 St Paul, MN",
+        style: TextStyle(color: Colors.black, fontSize: 18.0,fontWeight: FontWeight.bold),)),
     ],
   );
 }
