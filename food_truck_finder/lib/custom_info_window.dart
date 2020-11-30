@@ -49,7 +49,9 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   Set<Marker> _markers = Set<Marker>();
   List<Truck> _trucks = [];
   bool loaded = false;
-  BitmapDescriptor icon;
+  BitmapDescriptor iconTried;
+  BitmapDescriptor iconSaved;
+  BitmapDescriptor iconNew;
   final callback = null;
 
   Stream<List<Truck>> _truckStream;
@@ -100,12 +102,25 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                     providerObject.updateVisibility(true);
                     providerObject.rebuildInfoWindow();
                   },
-                  icon: icon
+                  icon: getIcon(prosp)
               )
           )
       );
     }
     );
+  }
+
+
+  BitmapDescriptor getIcon(Truck truck) {
+    if(savedTrucks.any((element) => element.name == truck.name)){
+      return iconSaved;
+    }
+    else if(triedTrucks.any((element) => element.name == truck.name)) {
+      return iconTried;
+    }
+    else {
+      return iconNew;
+    }
   }
 
 
@@ -124,9 +139,17 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
     // )
 
 
+    Future<BitmapDescriptor> truckIconTried = Future<BitmapDescriptor>.sync(() {
+      return BitmapDescriptor.fromAssetImage(
+          ImageConfiguration(
+            size: Size(1, 10),
+            devicePixelRatio: .1,
+          ),
+          'assets/images/smallTried.png');
+    }
+    );
 
-
-    Future<BitmapDescriptor> truckIcon = Future<BitmapDescriptor>.sync(() {
+    Future<BitmapDescriptor> truckIconSaved = Future<BitmapDescriptor>.sync(() {
       return BitmapDescriptor.fromAssetImage(
           ImageConfiguration(
             size: Size(1, 10),
@@ -136,12 +159,33 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
       }
     );
 
-    truckIcon.then((bD) {
+    Future<BitmapDescriptor> truckIconNew = Future<BitmapDescriptor>.sync(() {
+      return BitmapDescriptor.fromAssetImage(
+          ImageConfiguration(
+            size: Size(1, 10),
+            devicePixelRatio: .1,
+          ),
+          'assets/images/smallNew.png');
+    }
+    );
+
+    truckIconTried.then((bD) {
       setState(() {
-        icon = bD;
+        iconTried = bD;
       });
     });
 
+    truckIconSaved.then((bD) {
+      setState(() {
+        iconSaved = bD;
+      });
+    });
+
+    truckIconNew.then((bD) {
+      setState(() {
+        iconNew = bD;
+      });
+    });
 
     _trucks.forEach((v) => _markers.add(
         Marker(
@@ -159,7 +203,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
             providerObject.updateVisibility(true);
             providerObject.rebuildInfoWindow();
           },
-          icon: icon
+          icon: getIcon(v)
         )
     ));
     //loaded = true;
@@ -345,6 +389,8 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
     );
   }
 }
+
+
 
 
 // double _computeDistance(LatLng source, LatLng dest) {

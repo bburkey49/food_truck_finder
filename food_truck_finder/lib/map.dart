@@ -239,9 +239,9 @@ class _MapPageState extends State<MapPage> {
                     ),
                     hintText: 'Search',
                     hintStyle: TextStyle(color: Colors.teal),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.teal,
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.search, color: Colors.teal),
+                      //onPressed: onFilterChanged,
                     ),
                   ),
                   onChanged: onItemChanged,
