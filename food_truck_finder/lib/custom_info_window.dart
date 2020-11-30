@@ -41,7 +41,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   final double _zoom = 15.0;
 
   final double _infoWindowWidth = 250;
-  final double _markerOffset = 220;
+  final double _markerOffset = 205;
 
 
 
@@ -343,4 +343,9 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
       ),
     );
   }
+}
+
+
+double _computeDistance(LatLng source, LatLng dest) {
+  return sqrt((source.latitude - dest.latitude))
 }
