@@ -28,7 +28,14 @@ class _ListViewState extends State<ListViewPage> {
   Widget _priceFilter() {
     var _prices = ["\$", "\$\$", "\$\$\$"];
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _prices.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -46,7 +53,7 @@ class _ListViewState extends State<ListViewPage> {
           alignment: Alignment.center,
           child: Text(
             "\$",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.teal),
           ),
         ),
         style:
@@ -59,7 +66,14 @@ class _ListViewState extends State<ListViewPage> {
     var _foods = ["Mexican", "Italian", "American", "Vegan"];
 
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _foods.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -77,7 +91,7 @@ class _ListViewState extends State<ListViewPage> {
           alignment: Alignment.center,
           child: Text(
             "Food Type",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.teal),
           ),
         ),
         style:
@@ -90,8 +104,14 @@ class _ListViewState extends State<ListViewPage> {
     var _reviews = ["*", "**", "***", "****", "*****"];
 
     return Container(
-      // color: Colors.teal,
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _reviews.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -112,27 +132,27 @@ class _ListViewState extends State<ListViewPage> {
               children: const <Widget>[
                 Icon(
                   Icons.star,
-                  color: Colors.white,
+                  color: Colors.teal,
                   size: 10.0,
                   semanticLabel: 'star rating',
                 ),
                 Icon(
                   Icons.star,
-                  color: Colors.white,
+                  color: Colors.teal,
                   size: 10.0,
                 ),
                 Icon(
                   Icons.star,
-                  color: Colors.white,
+                  color: Colors.teal,
                   size: 10.0,
                 ),
                 Icon(
                   Icons.star,
-                  color: Colors.white,
+                  color: Colors.teal,
                   size: 10.0,
                 ),Icon(
                   Icons.star,
-                  color: Colors.white,
+                  color: Colors.teal,
                   size: 10.0,
                 ),
 
@@ -261,12 +281,21 @@ class _ListViewState extends State<ListViewPage> {
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.fromLTRB(30.0, 12.0, 30.0, 12.0),
             child: TextField(
               controller: _textController,
+
               decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
                 hintText: 'Search',
-                // fillColor: Colors.teal,
+                hintStyle: TextStyle(color: Colors.teal),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.teal,
+                ),
               ),
               onChanged: onItemChanged,
             ),
@@ -332,14 +361,15 @@ class _ListViewState extends State<ListViewPage> {
 
   Container buildFilters() {
     return Container(
-      color: Colors.teal,
+      alignment: Alignment.center,
+      color: Colors.white,
       child: Row(
         children: [
-          SizedBox(width: 50.0),
+          SizedBox(width: 32.0),
           _priceFilter(),
-          SizedBox(width: 50.0),
+          SizedBox(width: 25.0),
           _foodTypeFilter(),
-          SizedBox(width: 50.0),
+          SizedBox(width: 25.0),
           _reviewFilter(),
         ],
       ),
