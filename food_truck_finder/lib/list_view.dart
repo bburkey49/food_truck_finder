@@ -43,7 +43,6 @@ class _ListViewState extends State<ListViewPage> {
             child: Text(String_dropDownStringItem),
           );
         }).toList(),
-
         onChanged:  (String newValueSelected ) {
           setState(() {
              _currentPriceSelected = newValueSelected;
@@ -102,7 +101,7 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _reviewFilter() {
-    var _reviews = ["*", "**", "***", "****", "*****"];
+    var _reviews = ["1+", "2+", "3+", "4+", "5"];
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -165,6 +164,21 @@ class _ListViewState extends State<ListViewPage> {
       ),
     );
   }
+  Widget _setFilters() {
+    return Container(
+      child: Ink(
+          decoration: const ShapeDecoration(
+            color: Colors.white,
+            shape: CircleBorder(),
+          ),
+        child: IconButton(
+          icon: Icon(Icons.check),
+          color: Colors.teal,
+          onPressed: onFilterChanged,
+        ),
+      ),
+    );
+  }
 
   TextEditingController _textController = TextEditingController();
   List<Truck> _trucks = [];
@@ -197,7 +211,7 @@ class _ListViewState extends State<ListViewPage> {
 
   onFilterChanged() {
     setState(() {
-      if(_currentFoodSelected != "Food Type") {
+      if(_currentFoodSelected != null) {
         prospectiveTrucks = _trucks
           .where((t) => t.foodType.contains(_currentFoodSelected)).toList();
       }
@@ -292,7 +306,7 @@ class _ListViewState extends State<ListViewPage> {
                       hintStyle: TextStyle(color: Colors.teal),
                       suffixIcon: IconButton(
                         icon: Icon(Icons.search),
-                        onPressed: onFilterChanged,
+                        // onPressed: onFilterChanged,
                         color: Colors.teal,
                       ),
                     ),
@@ -371,10 +385,12 @@ class _ListViewState extends State<ListViewPage> {
         children: [
           SizedBox(width: 30.0),
           _priceFilter(),
-          SizedBox(width: 25.0),
+          SizedBox(width: 15.0),
           _foodTypeFilter(),
-          SizedBox(width: 25.0),
+          SizedBox(width: 15.0),
           _reviewFilter(),
+          SizedBox(width: 15.0),
+          _setFilters(),
         ],
       ),
     );
