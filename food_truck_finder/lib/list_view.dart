@@ -46,7 +46,7 @@ class _ListViewState extends State<ListViewPage> {
           alignment: Alignment.center,
           child: Text(
             "\$",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
         style:
@@ -77,7 +77,7 @@ class _ListViewState extends State<ListViewPage> {
           alignment: Alignment.center,
           child: Text(
             "Food Type",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
         style:
@@ -107,10 +107,37 @@ class _ListViewState extends State<ListViewPage> {
         value:  _currentStarSelected,
         hint: Align(
           alignment: Alignment.center,
-          child: Text(
-            "*****",
-            style: TextStyle(color: Colors.black),
-          ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const <Widget>[
+                Icon(
+                  Icons.star,
+                  color: Colors.white,
+                  size: 10.0,
+                  semanticLabel: 'star rating',
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.white,
+                  size: 10.0,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.white,
+                  size: 10.0,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.white,
+                  size: 10.0,
+                ),Icon(
+                  Icons.star,
+                  color: Colors.white,
+                  size: 10.0,
+                ),
+
+              ],
+            )
         ),
         style:
               TextStyle(color: Colors.black, decorationColor: Colors.red),
@@ -153,17 +180,17 @@ class _ListViewState extends State<ListViewPage> {
       if(_currentFoodSelected != null) {
         prospectiveTrucks = _trucks
           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.foodType.contains(_currentFoodSelected)).toList();
+            && t.foodType.contains(_currentFoodSelected)).toList();
       }
       else if(_currentStarSelected != null) {
         prospectiveTrucks = _trucks
           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.rating >= _currentStarSelected.length).toList();
+            && t.rating >= _currentStarSelected.length).toList();
       }
       else if(_currentPriceSelected != null) {
         prospectiveTrucks = _trucks
           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.price.length <= _currentPriceSelected.length).toList();
+            && t.price.length <= _currentPriceSelected.length).toList();
       }
       else {
          prospectiveTrucks = _trucks
@@ -174,17 +201,7 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _buildBlock(BuildContext context, Truck truck) {
-    return ElevatedButton(
-
-      style: ButtonStyle(
-          overlayColor: MaterialStateProperty.resolveWith<Color>(
-                  (Set<MaterialState> states) {
-                if (states.contains(MaterialState.hovered))
-                  return Colors.teal;
-                return null;
-              }
-          )
-      ),
+    return FlatButton(
       onPressed: () {
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => TruckInfo(truck: truck))
@@ -194,13 +211,13 @@ class _ListViewState extends State<ListViewPage> {
           padding: const EdgeInsets.all(16.0),
           child: Container(
               child: FittedBox(
-                child: Material(
-                  color: Colors.white,
-                  elevation: 14.0,
-                  borderRadius: BorderRadius.circular(24.0),
-                  shadowColor: Colors.grey[600],
-                  child:
-                  Row(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 2.5, color: Colors.teal),
+                    ),
+                  ),
+                  child: Row(
                     children: <Widget>[
                       Container(
                           child: myDetailsContainer(truck)
@@ -209,7 +226,6 @@ class _ListViewState extends State<ListViewPage> {
                           height: 250,
                           width: 250,
                           child: ClipRRect(
-                              borderRadius: new BorderRadius.circular(24.0),
                               child: Image(
                                   fit: BoxFit.contain,
                                   alignment: Alignment.topRight,
@@ -338,23 +354,26 @@ class _ListViewState extends State<ListViewPage> {
   Widget myDetailsContainer(Truck truck) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.only(left: 15.0),
           child: Container(
               child: Text(truck.name,
                 style: TextStyle(color: Colors.redAccent,
-                    fontSize: 24.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),)),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.only(left: 15.0),
           child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Container(child: Text(truck.rating.toStringAsFixed(1),
-                    style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
+                  Container(
+                      child: Text(
+                        truck.rating.toStringAsFixed(1),
+                        style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
                   IconTheme(
                     data: IconThemeData(color: Colors.redAccent,),
                     child: Row(
@@ -373,10 +392,13 @@ class _ListViewState extends State<ListViewPage> {
                   ),
                 ],)),
         ),
-        Container(child: Text("${truck.foodType} \u00B7 Minneapolis, MN",
-          style: TextStyle(color: Colors.black,
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0),
+          child: Container(
+              child: Text("${truck.foodType} \u00B7 Minneapolis",
+               style: TextStyle(color: Colors.black,
               fontSize: 18.0,
-              fontWeight: FontWeight.bold),)),
+              fontWeight: FontWeight.bold),)),),
       ],
     );
   }
