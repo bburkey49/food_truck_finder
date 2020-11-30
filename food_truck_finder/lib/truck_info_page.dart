@@ -1,10 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:food_truck_finder/truck.dart';
 
 class TruckInfo extends StatefulWidget {
 
+  TruckInfo({
+    this.truck,
+  });
+
+  final Truck truck;
+
   @override
   State<StatefulWidget> createState() {
-    return _TruckInfoState();
+    return _TruckInfoState(this.truck);
   }
 }
 
@@ -12,6 +21,12 @@ class TruckInfo extends StatefulWidget {
 class _TruckInfoState extends State<TruckInfo> {
   String personalizedTruck = 'New';
   Color truckCol = Colors.grey;
+
+  Truck truck;
+
+  _TruckInfoState(Truck truck) {
+    this.truck = truck;
+  }
 
   Widget _personalizedTruck() {
     return Container(
@@ -63,13 +78,13 @@ class _TruckInfoState extends State<TruckInfo> {
     );
   }
 
-  Widget _nameOfTruck() {
+  Widget _nameOfTruck(Truck truck) {
     return Container(
         alignment: Alignment.centerLeft,
         child: Row(
             children: <Widget>[
               Text(
-                'Name Of Food Truck',
+                truck.name,
                 style: TextStyle(
                   fontSize: 20,
                   fontFamily: 'OpenSans',
@@ -91,50 +106,39 @@ class _TruckInfoState extends State<TruckInfo> {
     );
   }
 
-  Widget _typeOfFood() {
+  Widget _typeOfFood(Truck truck) {
     return Container(
         alignment: Alignment.centerLeft,
         child: Row(
             children: <Widget>[
               Text(
-                  'Type of food'
+                  truck.foodType
               )
             ]
         )
     );
   }
 
-  Widget _starRating() {
+  Widget _starRating(Truck truck) {
     return Container(
         alignment: Alignment.centerLeft,
         child: Row(
-            children: <Widget>[
-              Icon(
-                  Icons.star,
-                  color: Colors.black,
-                  size: 40
-              ),
-              Icon(
-                  Icons.star,
-                  color: Colors.black,
-                  size: 40
-              ),
-              Icon(
-                  Icons.star,
-                  color: Colors.black,
-                  size: 40
-              ),
-              Icon(
-                  Icons.star,
-                  color: Colors.black,
-                  size: 40
-              )
-            ]
+            children: List.generate(
+              5, // length
+                  (index) {
+                return Icon(
+                  index < truck.rating
+                      ? Icons.star
+                      : Icons.star_border,
+                  size: 40,
+                );
+              },
+            )
         )
     );
   }
 
-  Widget _locationWidget() {
+  Widget _locationWidget(Truck truck) {
     return Container(
         alignment: Alignment.centerLeft,
         child: Row(
@@ -146,7 +150,7 @@ class _TruckInfoState extends State<TruckInfo> {
               ),
               SizedBox(width: 5),
               Text(
-                  'x.x miles away'
+                  truck.location.toString()
               )
             ]
         )
@@ -247,8 +251,43 @@ class _TruckInfoState extends State<TruckInfo> {
   }
 
 
+  _getTrucks(String json) {
+    List<dynamic> rawTrucks = jsonDecode(json) as List;
+
+    rawTrucks.forEach((element) {
+      setState(() {
+        _trucks.add(Truck.fromJson(element));
+      });
+    });
+  }
+
+  List<Truck> _trucks = [];
+  bool loaded = false;
+
   @override
   Widget build(BuildContext context) {
+    // final  Map<String, Truck> truckData = ModalRoute.of(context).settings.arguments;
+    // print("hello");
+    // print(truckData);
+    // print("hello");
+
+    // Truck truck = truckData['truck'];
+
+
+
+    // Future<String> fileName = Future<String>.sync(() {
+    //   return DefaultAssetBundle.of(context).loadString(
+    //       'assets/data/trucks.json');
+    // });
+    // fileName.then((fN) {
+    //   if (!loaded) {
+    //     setState(() {
+    //       _getTrucks(fN);
+    //       loaded = true;
+    //     });
+    //   }
+    // });
+
     return Scaffold(
         body: Stack(
             children: <Widget>[
@@ -272,13 +311,13 @@ class _TruckInfoState extends State<TruckInfo> {
                           SizedBox(height: 50.0),
                           _personalizedTruck(),
                           SizedBox(height: 10.0),
-                          _nameOfTruck(),
+                          _nameOfTruck(truck),
                           SizedBox(height: 5.0),
-                          _typeOfFood(),
+                          _typeOfFood(truck),
                           SizedBox(height: 10.0),
-                          _starRating(),
+                          _starRating(truck),
                           SizedBox(height: 10.0),
-                          _locationWidget(),
+                          _locationWidget(truck),
                           SizedBox(height: 5.0),
                           _openUntil(),
                           SizedBox(height: 20.0),

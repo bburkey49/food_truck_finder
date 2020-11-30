@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_truck_finder/login.dart';
 import 'package:food_truck_finder/search_b.dart';
 import 'package:food_truck_finder/sign_up.dart';
+import 'package:food_truck_finder/truck.dart';
 import 'package:food_truck_finder/truck_info_page.dart';
 import 'home_widget.dart';
 import 'saved_trucks.dart';
@@ -9,10 +10,11 @@ import 'tried_trucks.dart';
 import 'settings.dart';
 import 'forgot_password.dart';
 import 'map.dart';
+import 'dietary_restrictions.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments;
+    //final args = settings.arguments;
 
     switch (settings.name) {
       case '/':
@@ -25,7 +27,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SignUp());
 
       case '/truck_info':
-        return MaterialPageRoute(builder: (_) => TruckInfo());
+        return MaterialPageRoute(builder: (context) => TruckInfo());
 
       case '/search_filter':
         return MaterialPageRoute(builder: (_) => SearchB());
@@ -48,7 +50,8 @@ class RouteGenerator {
       case '/map':
         return MaterialPageRoute(builder: (_) => MapPage());
 
-
+      case '/dietary':
+        return MaterialPageRoute(builder: (_) => DietaryWidget());
     }
   }
 }
