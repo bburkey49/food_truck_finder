@@ -22,13 +22,20 @@ class _ListViewState extends State<ListViewPage> {
     int price = 10;
   var _currentPriceSelected;
   var _currentStarSelected;
-  var _currentFoodSelected;
+  var _currentFoodSelected = "Food Type";
 
 
   Widget _priceFilter() {
     var _prices = ["\$", "\$\$", "\$\$\$"];
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _prices.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -46,7 +53,7 @@ class _ListViewState extends State<ListViewPage> {
           alignment: Alignment.center,
           child: Text(
             "\$",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.teal),
           ),
         ),
         style:
@@ -56,10 +63,17 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _foodTypeFilter() {
-    var _foods = ["Mexican", "Italian", "American", "Vegan"];
+    var _foods = ["Food Type", "American", "Italian", "Mexican", "Vegan"];
 
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _foods.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -77,7 +91,7 @@ class _ListViewState extends State<ListViewPage> {
           alignment: Alignment.center,
           child: Text(
             "Food Type",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.teal),
           ),
         ),
         style:
@@ -90,8 +104,14 @@ class _ListViewState extends State<ListViewPage> {
     var _reviews = ["*", "**", "***", "****", "*****"];
 
     return Container(
-      // color: Colors.teal,
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _reviews.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -107,10 +127,37 @@ class _ListViewState extends State<ListViewPage> {
         value:  _currentStarSelected,
         hint: Align(
           alignment: Alignment.center,
-          child: Text(
-            "*****",
-            style: TextStyle(color: Colors.black),
-          ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const <Widget>[
+                Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                  semanticLabel: 'star rating',
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                ),Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                ),
+
+              ],
+            )
         ),
         style:
               TextStyle(color: Colors.black, decorationColor: Colors.red),
@@ -149,7 +196,7 @@ class _ListViewState extends State<ListViewPage> {
 
   onFilterChanged() {
     setState(() {
-      if(_currentFoodSelected != null) {
+      if(_currentFoodSelected != "Food Type") {
         prospectiveTrucks = _trucks
           .where((t) => t.foodType.contains(_currentFoodSelected)).toList();
       }
@@ -160,27 +207,34 @@ class _ListViewState extends State<ListViewPage> {
       else if(_currentPriceSelected != null) {
         prospectiveTrucks = _trucks
           .where((t) => t.price.length <= _currentPriceSelected.length).toList();
+          // .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
+          //   && t.foodType.contains(_currentFoodSelected)).toList();
       }
+//       else if(_currentStarSelected != null) {
+//         prospectiveTrucks = _trucks
+//           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
+//             && t.rating >= _currentStarSelected.length).toList();
+//       }
+//       else if(_currentPriceSelected != null) {
+//         prospectiveTrucks = _trucks
+//           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
+//             && t.price.length <= _currentPriceSelected.length).toList();
+//       }
+//       else {
+//          prospectiveTrucks = _trucks
+//          .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
+//           .toList();
+// >>>>>>> 5a836abb779ec6058fee4168ced7eaaf796f405e
+      });
       // else {
       //    prospectiveTrucks = _trucks
       //    .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
       //     .toList();
       // }
-    });
-  }
+    }
 
   Widget _buildBlock(BuildContext context, Truck truck) {
-    return ElevatedButton(
-
-      style: ButtonStyle(
-          overlayColor: MaterialStateProperty.resolveWith<Color>(
-                  (Set<MaterialState> states) {
-                if (states.contains(MaterialState.hovered))
-                  return Colors.teal;
-                return null;
-              }
-          )
-      ),
+    return FlatButton(
       onPressed: () {
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => TruckInfo(truck: truck))
@@ -190,13 +244,13 @@ class _ListViewState extends State<ListViewPage> {
           padding: const EdgeInsets.all(16.0),
           child: Container(
               child: FittedBox(
-                child: Material(
-                  color: Colors.white,
-                  elevation: 14.0,
-                  borderRadius: BorderRadius.circular(24.0),
-                  shadowColor: Colors.grey[600],
-                  child:
-                  Row(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 2.5, color: Colors.teal),
+                    ),
+                  ),
+                  child: Row(
                     children: <Widget>[
                       Container(
                           child: myDetailsContainer(truck)
@@ -205,7 +259,6 @@ class _ListViewState extends State<ListViewPage> {
                           height: 250,
                           width: 250,
                           child: ClipRRect(
-                              borderRadius: new BorderRadius.circular(24.0),
                               child: Image(
                                   fit: BoxFit.contain,
                                   alignment: Alignment.topRight,
@@ -246,7 +299,7 @@ class _ListViewState extends State<ListViewPage> {
             padding: const EdgeInsets.all(12.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: <Widget>[
                 Expanded(
                   flex: 4,
                   child: TextField(
@@ -268,6 +321,23 @@ class _ListViewState extends State<ListViewPage> {
                   ),
                 ),
               ],
+            // padding: const EdgeInsets.fromLTRB(30.0, 12.0, 30.0, 12.0),
+            // child: TextField(
+            //   controller: _textController,
+            //
+            //   decoration: InputDecoration(
+            //     enabledBorder: OutlineInputBorder(
+            //       borderSide: BorderSide(color: Colors.teal),
+            //       borderRadius: BorderRadius.circular(10.0),
+            //     ),
+            //     hintText: 'Search',
+            //     hintStyle: TextStyle(color: Colors.teal),
+            //     prefixIcon: Icon(
+            //       Icons.search,
+            //       color: Colors.teal,
+            //     ),
+            //   ),
+            //   onChanged: onItemChanged,
             ),
           ),
           buildFilters(),
@@ -278,7 +348,7 @@ class _ListViewState extends State<ListViewPage> {
                     prospectiveTrucks.length,
                         (index) => _buildBlock(context, prospectiveTrucks[index])
                 )
-            ),
+            )
           )
         ],
       ),
@@ -331,7 +401,8 @@ class _ListViewState extends State<ListViewPage> {
 
   Container buildFilters() {
     return Container(
-      color: Colors.teal,
+      alignment: Alignment.center,
+      color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -351,6 +422,12 @@ class _ListViewState extends State<ListViewPage> {
                 onPressed: () => onFilterChanged()
             ),
           ),
+          // SizedBox(width: 32.0),
+          // _priceFilter(),
+          // SizedBox(width: 25.0),
+          // _foodTypeFilter(),
+          // SizedBox(width: 25.0),
+          // _reviewFilter(),
         ],
       ),
     );
@@ -362,23 +439,26 @@ class _ListViewState extends State<ListViewPage> {
   Widget myDetailsContainer(Truck truck) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.only(left: 15.0),
           child: Container(
               child: Text(truck.name,
                 style: TextStyle(color: Colors.redAccent,
-                    fontSize: 24.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),)),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.only(left: 15.0),
           child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Container(child: Text(truck.rating.toStringAsFixed(1),
-                    style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
+                  Container(
+                      child: Text(
+                        truck.rating.toStringAsFixed(1),
+                        style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
                   IconTheme(
                     data: IconThemeData(color: Colors.redAccent,),
                     child: Row(
@@ -397,10 +477,13 @@ class _ListViewState extends State<ListViewPage> {
                   ),
                 ],)),
         ),
-        Container(child: Text("${truck.foodType} \u00B7 Minneapolis, MN",
-          style: TextStyle(color: Colors.black,
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0),
+          child: Container(
+              child: Text("${truck.foodType} \u00B7 Minneapolis",
+               style: TextStyle(color: Colors.black,
               fontSize: 18.0,
-              fontWeight: FontWeight.bold),)),
+              fontWeight: FontWeight.bold),)),),
       ],
     );
   }
