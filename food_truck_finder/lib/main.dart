@@ -4,6 +4,7 @@ import 'package:food_truck_finder/route_generator.dart';
 import 'search_b.dart';
 import 'login.dart';
 import 'package:provider/provider.dart';
+import 'package:food_truck_finder/truck.dart';
 
 void main() {
   runApp(

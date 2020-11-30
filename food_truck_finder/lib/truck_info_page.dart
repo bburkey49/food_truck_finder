@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/truck.dart';
+import 'globals.dart';
 
 class TruckInfo extends StatefulWidget {
 
@@ -62,12 +63,38 @@ class _TruckInfoState extends State<TruckInfo> {
             personalizedTruck = newValueSelected;
             if(newValueSelected == "Tried"){
               truckCol = Colors.lime[600];
+              if(!triedTrucks.contains(truck)){
+                triedTrucks.add(truck);
+              }
+              for(int i = 0; i < savedTrucks.length; i++){
+                if(savedTrucks[i] == truck){
+                  savedTrucks.remove(truck);
+                }
+              }
             }
             if (newValueSelected == "Saved"){
               truckCol = Colors.redAccent;
+              if(!savedTrucks.contains(truck)){
+                savedTrucks.add(truck);
+              }
+              for(int i = 0; i < triedTrucks.length; i++){
+                if(triedTrucks[i] == truck){
+                  triedTrucks.remove(truck);
+                }
+              }
             }
             if (newValueSelected == "New"){
               truckCol = Colors.grey[800];
+              for(int i = 0; i < savedTrucks.length; i++){
+                if(savedTrucks[i] == truck){
+                  savedTrucks.remove(truck);
+                }
+              }
+              for(int i = 0; i < triedTrucks.length; i++){
+                if(triedTrucks[i] == truck){
+                  triedTrucks.remove(truck);
+                }
+              }
             }
           });
         },

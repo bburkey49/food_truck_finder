@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'globals.dart';
 
 class SavedTrucksWidget extends StatefulWidget {
   @override

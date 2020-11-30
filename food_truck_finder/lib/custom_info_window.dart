@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:food_truck_finder/truck_info_page.dart';
+import 'globals.dart';
 
 import 'info_window_model.dart';
 
