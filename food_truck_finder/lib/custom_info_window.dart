@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/truck.dart';
+import 'package:food_truck_finder/truck_info_page.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
@@ -211,8 +212,8 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                               foregroundColor: Colors.white,
                                               mini: true,
                                               onPressed: () {
-                                                Navigator.of(context).pushNamed(
-                                                    '/truck_info'
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(builder: (context) => TruckInfo(truck: providerObject.truck))
                                                 );
                                               },
                                               child: Icon(Icons.arrow_right),

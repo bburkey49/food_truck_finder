@@ -170,9 +170,7 @@ class _MapPageState extends State<MapPage> {
           IconButton(
             color: Colors.black,
             icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: DataSearch());
-            }
+            onPressed: () { }
           )
         ],
       ),
