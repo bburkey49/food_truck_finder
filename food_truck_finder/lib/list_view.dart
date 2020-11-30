@@ -6,6 +6,7 @@ import 'package:food_truck_finder/truck.dart';
 
 // import 'data_search.dart';
 import 'package:filter_list/filter_list.dart';
+import 'package:food_truck_finder/truck_info_page.dart';
 
 
 class ListViewPage extends StatefulWidget {
@@ -124,7 +125,7 @@ class _ListViewState extends State<ListViewPage> {
     });
   }
 
-  Widget _buildBlock(Truck truck) {
+  Widget _buildBlock(BuildContext context, Truck truck) {
     return ElevatedButton(
 
       style: ButtonStyle(
@@ -137,8 +138,8 @@ class _ListViewState extends State<ListViewPage> {
           )
       ),
       onPressed: () {
-        Navigator.of(context).pushNamed(
-            '/truck_info'
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => TruckInfo(truck: truck))
         );
       },
       child: Padding(
@@ -214,13 +215,8 @@ class _ListViewState extends State<ListViewPage> {
                 padding: EdgeInsets.all(12.0),
                 children: List<Widget>.generate(
                     prospectiveTrucks.length,
-                        (index) => _buildBlock(prospectiveTrucks[index])
+                        (index) => _buildBlock(context, prospectiveTrucks[index])
                 )
-              // children: newTrucks.map((data) {
-              //   return ListTile(
-              //     title: Text(data),
-              //     onTap: ()=> print(data),);
-              // }).toList(),
             ),
           )
         ],
