@@ -19,9 +19,9 @@ class _ListViewState extends State<ListViewPage> {
   bool filters = false;
 
     int price = 10;
-  var _currentPriceSelected = "\$";
-  var _currentStarSelected = "*****";
-  var _currentFoodSelected = "Mexican";
+  var _currentPriceSelected;
+  var _currentStarSelected;
+  var _currentFoodSelected;
 
 
   Widget _priceFilter() {
@@ -41,12 +41,21 @@ class _ListViewState extends State<ListViewPage> {
           });
         },
         value:  _currentPriceSelected,
+        hint: Align(
+          alignment: Alignment.center,
+          child: Text(
+            "\$",
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        style:
+              TextStyle(color: Colors.black, decorationColor: Colors.red),
       ),
     );
   }
 
   Widget _foodTypeFilter() {
-    var _foods = ["Mexican", "Italian", "American"];
+    var _foods = ["Mexican", "Italian", "American", "Vegan"];
 
     return Container(
       child: DropdownButton<String>(
@@ -62,9 +71,16 @@ class _ListViewState extends State<ListViewPage> {
              _currentFoodSelected = newValueSelected;
           });
         },
-
         value:  _currentFoodSelected,
-
+        hint: Align(
+          alignment: Alignment.center,
+          child: Text(
+            "Food Type",
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        style:
+              TextStyle(color: Colors.black, decorationColor: Colors.red),
       ),
     );
   }
@@ -87,9 +103,16 @@ class _ListViewState extends State<ListViewPage> {
              _currentStarSelected = newValueSelected;
           });
         },
-
         value:  _currentStarSelected,
-
+        hint: Align(
+          alignment: Alignment.center,
+          child: Text(
+            "*****",
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        style:
+              TextStyle(color: Colors.black, decorationColor: Colors.red),
       ),
     );
   }
@@ -116,11 +139,36 @@ class _ListViewState extends State<ListViewPage> {
 
   List<Truck> prospectiveTrucks = [];
 
+  //  onItemChanged(String value) {
+  //   setState(() {
+  //     prospectiveTrucks = _trucks
+  //         = [for (var t in _trucks) if (t.name.toLowerCase().contains(value.toLowerCase())
+  //             && t.foodType.contains(_currentFoodSelected)) t];
+  //   });
+  // }
+
   onItemChanged(String value) {
     setState(() {
-      prospectiveTrucks = _trucks
-          .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
+      if(_currentFoodSelected != null) {
+        prospectiveTrucks = _trucks
+          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
+          && t.foodType.contains(_currentFoodSelected)).toList();
+      }
+      else if(_currentStarSelected != null) {
+        prospectiveTrucks = _trucks
+          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
+          && t.rating >= _currentStarSelected.length).toList();
+      }
+      else if(_currentPriceSelected != null) {
+        prospectiveTrucks = _trucks
+          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
+          && t.price <= _currentPriceSelected.length).toList();
+      }
+      else {
+         prospectiveTrucks = _trucks
+         .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
           .toList();
+      }
     });
   }
 
