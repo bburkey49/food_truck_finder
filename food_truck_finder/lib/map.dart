@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/custom_info_window.dart';
 import 'package:food_truck_finder/data_search.dart';
+import 'package:food_truck_finder/truck.dart';
 // import 'search_b.dart';
 
 
@@ -87,18 +90,81 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+  TextEditingController _textController = TextEditingController();
+  List<Truck> _trucks = [];
+  bool loaded = false;
+
+  // Future<String> loadAsset(BuildContext context) {
+  //   return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+  // }
+
+  _getTrucks(String json) {
+    List<dynamic> rawTrucks = jsonDecode(json) as List;
+
+    rawTrucks.forEach((element) {
+      setState(() {
+        _trucks.add(Truck.fromJson(element));
+        prospectiveTrucks = List.from(_trucks);
+      });
+    });
+  }
+
+
+  List<Truck> prospectiveTrucks = [];
+
+  onItemChanged(String value) {
+    setState(() {
+      prospectiveTrucks = _trucks
+          .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    Future<String> fileName = Future<String>.sync(() {
+      return DefaultAssetBundle.of(context).loadString(
+          'assets/data/trucks.json');
+    });
+    fileName.then((fN) {
+      if (!loaded) {
+        setState(() {
+          _getTrucks(fN);
+          loaded = true;
+        });
+      }
+    });
+
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Search",
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-        ),
-        textAlign: TextAlign.start,
-        
+        title: Container(
+          width: 500,
+          height: 75,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  controller: _textController,
+                  decoration: InputDecoration(
+                    hintText: 'Search',
+                    // fillColor: Colors.teal,
+                  ),
+                  onChanged: onItemChanged,
+                ),
+              ),
+              Expanded(
+                child:
+                  ListView(
+                    padding: EdgeInsets.all(12.0),
+                    children: []
+                  ),
+              )
+            ],
+          ),
         ),
         actions: <Widget>[
           IconButton(
@@ -106,19 +172,21 @@ class _MapPageState extends State<MapPage> {
             icon: Icon(Icons.search),
             onPressed: () {
               showSearch(context: context, delegate: DataSearch());
-            },)
+            }
+          )
         ],
       ),
-      body: Stack(
-        children: <Widget>[
-          _googleMap(context),
-          buildFilters(),
-          // _horizontalContainer()
-        ],
-      ),
+        body: Stack(
+          children: <Widget>[
+            _googleMap(context),
+            buildFilters(),
+          ]
+        )
     );
-    
+          // _horizontalContainer()
   }
+
+
   Container buildFilters() {
     return Container(
       color: Colors.teal,
