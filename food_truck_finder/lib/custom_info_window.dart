@@ -347,6 +347,6 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
 }
 
 
-double _computeDistance(LatLng source, LatLng dest) {
-  return sqrt((source.latitude - dest.latitude))
-}
+// double _computeDistance(LatLng source, LatLng dest) {
+//   return sqrt((source.latitude - dest.latitude))
+// }
