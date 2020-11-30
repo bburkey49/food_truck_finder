@@ -163,7 +163,7 @@ class _ListViewState extends State<ListViewPage> {
       else if(_currentPriceSelected != null) {
         prospectiveTrucks = _trucks
           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.price <= _currentPriceSelected.length).toList();
+          && t.price.length <= _currentPriceSelected.length).toList();
       }
       else {
          prospectiveTrucks = _trucks
