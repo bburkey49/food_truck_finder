@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/search_b.dart';
@@ -207,30 +208,9 @@ class _ListViewState extends State<ListViewPage> {
       else if(_currentPriceSelected != null) {
         prospectiveTrucks = _trucks
           .where((t) => t.price.length <= _currentPriceSelected.length).toList();
-          // .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          //   && t.foodType.contains(_currentFoodSelected)).toList();
       }
-//       else if(_currentStarSelected != null) {
-//         prospectiveTrucks = _trucks
-//           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-//             && t.rating >= _currentStarSelected.length).toList();
-//       }
-//       else if(_currentPriceSelected != null) {
-//         prospectiveTrucks = _trucks
-//           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-//             && t.price.length <= _currentPriceSelected.length).toList();
-//       }
-//       else {
-//          prospectiveTrucks = _trucks
-//          .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
-//           .toList();
-// >>>>>>> 5a836abb779ec6058fee4168ced7eaaf796f405e
       });
-      // else {
-      //    prospectiveTrucks = _trucks
-      //    .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
-      //     .toList();
-      // }
+
     }
 
   Widget _buildBlock(BuildContext context, Truck truck) {
@@ -297,22 +277,30 @@ class _ListViewState extends State<ListViewPage> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 12, 30, 12.0),
-            child: TextField(
-              controller: _textController,
-              decoration: InputDecoration(
-                isDense: true,
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal, width: 1.5),
-                  borderRadius: BorderRadius.circular(10.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _textController,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.teal, width: 1.5),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      hintText: 'Search',
+                      hintStyle: TextStyle(color: Colors.teal),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: onFilterChanged,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    onChanged: onItemChanged,
+
+                  ),
                 ),
-                hintText: 'Search',
-                hintStyle: TextStyle(color: Colors.teal),
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Colors.teal,
-                ),
-              ),
-              onChanged: onItemChanged,
+              ],
             ),
           ),
           buildFilters(),
