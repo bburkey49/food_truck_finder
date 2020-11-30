@@ -90,17 +90,16 @@ class _TruckInfoState extends State<TruckInfo> {
                   fontFamily: 'OpenSans',
                 ),
               ),
-              SizedBox(width: 60),
-              Icon(
-                  Icons.attach_money,
-                  color: Colors.black,
-                  size: 30
-              ),
-              Icon(
-                  Icons.attach_money,
-                  color: Colors.black,
-                  size: 30
-              )
+              Expanded(
+                  child: Text(
+                    truck.price,
+                    textDirection: TextDirection.ltr,
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'OpenSans',
+                    ),
+                  ))
             ]
         )
     );
@@ -149,8 +148,16 @@ class _TruckInfoState extends State<TruckInfo> {
                 size: 25,
               ),
               SizedBox(width: 5),
-              Text(
-                  truck.location.toString()
+              Container(
+                height: 25.0,
+                width: 250.0,
+                  child: Text(
+                    truck.location.toString(),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'OpenSans',
+                    ),
+              )
               )
             ]
         )
@@ -163,7 +170,7 @@ class _TruckInfoState extends State<TruckInfo> {
         child: Row(
             children: <Widget>[
               Text(
-                  'Open until x pm'
+                  'Open until 10pm'
               )
             ]
         )
@@ -195,7 +202,6 @@ class _TruckInfoState extends State<TruckInfo> {
               Container(
                 height: 25.0,
                 width: 200.0,
-                child: Flexible(
                   child: Text(
                       '*menu may vary by day, see food truck for most accurate details',
                       style: TextStyle(
@@ -204,7 +210,6 @@ class _TruckInfoState extends State<TruckInfo> {
                       )
                   )
                 )
-              )
             ]
         )
     );
@@ -235,7 +240,6 @@ class _TruckInfoState extends State<TruckInfo> {
               Container(
                 height: 45.0,
                 width: 300.0,
-                  child: Flexible(
                     child: Text(
                       'A nice and long description of a very scrumptious food item where the length of the description doesnt matter because the code automatically moves this down lines',
                       style: TextStyle(
@@ -243,7 +247,6 @@ class _TruckInfoState extends State<TruckInfo> {
                         fontFamily: 'OpenSans',
                       )
                     )
-                  )
               )
             ]
         )
