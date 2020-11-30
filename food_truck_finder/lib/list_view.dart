@@ -22,7 +22,7 @@ class _ListViewState extends State<ListViewPage> {
     int price = 10;
   var _currentPriceSelected;
   var _currentStarSelected;
-  var _currentFoodSelected;
+  var _currentFoodSelected = "Food Type";
 
 
   Widget _priceFilter() {
@@ -56,7 +56,7 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _foodTypeFilter() {
-    var _foods = ["American", "Italian", "Mexican", "Vegan"];
+    var _foods = ["Food Type", "American", "Italian", "Mexican", "Vegan"];
 
     return Container(
       child: DropdownButton<String>(
@@ -177,7 +177,7 @@ class _ListViewState extends State<ListViewPage> {
 
   onItemChanged(String value) {
     setState(() {
-      if(_currentFoodSelected != null) {
+      if(_currentFoodSelected != "Food Type") {
         prospectiveTrucks = _trucks
           .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
             && t.foodType.contains(_currentFoodSelected)).toList();
