@@ -15,15 +15,22 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
     int price = 10;
-    var _currentPriceSelected = "\$";
-    var _currentStarSelected = "*****";
-    var _currentFoodSelected = "Mexican";
+    var _currentPriceSelected;
+    var _currentStarSelected;
+    var _currentFoodSelected;
     
 
   Widget _priceFilter() {
     var _prices = ["\$", "\$\$", "\$\$\$"];
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _prices.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -37,15 +44,31 @@ class _MapPageState extends State<MapPage> {
           });
         },
         value:  _currentPriceSelected,
+        hint: Align(
+          alignment: Alignment.center,
+          child: Text(
+            "\$",
+            style: TextStyle(color: Colors.teal),
+          ),
+        ),
+        style:
+        TextStyle(color: Colors.black, decorationColor: Colors.red),
       ),
     );
   }
 
   Widget _foodTypeFilter() { 
-    var _foods = ["Mexican", "Italian", "American"];
+    var _foods = ["American", "Italian", "Mexican", "Vegan"];
 
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _foods.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -60,7 +83,15 @@ class _MapPageState extends State<MapPage> {
         },
 
         value:  _currentFoodSelected,
-
+        hint: Align(
+          alignment: Alignment.center,
+          child: Text(
+            "Food Type",
+            style: TextStyle(color: Colors.teal),
+          ),
+        ),
+        style:
+        TextStyle(color: Colors.black, decorationColor: Colors.red),
       ),
     );
   }
@@ -69,8 +100,14 @@ class _MapPageState extends State<MapPage> {
     var _reviews = ["*", "**", "***", "****", "*****"];
 
     return Container(
-      // color: Colors.teal,
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
+      ),
       child: DropdownButton<String>(
+        underline: SizedBox.shrink(),
         items: _reviews.map((String_dropDownStringItem) {
           return DropdownMenuItem<String>(
             value: String_dropDownStringItem,
@@ -85,7 +122,42 @@ class _MapPageState extends State<MapPage> {
         },
 
         value:  _currentStarSelected,
+        hint: Align(
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const <Widget>[
+                Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                  semanticLabel: 'star rating',
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                ),Icon(
+                  Icons.star,
+                  color: Colors.teal,
+                  size: 10.0,
+                ),
 
+              ],
+            )
+        ),
+        style:
+        TextStyle(color: Colors.black, decorationColor: Colors.red),
       ),
     );
   }
@@ -145,19 +217,32 @@ class _MapPageState extends State<MapPage> {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
         title: Container(
           width: 500,
-          height: 75,
+          height: 100,
+          alignment: Alignment.centerRight,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.fromLTRB(14.0, 27.5, 15.0, 0.0),
                 child: TextField(
                   controller: _textController,
                   decoration: InputDecoration(
+                    isDense: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1.5, color: Colors.teal),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     hintText: 'Search',
-                    // fillColor: Colors.teal,
+                    hintStyle: TextStyle(color: Colors.teal),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.teal,
+                    ),
                   ),
                   onChanged: onItemChanged,
                   onSubmitted: onItemChanged,
@@ -166,22 +251,12 @@ class _MapPageState extends State<MapPage> {
             ],
           ),
         ),
-        automaticallyImplyLeading: false,
-        actions: <Widget>[
-          IconButton(
-            color: Colors.black,
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: DataSearch());
-            }
-          )
-        ],
       ),
         body: Stack(
           children: <Widget>[
             _googleMap(context, _trucks),
             buildFilters(),
-            Positioned(child: _mapKey(context), top: 50.0, left: 0.0),
+            Positioned(child: _mapKey(context), top: 75.0, left: 0.0),
           ]
         )
     );
@@ -193,14 +268,15 @@ class _MapPageState extends State<MapPage> {
 
   Container buildFilters() {
     return Container(
-      color: Colors.teal,
+      color: Colors.white,
+      padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
       child: Row(
         children: [
-          SizedBox(width: 50.0),
+          SizedBox(width: 30.0),
           _priceFilter(),
-          SizedBox(width: 50.0),
+          SizedBox(width: 25.0),
           _foodTypeFilter(),
-          SizedBox(width: 50.0),
+          SizedBox(width: 25.0),
           _reviewFilter(),
         ],
       ), 
@@ -235,49 +311,71 @@ class _MapPageState extends State<MapPage> {
   Widget _mapKeyContainer(BuildContext context) {
     return AnimatedContainer(
       decoration: BoxDecoration(
-        borderRadius: selected ? BorderRadius.circular(12) : BorderRadius.circular(3),
+        borderRadius: selected ? BorderRadius.circular(10) : BorderRadius.circular(3),
         border: Border.all(
           color: Colors.teal,
-          width: 3,
+          width: 1.5,
         ),
         color: selected ? Colors.white : Colors.teal,
       ),
-      width: selected ? 150.0 : 20.0,
-      height: selected ? 200.0 : 25.0,
+      width: selected ? 150.0 : 37.5,
+      height: selected ? 190.0 : 35.0,
       //color: Colors.teal,
       alignment: FractionalOffset(0.0,1.0),
       duration: Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
-      child: selected ? _mapKeyList(context) : Align(alignment: Alignment(0.0,0.0), child: Icon(Icons.arrow_right, color: Colors.white, size: 20.0)),
+      child: selected ? _mapKeyList(context) : Align(child: Icon(Icons.info, color: Colors.white, size: 25.0)),
     );
 }
 
   Widget _mapKeyList(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(0.5),
-      children: const <Widget>[
-        Align(
-          alignment: Alignment.topRight,
-          child: Icon(Icons.arrow_left, color: Colors.teal, size: 20.0),
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(15.0, 5.0, 0, 0),
+              child: Text(
+                'Key',
+              style: TextStyle(color: Colors.teal, fontWeight: FontWeight.bold, fontSize: 20.0),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0,5.0,10.0,0),
+              child: Icon(Icons.arrow_left, color: Colors.teal, size: 25.0),),
+          ],
+
         ),
-        Card(
-          child: ListTile(
-            leading: Image(image: AssetImage('assets/images/savedTruck.png'), height: 30.0, width: 30.0),
-            title: Text('Saved'),
+        Container(
+            height:45.0,
+            child: Card(
+              elevation: 0,
+               child: ListTile(
+                 leading: Image(image: AssetImage('assets/images/savedTruck.png'), height: 25.0, width: 30.0),
+                 title: Text('Saved'),
           ),
-        ),
-        Card(
-          child: ListTile(
-            leading: Image(image: AssetImage('assets/images/triedTruck.png'), height: 30.0, width: 30.0),
-            title: Text('Tried'),
+        )),
+        Container(
+            height:45.0,
+            child: Card(
+              elevation: 0,
+              child: ListTile(
+                 leading: Image(image: AssetImage('assets/images/triedTruck.png'), height: 25.0, width: 30.0),
+                title: Text('Tried'),
           ),
-        ),
-        Card(
-          child: ListTile(
-            leading: Image(image: AssetImage('assets/images/newTruck.png'), height: 30.0, width: 30.0),
-            title: Text('New'),
+        )),
+        Container(
+            height:45.0,
+            child: Card(
+              elevation: 0,
+              child: ListTile(
+                leading: Image(image: AssetImage('assets/images/newTruck.png'), height: 25.0, width: 30.0),
+                title: Text('New'),
           ),
-        ),
+        )),
       ]
     );
   }

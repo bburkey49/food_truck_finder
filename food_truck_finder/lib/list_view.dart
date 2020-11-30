@@ -19,10 +19,10 @@ class ListViewPage extends StatefulWidget {
 class _ListViewState extends State<ListViewPage> {
   bool filters = false;
 
-    int price = 10;
+  int price = 10;
   var _currentPriceSelected;
   var _currentStarSelected;
-  var _currentFoodSelected = "Food Type";
+  var _currentFoodSelected;
 
 
   Widget _priceFilter() {
@@ -32,7 +32,7 @@ class _ListViewState extends State<ListViewPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
       ),
       child: DropdownButton<String>(
         underline: SizedBox.shrink(),
@@ -63,14 +63,14 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _foodTypeFilter() {
-    var _foods = ["Food Type", "American", "Italian", "Mexican", "Vegan"];
+    var _foods = ["American", "Italian", "Mexican", "Vegan"];
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
       ),
       child: DropdownButton<String>(
         underline: SizedBox.shrink(),
@@ -108,7 +108,7 @@ class _ListViewState extends State<ListViewPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
       ),
       child: DropdownButton<String>(
         underline: SizedBox.shrink(),
@@ -296,48 +296,23 @@ class _ListViewState extends State<ListViewPage> {
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Expanded(
-                  flex: 4,
-                  child: TextField(
-                    controller: _textController,
-                    decoration: InputDecoration(
-                      hintText: 'Search',
-                      // fillColor: Colors.teal,
-                    ),
-                    onChanged: onItemChanged,
-                  ),
+            padding: const EdgeInsets.fromLTRB(30, 12, 30, 12.0),
+            child: TextField(
+              controller: _textController,
+              decoration: InputDecoration(
+                isDense: true,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal, width: 1.5),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
-                Flexible(
-                  child: IconButton(
-                    icon: Padding(
-                      padding: const EdgeInsets.all(1),
-                      child: Icon(Icons.search),
-                    ),
-                    onPressed: () {}
-                  ),
+                hintText: 'Search',
+                hintStyle: TextStyle(color: Colors.teal),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.teal,
                 ),
-              ],
-            // padding: const EdgeInsets.fromLTRB(30.0, 12.0, 30.0, 12.0),
-            // child: TextField(
-            //   controller: _textController,
-            //
-            //   decoration: InputDecoration(
-            //     enabledBorder: OutlineInputBorder(
-            //       borderSide: BorderSide(color: Colors.teal),
-            //       borderRadius: BorderRadius.circular(10.0),
-            //     ),
-            //     hintText: 'Search',
-            //     hintStyle: TextStyle(color: Colors.teal),
-            //     prefixIcon: Icon(
-            //       Icons.search,
-            //       color: Colors.teal,
-            //     ),
-            //   ),
-            //   onChanged: onItemChanged,
+              ),
+              onChanged: onItemChanged,
             ),
           ),
           buildFilters(),
@@ -404,37 +379,19 @@ class _ListViewState extends State<ListViewPage> {
       alignment: Alignment.center,
       color: Colors.white,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          //SizedBox(width: 50.0),
-          Flexible(child: _priceFilter()),
-          //SizedBox(width: 50.0),
-          Flexible(child: _foodTypeFilter()),
-          //SizedBox(width: 50.0),
-          Flexible(child: _reviewFilter()),
-          //SizedBox(width: 50.0),
-          Flexible(
-            child: IconButton(
-                icon: Padding(
-                  padding: const EdgeInsets.all(1),
-                  child: Icon(Icons.filter_list),
-                ),
-                onPressed: () => onFilterChanged()
-            ),
-          ),
-          // SizedBox(width: 32.0),
-          // _priceFilter(),
-          // SizedBox(width: 25.0),
-          // _foodTypeFilter(),
-          // SizedBox(width: 25.0),
-          // _reviewFilter(),
+          SizedBox(width: 30.0),
+          _priceFilter(),
+          SizedBox(width: 25.0),
+          _foodTypeFilter(),
+          SizedBox(width: 25.0),
+          _reviewFilter(),
         ],
       ),
     );
   }
-
 }
-
 
   Widget myDetailsContainer(Truck truck) {
     return Column(
