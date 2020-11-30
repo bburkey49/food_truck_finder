@@ -152,18 +152,15 @@ class _ListViewState extends State<ListViewPage> {
     setState(() {
       if(_currentFoodSelected != null) {
         prospectiveTrucks = _trucks
-          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.foodType.contains(_currentFoodSelected)).toList();
+          .where((t) => t.foodType.contains(_currentFoodSelected)).toList();
       }
       else if(_currentStarSelected != null) {
         prospectiveTrucks = _trucks
-          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.rating >= _currentStarSelected.length).toList();
+          .where((t) => t.rating >= _currentStarSelected.length).toList();
       }
       else if(_currentPriceSelected != null) {
         prospectiveTrucks = _trucks
-          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.price <= _currentPriceSelected.length).toList();
+          .where((t) => t.price <= _currentPriceSelected.length).toList();
       }
       else {
          prospectiveTrucks = _trucks
