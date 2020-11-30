@@ -26,10 +26,10 @@ class DataSearch extends SearchDelegate<String> {
   ];
 
   final recents = [
-    'raising canes',
-    'b dubs',
-    'bon chon',
-    'insomnia'
+    'El Fuego',
+    'Taco Taxi',
+    'Market BBQ',
+    'yum!'
   ];
 
   @override

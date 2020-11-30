@@ -19,10 +19,10 @@ class ListViewPage extends StatefulWidget {
 class _ListViewState extends State<ListViewPage> {
   bool filters = false;
 
-    int price = 10;
+  int price = 10;
   var _currentPriceSelected;
   var _currentStarSelected;
-  var _currentFoodSelected = "Food Type";
+  var _currentFoodSelected;
 
 
   Widget _priceFilter() {
@@ -32,7 +32,7 @@ class _ListViewState extends State<ListViewPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
       ),
       child: DropdownButton<String>(
         underline: SizedBox.shrink(),
@@ -63,14 +63,14 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _foodTypeFilter() {
-    var _foods = ["Food Type", "American", "Italian", "Mexican", "Vegan"];
+    var _foods = ["American", "Italian", "Mexican", "Vegan"];
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
       ),
       child: DropdownButton<String>(
         underline: SizedBox.shrink(),
@@ -108,7 +108,7 @@ class _ListViewState extends State<ListViewPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-            color: Colors.teal, style: BorderStyle.solid, width: 1.0),
+            color: Colors.teal, style: BorderStyle.solid, width: 1.5),
       ),
       child: DropdownButton<String>(
         underline: SizedBox.shrink(),
@@ -283,13 +283,13 @@ class _ListViewState extends State<ListViewPage> {
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(30.0, 12.0, 30.0, 12.0),
+            padding: const EdgeInsets.fromLTRB(30, 5, 30, 10.0),
             child: TextField(
               controller: _textController,
-
               decoration: InputDecoration(
+                isDense: true,
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal),
+                  borderSide: BorderSide(color: Colors.teal, width: 1.5),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 hintText: 'Search',
@@ -367,7 +367,7 @@ class _ListViewState extends State<ListViewPage> {
       color: Colors.white,
       child: Row(
         children: [
-          SizedBox(width: 32.0),
+          SizedBox(width: 30.0),
           _priceFilter(),
           SizedBox(width: 25.0),
           _foodTypeFilter(),
