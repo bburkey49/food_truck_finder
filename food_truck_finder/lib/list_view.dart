@@ -140,36 +140,32 @@ class _ListViewState extends State<ListViewPage> {
 
   List<Truck> prospectiveTrucks = [];
 
-  //  onItemChanged(String value) {
-  //   setState(() {
-  //     prospectiveTrucks = _trucks
-  //         = [for (var t in _trucks) if (t.name.toLowerCase().contains(value.toLowerCase())
-  //             && t.foodType.contains(_currentFoodSelected)) t];
-  //   });
-  // }
+   onItemChanged(String value) {
+    setState(() {
+      prospectiveTrucks = _trucks
+          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())).toList();
+    });
+  }
 
-  onItemChanged(String value) {
+  onFilterChanged() {
     setState(() {
       if(_currentFoodSelected != null) {
         prospectiveTrucks = _trucks
-          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.foodType.contains(_currentFoodSelected)).toList();
+          .where((t) => t.foodType.contains(_currentFoodSelected)).toList();
       }
       else if(_currentStarSelected != null) {
         prospectiveTrucks = _trucks
-          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.rating >= _currentStarSelected.length).toList();
+          .where((t) => t.rating >= _currentStarSelected.length).toList();
       }
       else if(_currentPriceSelected != null) {
         prospectiveTrucks = _trucks
-          .where((t) => t.name.toLowerCase().contains(value.toLowerCase())
-          && t.price <= _currentPriceSelected.length).toList();
+          .where((t) => t.price.length <= _currentPriceSelected.length).toList();
       }
-      else {
-         prospectiveTrucks = _trucks
-         .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
-          .toList();
-      }
+      // else {
+      //    prospectiveTrucks = _trucks
+      //    .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
+      //     .toList();
+      // }
     });
   }
 
@@ -248,13 +244,30 @@ class _ListViewState extends State<ListViewPage> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              controller: _textController,
-              decoration: InputDecoration(
-                hintText: 'Search',
-                // fillColor: Colors.teal,
-              ),
-              onChanged: onItemChanged,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: TextField(
+                    controller: _textController,
+                    decoration: InputDecoration(
+                      hintText: 'Search',
+                      // fillColor: Colors.teal,
+                    ),
+                    onChanged: onItemChanged,
+                  ),
+                ),
+                Flexible(
+                  child: IconButton(
+                    icon: Padding(
+                      padding: const EdgeInsets.all(1),
+                      child: Icon(Icons.search),
+                    ),
+                    onPressed: () {}
+                  ),
+                ),
+              ],
             ),
           ),
           buildFilters(),
@@ -320,13 +333,24 @@ class _ListViewState extends State<ListViewPage> {
     return Container(
       color: Colors.teal,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SizedBox(width: 50.0),
-          _priceFilter(),
-          SizedBox(width: 50.0),
-          _foodTypeFilter(),
-          SizedBox(width: 50.0),
-          _reviewFilter(),
+          //SizedBox(width: 50.0),
+          Flexible(child: _priceFilter()),
+          //SizedBox(width: 50.0),
+          Flexible(child: _foodTypeFilter()),
+          //SizedBox(width: 50.0),
+          Flexible(child: _reviewFilter()),
+          //SizedBox(width: 50.0),
+          Flexible(
+            child: IconButton(
+                icon: Padding(
+                  padding: const EdgeInsets.all(1),
+                  child: Icon(Icons.filter_list),
+                ),
+                onPressed: () => onFilterChanged()
+            ),
+          ),
         ],
       ),
     );

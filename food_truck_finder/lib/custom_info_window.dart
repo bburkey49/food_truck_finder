@@ -11,8 +11,26 @@ import 'package:clippy_flutter/clippy_flutter.dart';
 import 'info_window_model.dart';
 
 class CustomInfoWindow extends StatefulWidget {
+
+  // CustomInfoWindow({
+  //   this.truckSearchStream,
+  // });
+  //
+  // final Stream<List<Truck>> truckSearchStream;
+
+  final List<Truck> trucks;
+
+  CustomInfoWindow({
+    this.trucks,
+  });
+
+  // final Stream<List<Truck>> truckSearchStream;
+
+
+
+
   @override
-  _CustomInfoWindowState createState() => _CustomInfoWindowState();
+  _CustomInfoWindowState createState() => _CustomInfoWindowState(this.trucks);
 }
 
 class _CustomInfoWindowState extends State<CustomInfoWindow> {
@@ -29,28 +47,81 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   List<Truck> _trucks = [];
   bool loaded = false;
   BitmapDescriptor icon;
+  final callback = null;
 
-  _getTrucks(String json) {
-    List<dynamic> rawTrucks = jsonDecode(json) as List;
+  Stream<List<Truck>> _truckStream;
 
-    rawTrucks.forEach((element) {
-      setState(() {
-        _trucks.add(Truck.fromJson(element));
-      });
-    });
+
+  _CustomInfoWindowState(List<Truck> trucks) {
+    _trucks = trucks;
   }
 
-  Future<String> loadAsset(BuildContext context) {
-    return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+
+  //
+  // _CustomInfoWindowState(Stream<List<Truck>> truckSearchStream) {
+  //   _truckStream = truckSearchStream;
+  // }
+
+  // _getTrucks(String json) {
+  //   List<dynamic> rawTrucks = jsonDecode(json) as List;
+  //
+  //   rawTrucks.forEach((element) {
+  //     setState(() {
+  //       _trucks.add(Truck.fromJson(element));
+  //     });
+  //   });
+  // }
+
+  // Future<String> loadAsset(BuildContext context) {
+  //   return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+  // }
+
+  onItemChanged(String value, InfoWindowModel providerObject) {
+    setState(() {
+      _trucks.where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
+          .toList()
+          .forEach((prosp) =>
+          _markers.add(
+              Marker(
+                  markerId: MarkerId(prosp.name),
+                  position: prosp.location,
+                  onTap: () {
+                    providerObject.updateInfoWindow(
+                      context,
+                      mapController,
+                      prosp.location,
+                      _infoWindowWidth,
+                      _markerOffset,
+                    );
+                    providerObject.updateTruck(prosp);
+                    providerObject.updateVisibility(true);
+                    providerObject.rebuildInfoWindow();
+                  },
+                  icon: icon
+              )
+          )
+      );
+    }
+    );
   }
 
 
   @override
   Widget build(BuildContext context) {
     final providerObject = Provider.of<InfoWindowModel>(context, listen: false);
-    Future<String> fileName = Future<String>.sync(() {
-      return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
-    });
+    // Future<String> fileName = Future<String>.sync(() {
+    //   return DefaultAssetBundle.of(context).loadString('assets/data/trucks.json');
+    // });
+    //
+    // StreamBuilder<List<Truck>> truckStreamBuilder = StreamBuilder<List<Truck>>(
+    //   stream: _truckStream,
+    //   builder: (context, snapshot) {
+    //     return
+    //   },
+    // )
+
+
+
 
     Future<BitmapDescriptor> truckIcon = Future<BitmapDescriptor>.sync(() {
       return BitmapDescriptor.fromAssetImage(
@@ -68,34 +139,27 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
       });
     });
 
-    fileName.then((fN) {
-      if(!loaded) {
-        setState(() {
-          _getTrucks(fN);
-          _trucks.forEach((v) => _markers.add(
-              Marker(
-                markerId: MarkerId(v.name),
-                position: v.location,
-                onTap: () {
-                  providerObject.updateInfoWindow(
-                    context,
-                    mapController,
-                    v.location,
-                    _infoWindowWidth,
-                    _markerOffset,
-                  );
-                  providerObject.updateTruck(v);
-                  providerObject.updateVisibility(true);
-                  providerObject.rebuildInfoWindow();
-                },
-                icon: icon
-              )
-          ));
-          loaded = true;
-        });
-      }
-    });
 
+    _trucks.forEach((v) => _markers.add(
+        Marker(
+          markerId: MarkerId(v.name),
+          position: v.location,
+          onTap: () {
+            providerObject.updateInfoWindow(
+              context,
+              mapController,
+              v.location,
+              _infoWindowWidth,
+              _markerOffset,
+            );
+            providerObject.updateTruck(v);
+            providerObject.updateVisibility(true);
+            providerObject.rebuildInfoWindow();
+          },
+          icon: icon
+        )
+    ));
+    //loaded = true;
 
 
     return Scaffold(

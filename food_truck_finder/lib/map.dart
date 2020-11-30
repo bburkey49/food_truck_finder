@@ -120,6 +120,10 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
+    Stream<List<Truck>> get truckSearchStream async* {
+      yield prospectiveTrucks;
+    }
+
 
   @override
   Widget build(BuildContext context) {
@@ -154,18 +158,13 @@ class _MapPageState extends State<MapPage> {
                     // fillColor: Colors.teal,
                   ),
                   onChanged: onItemChanged,
+                  onSubmitted: onItemChanged,
                 ),
               ),
-              Expanded(
-                child:
-                  ListView(
-                    padding: EdgeInsets.all(12.0),
-                    children: []
-                  ),
-              )
             ],
           ),
         ),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
             color: Colors.black,
@@ -178,13 +177,15 @@ class _MapPageState extends State<MapPage> {
       ),
         body: Stack(
           children: <Widget>[
-            _googleMap(context),
+            _googleMap(context, _trucks),
             buildFilters(),
           ]
         )
     );
           // _horizontalContainer()
   }
+
+
 
 
   Container buildFilters() {
@@ -203,11 +204,11 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  Widget _googleMap(BuildContext context) {
+  Widget _googleMap(BuildContext context, List<Truck> trucks) {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      child: CustomInfoWindow()
+      child: CustomInfoWindow(trucks: trucks)
     );
   }
 
