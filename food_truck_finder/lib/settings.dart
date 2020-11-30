@@ -12,7 +12,8 @@ class _SettingsWidget extends State<SettingsWidget> {
   Widget _settingsIcon() {
     return Container(
       alignment: Alignment.center,
-      child: Icon(Icons.settings, size: 200),
+      child: Icon(Icons.settings, size: 200, color: Colors.teal,
+      ),
     );
   }
 
@@ -92,7 +93,11 @@ class _SettingsWidget extends State<SettingsWidget> {
       alignment: Alignment.center,
       color: Colors.white,
       child: OutlineButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(
+              '/dietary'
+          );
+        },
         borderSide: BorderSide(
           color: Colors.teal,
           width: 1.5,
