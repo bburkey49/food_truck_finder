@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'globals.dart';
+import 'package:food_truck_finder/truck.dart';
+import 'package:food_truck_finder/truck_info_page.dart';
 
 class TriedTrucksWidget extends StatefulWidget {
   @override
@@ -35,73 +38,160 @@ Widget _triedTrucksTitle() {
   );
 }
 
-
 class _TriedTrucksWidget extends State<TriedTrucksWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-            ),
-            Container(
-                height: MediaQuery.of(context).size.height,
-                child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 40.0,
-                        vertical: 30.0
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(height: 110.0),
-                        _truck(),
-                        _triedTrucksTitle()
-                      ],
-                    )
-                )
-            ),
-            Container(
               //alignment: Alignment.topRight,
-                padding: EdgeInsets.symmetric(
-                    vertical: 40.0,
-                    horizontal: 20.0,
+                padding: EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                  top: 40.0,
+                  bottom: 0.0,
                 ),
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Image.asset(
-                        'assets/images/logo.png',
-                        width: 200.0,
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                        ),
+                        iconSize: 40,
+                        color: Colors.teal,
+                        splashColor: Colors.redAccent,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
+                      SizedBox(width: 80.0),
+                      Expanded(
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          width: 200.0,
+                        ),
+                      )
                     ]
                 )
             ),
             Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 30.0,
-                horizontal: 20.0,
-              ),
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                ),
-                iconSize: 40,
-                color: Colors.teal,
-                splashColor: Colors.redAccent,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _truck(),
+                    _triedTrucksTitle()
+                  ],
+                )
+            ),
+            Expanded(
+                child: ListView(
+                    padding: EdgeInsets.all(12.0),
+                    children: List<Widget>.generate(
+                        triedTrucks.length,
+                            (index) =>
+                            _buildBlock(context, triedTrucks[index])
+                    )
+                )
             ),
           ]
       ),
     );
   }
+}
+
+Widget _buildBlock(BuildContext context, Truck truck) {
+  return FlatButton(
+    onPressed: () {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => TruckInfo(truck: truck))
+      );
+    },
+    child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+            child: FittedBox(
+              child: Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(width: 2.5, color: Colors.teal),
+                  ),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                        child: myDetailsContainer(truck)
+                    ),
+                    Container(
+                        height: 250,
+                        width: 250,
+                        child: ClipRRect(
+                            child: Image(
+                                fit: BoxFit.contain,
+                                alignment: Alignment.topRight,
+                                image: AssetImage(
+                                    'assets/images/other_candy_truck.jpg')
+                            )
+                        )
+                    )
+                  ],
+                ),
+              ),
+            )
+        )
+    ),
+  );
+}
+
+Widget myDetailsContainer(Truck truck) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(left: 15.0),
+        child: Container(
+            child: Text(truck.name,
+              style: TextStyle(color: Colors.redAccent,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold),)),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 15.0),
+        child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                    child: Text(
+                      truck.rating.toStringAsFixed(1),
+                      style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
+                IconTheme(
+                  data: IconThemeData(color: Colors.redAccent,),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      5, // length
+                          (index) {
+                        return Icon(
+                          index < truck.rating
+                              ? Icons.star
+                              : Icons.star_border,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],)),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 15.0),
+        child: Container(
+            child: Text("${truck.foodType} \u00B7 Minneapolis",
+              style: TextStyle(color: Colors.black,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold),)),),
+    ],
+  );
 }

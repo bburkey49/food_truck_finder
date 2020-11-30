@@ -63,36 +63,37 @@ class _TruckInfoState extends State<TruckInfo> {
             personalizedTruck = newValueSelected;
             if(newValueSelected == "Tried"){
               truckCol = Colors.lime[600];
-              if(!triedTrucks.contains(truck)){
+              if(!triedTrucks.any((element) => element.name == truck.name)){
                 triedTrucks.add(truck);
               }
               for(int i = 0; i < savedTrucks.length; i++){
-                if(savedTrucks[i] == truck){
-                  savedTrucks.remove(truck);
+                if(savedTrucks[i].name == truck.name){
+                  savedTrucks.remove(savedTrucks[i]);
                 }
               }
             }
             if (newValueSelected == "Saved"){
               truckCol = Colors.redAccent;
-              if(!savedTrucks.contains(truck)){
+              if(!savedTrucks.any((element) => element.name == truck.name)){
                 savedTrucks.add(truck);
               }
               for(int i = 0; i < triedTrucks.length; i++){
-                if(triedTrucks[i] == truck){
-                  triedTrucks.remove(truck);
+                if(triedTrucks[i].name == truck.name){
+                  triedTrucks.remove(triedTrucks[i]);
                 }
               }
+
             }
             if (newValueSelected == "New"){
               truckCol = Colors.grey[800];
               for(int i = 0; i < savedTrucks.length; i++){
-                if(savedTrucks[i] == truck){
-                  savedTrucks.remove(truck);
+                if(savedTrucks[i].name == truck.name){
+                  savedTrucks.remove(savedTrucks[i]);
                 }
               }
               for(int i = 0; i < triedTrucks.length; i++){
-                if(triedTrucks[i] == truck){
-                  triedTrucks.remove(truck);
+                if(triedTrucks[i].name == truck.name){
+                  triedTrucks.remove(triedTrucks[i]);
                 }
               }
             }
