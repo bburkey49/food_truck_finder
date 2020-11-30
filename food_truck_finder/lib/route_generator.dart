@@ -10,6 +10,7 @@ import 'tried_trucks.dart';
 import 'settings.dart';
 import 'forgot_password.dart';
 import 'map.dart';
+import 'dietary_restrictions.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -49,7 +50,8 @@ class RouteGenerator {
       case '/map':
         return MaterialPageRoute(builder: (_) => MapPage());
 
-
+      case '/dietary':
+        return MaterialPageRoute(builder: (_) => DietaryWidget());
     }
   }
 }
