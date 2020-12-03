@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:food_truck_finder/truck.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'globals.dart';
 
 class TruckInfo extends StatefulWidget {
@@ -22,6 +24,8 @@ class TruckInfo extends StatefulWidget {
 class _TruckInfoState extends State<TruckInfo> {
   String personalizedTruck = 'New';
   Color truckCol = Colors.grey;
+
+  final LatLng _center = LatLng(44.9778, -93.2650);
 
   Truck truck;
 
@@ -180,7 +184,7 @@ class _TruckInfoState extends State<TruckInfo> {
                 height: 25.0,
                 width: 250.0,
                   child: Text(
-                    truck.location.toString(),
+                    truck.computeDistance(_center),
                     style: TextStyle(
                       fontSize: 12,
                       fontFamily: 'OpenSans',
@@ -406,3 +410,5 @@ class _TruckInfoState extends State<TruckInfo> {
     );
   }
 }
+
+

@@ -97,7 +97,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   Widget _reviewFilter() { 
-    var _reviews = ["*", "**", "***", "****", "*****"];
+    var _reviews = [1, 2, 3, 4, 5];
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -106,16 +106,33 @@ class _MapPageState extends State<MapPage> {
         border: Border.all(
             color: Colors.teal, style: BorderStyle.solid, width: 1.5),
       ),
-      child: DropdownButton<String>(
+      child: DropdownButton<int>(
         underline: SizedBox.shrink(),
         items: _reviews.map((String_dropDownStringItem) {
-          return DropdownMenuItem<String>(
-            value: String_dropDownStringItem,
-            child: Text(String_dropDownStringItem),
+          return DropdownMenuItem<int>(
+              value: String_dropDownStringItem,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget> [
+                    IconTheme(
+                      data: IconThemeData(color: Colors.redAccent,),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: List.generate(
+                          String_dropDownStringItem, // length
+                              (index) {
+                            return Icon(Icons.star, size: 10);
+                          },
+                        ),
+                      ),
+                    ),
+                  ]
+              )
+            //child: Text(String_dropDownStringItem),
           );
         }).toList(),
 
-        onChanged:  (String newValueSelected ) {
+        onChanged:  (int newValueSelected ) {
           setState(() {
              _currentStarSelected = newValueSelected;
           });
@@ -125,35 +142,21 @@ class _MapPageState extends State<MapPage> {
         hint: Align(
             alignment: Alignment.center,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const <Widget>[
-                Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                  semanticLabel: 'star rating',
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                ),Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                ),
-
-              ],
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget> [
+                  IconTheme(
+                    data: IconThemeData(color: Colors.redAccent,),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(
+                        5, // length
+                            (index) {
+                          return Icon(Icons.star, size: 10);
+                        },
+                      ),
+                    ),
+                  ),
+                ]
             )
         ),
         style:
@@ -184,12 +187,17 @@ class _MapPageState extends State<MapPage> {
 
   List<Truck> prospectiveTrucks = [];
 
+  restartSearch() {
+    _trucks.forEach((element) => element.setMapVisibility(true));
+
+  }
+
   onItemChanged(String value) {
-    setState(() {
-      prospectiveTrucks = _trucks
-          .where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
-          .toList();
-    });
+    // setState(() {
+    //   _trucks.where((t) => !(t.name.toLowerCase().contains(value.toLowerCase())))
+    //       .forEach((t) =>  t.setMapVisibility(false));
+    //
+    // });
   }
 
     Stream<List<Truck>> get truckSearchStream async* {
@@ -241,11 +249,12 @@ class _MapPageState extends State<MapPage> {
                     hintStyle: TextStyle(color: Colors.teal),
                     suffixIcon: IconButton(
                       icon: Icon(Icons.search, color: Colors.teal),
-                      //onPressed: onFilterChanged,
+                      // onPressed: restartSearch,
                     ),
                   ),
-                  onChanged: onItemChanged,
-                  onSubmitted: onItemChanged,
+                  // onChanged: onItemChanged,
+                  // onSubmitted: onItemChanged,
+                  // onTap: restartSearch,
                 ),
               ),
             ],

@@ -44,6 +44,17 @@ class Truck {
   String price;
   Menu menu;
 
+  bool mapVisible = true;
+
+  static void setAllVisible() {
+    _trucks.forEach((element) => element.mapVisible = true);
+  }
+
+  void setMapVisibility(bool visibility){
+    mapVisible = visibility;
+    print('false');
+  }
+
   static List<Truck> _trucks;
 
 
@@ -89,6 +100,13 @@ class Truck {
     fileName.then((fN) => _getTrucks(fN));
 
     return Future.value(_trucks);
+  }
+
+
+
+  String computeDistance(LatLng dest) {
+    double lngLat = sqrt(pow(location.latitude - dest.latitude, 2) + pow(location.longitude - dest.latitude, 2)) / 60;
+    return '${lngLat.toStringAsFixed(1)} miles';
   }
 
 

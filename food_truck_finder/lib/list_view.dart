@@ -47,6 +47,7 @@ class _ListViewState extends State<ListViewPage> {
           setState(() {
              _currentPriceSelected = newValueSelected;
           });
+          onFilterChanged();
         },
         value:  _currentPriceSelected,
         hint: Align(
@@ -63,7 +64,7 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _foodTypeFilter() {
-    var _foods = ["American", "Italian", "Mexican", "Vegan"];
+    var _foods = ["--Any--", "American", "Italian", "Mexican", "Vegan"];
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -85,6 +86,7 @@ class _ListViewState extends State<ListViewPage> {
           setState(() {
              _currentFoodSelected = newValueSelected;
           });
+          onFilterChanged();
         },
         value:  _currentFoodSelected,
         hint: Align(
@@ -101,7 +103,7 @@ class _ListViewState extends State<ListViewPage> {
   }
 
   Widget _reviewFilter() {
-    var _reviews = ["1+", "2+", "3+", "4+", "5"];
+    List<int> _reviews = [1, 2, 3, 4, 5];
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -110,53 +112,56 @@ class _ListViewState extends State<ListViewPage> {
         border: Border.all(
             color: Colors.teal, style: BorderStyle.solid, width: 1.5),
       ),
-      child: DropdownButton<String>(
+      child: DropdownButton<int>(
         underline: SizedBox.shrink(),
         items: _reviews.map((String_dropDownStringItem) {
-          return DropdownMenuItem<String>(
+          return DropdownMenuItem<int>(
             value: String_dropDownStringItem,
-            child: Text(String_dropDownStringItem),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget> [
+            IconTheme(
+            data: IconThemeData(color: Colors.redAccent,),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                String_dropDownStringItem, // length
+                    (index) {
+                  return Icon(Icons.star, size: 10);
+                },
+              ),
+            ),
+          ),
+          ]
+          )
+            //child: Text(String_dropDownStringItem),
           );
         }).toList(),
-
-        onChanged:  (String newValueSelected ) {
+        onChanged:  (int newValueSelected ) {
           setState(() {
              _currentStarSelected = newValueSelected;
           });
+          onFilterChanged();
         },
         value:  _currentStarSelected,
         hint: Align(
           alignment: Alignment.center,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const <Widget>[
-                Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                  semanticLabel: 'star rating',
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                ),Icon(
-                  Icons.star,
-                  color: Colors.teal,
-                  size: 10.0,
-                ),
-
-              ],
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget> [
+                  IconTheme(
+                    data: IconThemeData(color: Colors.redAccent,),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(
+                        5, // length
+                            (index) {
+                          return Icon(Icons.star, size: 10);
+                        },
+                      ),
+                    ),
+                  ),
+                ]
             )
         ),
         style:
@@ -165,7 +170,7 @@ class _ListViewState extends State<ListViewPage> {
     );
   }
   Widget _setFilters() {
-    return Container(
+    return Flexible(
       child: Ink(
           decoration: const ShapeDecoration(
             color: Colors.white,
@@ -217,7 +222,7 @@ class _ListViewState extends State<ListViewPage> {
       }
       else if(_currentStarSelected != null) {
         prospectiveTrucks = _trucks
-          .where((t) => t.rating >= _currentStarSelected.length).toList();
+          .where((t) => t.rating >= _currentStarSelected).toList();
       }
       else if(_currentPriceSelected != null) {
         prospectiveTrucks = _trucks
@@ -381,16 +386,15 @@ class _ListViewState extends State<ListViewPage> {
       alignment: Alignment.center,
       color: Colors.white,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(width: 30.0),
           _priceFilter(),
           SizedBox(width: 15.0),
           _foodTypeFilter(),
           SizedBox(width: 15.0),
-          _reviewFilter(),
-          SizedBox(width: 15.0),
-          _setFilters(),
+          Expanded(child: _reviewFilter()),
+          SizedBox(width: 30.0),
         ],
       ),
     );

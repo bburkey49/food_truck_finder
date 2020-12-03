@@ -83,28 +83,10 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
 
   onItemChanged(String value, InfoWindowModel providerObject) {
     setState(() {
-      _trucks.where((t) => t.name.toLowerCase().contains(value.toLowerCase()))
+      //_markers.clear();
+      _trucks.where((t) => !t.name.toLowerCase().contains(value.toLowerCase()))
           .toList()
-          .forEach((prosp) =>
-          _markers.add(
-              Marker(
-                  markerId: MarkerId(prosp.name),
-                  position: prosp.location,
-                  onTap: () {
-                    providerObject.updateInfoWindow(
-                      context,
-                      mapController,
-                      prosp.location,
-                      _infoWindowWidth,
-                      _markerOffset,
-                    );
-                    providerObject.updateTruck(prosp);
-                    providerObject.updateVisibility(true);
-                    providerObject.rebuildInfoWindow();
-                  },
-                  icon: getIcon(prosp)
-              )
-          )
+          .forEach((prosp) => prosp.setMapVisibility(false)
       );
     }
     );
@@ -187,6 +169,9 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
       });
     });
 
+
+
+
     _trucks.forEach((v) => _markers.add(
         Marker(
           markerId: MarkerId(v.name),
@@ -203,7 +188,8 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
             providerObject.updateVisibility(true);
             providerObject.rebuildInfoWindow();
           },
-          icon: getIcon(v)
+          icon: getIcon(v),
+          visible: v.mapVisible
         )
     ));
     //loaded = true;
@@ -291,7 +277,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                           textAlign: TextAlign.left,
                                         ),
                                         Text(
-                                          providerObject.truck.location.toString(),
+                                          providerObject.truck.computeDistance(_center),
                                           style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -393,6 +379,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
 
 
 
-// double _computeDistance(LatLng source, LatLng dest) {
-//   return sqrt((source.latitude - dest.latitude))
-// }
+String _computeDistance(LatLng source, LatLng dest) {
+  double lngLat = sqrt(pow(source.latitude - dest.latitude, 2) + pow(source.longitude - dest.latitude, 2)) / 60;
+  return '${lngLat.toStringAsFixed(1)} miles';
+}
