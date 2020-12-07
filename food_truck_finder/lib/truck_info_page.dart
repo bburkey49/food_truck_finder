@@ -285,10 +285,15 @@ class _TruckInfoState extends State<TruckInfo> {
 
   Widget _picturesWidget() {
     return Container(
-        alignment: Alignment.center,
-        child: Text('Insert Images'),
-        color: Colors.blueGrey,
-        padding: EdgeInsets.symmetric(vertical: 90.0, horizontal: 20.0)
+        height: 240,
+        width: 320,
+        child: ClipRRect(
+            child: Image(
+                alignment: Alignment.center,
+                image: AssetImage(
+                    'assets/images/exampletruckpic.jpg')
+            )
+        )
     );
   }
 
@@ -429,9 +434,7 @@ class _TruckInfoState extends State<TruckInfo> {
                           _locationWidget(truck),
                           SizedBox(height: 5.0),
                           _openUntil(),
-                          SizedBox(height: 20.0),
                           _picturesWidget(),
-                          SizedBox(height: 20.0),
                           _menuWidget(),
                           SizedBox(height: 10.0),
                           _menuItems('item 1', '10.00'),
