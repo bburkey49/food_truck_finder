@@ -10,27 +10,27 @@
             {
                 "name" : "Street Tacos",
                 "desc" : "3 soft corn tortillas with your choice of meat topped with onion and cilantro. Served with limes.",
-                "price": 12.99
+                "price": "12.99"
             },
             {
                 "name" : "Fajitas Mexicanas",
                 "desc" : "3 soft corn tortillas with your choice of meat topped with onion and cilantro. Served with limes.",
-                "price": 12.99
+                "price": "12.99"
             },
             {
                 "name" : "Margarita Lime Chicken",
                 "desc" : "Chicken breast marinated in our house margarita mix, covered with mexican cheese, tomatoes, and lime wedges.",
-                "price": 10.99
+                "price": "10.99"
             },
             {
                 "name" : "Puerco Hawaiiano",
                 "desc" : "Our signature carnitas and pineapple chunks simmered in our guajillo-pineapple sauce.",
-                "price": 10.99
+                "price": "10.99"
             },
             {
                 "name" : "Fiesta Burrito",
                 "desc" : "One grande burrito filled with carnitas, grilled onions, rice, beans, covered with our signature cheese sauce.",
-                "price": 13.99
+                "price": "13.99"
             }
         ]
     },
@@ -45,27 +45,27 @@
             {
                 "name" : "Caesar Salad",
                 "desc" : "Good garlic, we make a great Caesar Salad! Crisp romaine lettuce tossed with our homemade dressing and topped with parmesan cheese and croutons. Dressing contains anchovies.",
-                "price" : 7.49
+                "price" : "7.49"
             },
             {
                 "name" : "Gouda Mac ‘n Cheese",
                 "desc" : "Cavatappi pasta baked in our Gouda and cheddar cheese cream sauce with bruschetta tomatoes and topped with breadcrumbs and your choice of bacon or Herbivorous Butcher vegan bacon.",
-                "price" : 10.59
+                "price" : "10.59"
             },
             {
                 "name" : "Margherita Pizza",
                 "desc" : "Sorry honey, it’s far from frozen and you can’t get it blended or on the rocks! Our Margherita pizza features fresh basil, bruschetta tomatoes, toasted garlic, parmesan cheese and light mozzarella on our bianca sauce.",
-                "price" : 13.99
+                "price" : "13.99"
             },
             {
                 "name" : "Pizza Athena",
                 "desc" : "This little goddess has fresh spinach, tomato, feta cheese, Kalamata olives, artichoke hearts, red onions, Greek oregano, toasted garlic and light mozzarella on bianca sauce. Vegans: it’s great with our vegan cheese",
-                "price" : 15.99
+                "price" : "15.99"
             },
             {
                 "name" : "Spanish Chicken Pizza",
                 "desc" : "Topped with mushrooms, smoked gouda, red onion, marinated chicken, toasted garlic and mozzarella cheese on red sauce.",
-                "price" : 14.79
+                "price" : "14.79"
             }
         ]
     },
@@ -80,27 +80,27 @@
             {
                 "name" : "steak sandwich",
                 "desc" : "grilled beef tenderloin, red pepper aioli & arugula on herb focaccia",
-                "price" : 14.95
+                "price" : "14.95"
             },
             {
                 "name" : "reuben / rachel",
                 "desc" : "corned beef or turkey, swiss cheese, sauerkraut & red pepper aioli on caraway rye",
-                "price" : 12.95
+                "price" : "12.95"
             },
             {
                 "name" : "turkey carver",
                 "desc" : "house roasted turkey, mashed potatoes & gravy, open faced on toasted challah w/ crispy onions",
-                "price" : 12.95
+                "price" : "12.95"
             },
             {
                 "name" : "grilled chicken club",
                 "desc" : "chicken breast, lettuce, tomato, avocado, nueske bacon & pommeray honey aioli on toasted whole grain",
-                "price" : 11.95
+                "price" : "11.95"
             },
             {
                 "name" : "burger, burger",
                 "desc" : "2 house ground chuck patties, cheddar cheese, lettuce, tomato, onion & special sauce on challah bun",
-                "price" : 12.95
+                "price" : "12.95"
             }
         ]
     },
@@ -115,27 +115,27 @@
             {
                 "name" : "Dixie Bowl",
                 "desc" : "Rice and Jimmie Beans with Tangy Slaw, Tomatoes, Party Corn!, Jalapenos, drizzled with BBQ Sour Cream & topped with Pulled Pork",
-                "price" : 8.99
+                "price" : "8.99"
             },
             {
                 "name" : "Hog Wild!!",
                 "desc" : "Slow-Smoked Juicy Pulled Pork piled high with Tangy Coleslaw, Pickled Jalapenos & BBQ Sour cream on a Toasted Buttery Bun plus a Legendary Side!",
-                "price" : 9.99
+                "price" : "9.99"
             },
             {
                 "name" : "Memphis Mayhem",
                 "desc" : "Smokey Brisket and Pulled Pork in our Memphis Sauce; topped with a slice of Texas Hot Link,  Cheddar Cheese, Onions, Party Corn! & BBQ Sour Cream on a Toasted Buttery Bun plus one of our Legendary Sides.",
-                "price" : 9.99
+                "price" : "9.99"
             },
             {
                 "name" : "Signature Texas Beef Brisket Sandwich",
                 "desc" : "Slow-Slow-Smoked Beef Brisket chopped on a Toasted Buttery Bun plus a Legendary Side",
-                "price" : 10.99
+                "price" : "10.99"
             },
             {
                 "name" : "Chopped Chik'n Sandwich",
                 "desc" : "Juicy hand-pulled Chopped Chik'n on a Toasted Buttery Bun... and a Legendary Side",
-                "price" : 9.99
+                "price" : "9.99"
             }
         ]
     },
@@ -150,27 +150,27 @@
             {
                 "name" : "HOUSE-MADE PEOPLES VEGGIE BURGER",
                 "desc" : "cashews / fresh herbs / organic chickpeas fresh vegetables / organic brown rice. With: pickles organic romaine / sunflower sprouts / sundried tomato aioli 100% sprouted organic wheat bun",
-                "price" : 14.99
+                "price" : "14.99"
             },
             {
                 "name" : "HOUSE-MADE BIG RED LENTIL BURGER",
                 "desc" : "organic red lentils / house seasoning chipotle / bell peppers. With: bibb lettuce / pickles white cheddar / vegan aioli / 100% sprouted organic wheat bun",
-                "price" : 15.99
+                "price" : "15.99"
             },
             {
                 "name" : "MEDITERRANEAN WRAP",
                 "desc" : "quinoa tabouli / roasted tomatoes / greek olives / carrots / feta hummus / organic romaine / 100% sprouted organic tortilla",
-                "price" : 12.99
+                "price" : "12.99"
             },
             {
                 "name" : "CLASSIC GRILLED CHEESE",
                 "desc" : "gruyere / white cheddar / grilled ciabatta",
-                "price" : 10.99
+                "price" : "10.99"
             },
             {
                 "name" : "MORNARY MAC & CHEESE",
                 "desc" : "mornary sauce / parmesan / cheddar / gruyere served with an organic green salad",
-                "price" : 11.99
+                "price" : "11.99"
             }
         ]
     }

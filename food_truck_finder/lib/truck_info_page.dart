@@ -335,16 +335,19 @@ class _TruckInfoState extends State<TruckInfo> {
               Row(
                   children: <Widget>[
                     Text(
-                        name + '.......................................................'
+                        name
                     ),
-                    Icon(
-                        Icons.attach_money,
-                        color: Colors.black,
-                        size: 15
-                    ),
-                    Text(
-                        price,
-                    )
+                    Expanded(
+                        child: Text(
+                          "\$" + price,
+                          textDirection: TextDirection.ltr,
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        )),
                   ]
               ),
               SizedBox(height: 5),
