@@ -327,7 +327,7 @@ class _TruckInfoState extends State<TruckInfo> {
   }
 
 
-  Widget _menuItems(String item, String cost) {
+  Widget _menuItems(String name, String price, String desc){
     return Container(
         alignment: Alignment.centerLeft,
         child: Column(
@@ -335,7 +335,7 @@ class _TruckInfoState extends State<TruckInfo> {
               Row(
                   children: <Widget>[
                     Text(
-                        item + '.......................................................'
+                        name + '.......................................................'
                     ),
                     Icon(
                         Icons.attach_money,
@@ -343,7 +343,7 @@ class _TruckInfoState extends State<TruckInfo> {
                         size: 15
                     ),
                     Text(
-                        cost
+                        price,
                     )
                   ]
               ),
@@ -352,7 +352,8 @@ class _TruckInfoState extends State<TruckInfo> {
                 height: 45.0,
                 width: 300.0,
                     child: Text(
-                      'A nice and long description of a very scrumptious food item where the length of the description doesnt matter because the code automatically moves this down lines',
+                      // 'A nice and long description of a very scrumptious food item where the length of the description doesnt matter because the code automatically moves this down lines',
+                      desc,
                       style: TextStyle(
                         fontSize: 10,
                         fontFamily: 'OpenSans',
@@ -437,13 +438,20 @@ class _TruckInfoState extends State<TruckInfo> {
                           _picturesWidget(),
                           _menuWidget(),
                           SizedBox(height: 10.0),
-                          _menuItems('item 1', '10.00'),
-                          _menuItems('item 2', '9.00'),
-                          _menuItems('item 3', '10.00'),
-                          _menuItems('item 4', '11.00'),
-                          _menuItems('item 5', '14.00'),
-                          _menuItems('item 6', '9.50'),
-                          _menuItems('item 7', '10.00'),
+                          // for (var i=0; i<truck.menu.length(); i++) {
+                          //   _menuItems(truck.menu.items[i].name, truck.menu.items[i].price, truck.menu.items[i].desc),
+                          // },
+
+                          _menuItems(truck.menu.items[0].name, truck.menu.items[0].price, truck.menu.items[0].desc),
+                          _menuItems(truck.menu.items[1].name, truck.menu.items[1].price, truck.menu.items[1].desc),
+                          _menuItems(truck.menu.items[2].name, truck.menu.items[2].price, truck.menu.items[2].desc),
+                          
+                          // _menuItems('item 2', '9.00'),
+                          // _menuItems('item 3', '10.00'),
+                          // _menuItems('item 4', '11.00'),
+                          // _menuItems('item 5', '14.00'),
+                          // _menuItems('item 6', '9.50'),
+                          // _menuItems('item 7', '10.00'),
                         ],
                       )
                   )

@@ -8,7 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 class MenuItem {
   String name;
   String desc;
-  double price;
+  String price;
 
 
   MenuItem({
