@@ -161,11 +161,7 @@ class _DietaryWidget extends State<DietaryWidget> {
                         SizedBox(height: 15.0),
                         FloatingActionButton.extended(
                           backgroundColor: Colors.teal,
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(
-                                '/settings'
-                            );
-                          },
+                          onPressed: () => Navigator.pop(context),
                           label: Text("Save"),
                         ),
                         SizedBox(height: 15.0),
