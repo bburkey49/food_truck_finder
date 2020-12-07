@@ -27,7 +27,7 @@ Widget _triedTrucksTitle() {
       child: Column(
           children: <Widget>[
             Text(
-                'Tried Trucks',
+                'Saved Trucks',
                 style: TextStyle(
                   fontSize: 25,
                   color: Colors.teal,
