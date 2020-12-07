@@ -216,7 +216,7 @@ class _ListViewState extends State<ListViewPage> {
 
   onFilterChanged() {
     setState(() {
-      if(_currentFoodSelected != null) {
+      if(_currentFoodSelected != "--Any--") {
         prospectiveTrucks = _trucks
           .where((t) => t.foodType.contains(_currentFoodSelected)).toList();
       }

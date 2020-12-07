@@ -271,7 +271,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                           providerObject.truck.foodType,
                                           style: TextStyle(
                                             fontSize: 15,
-                                            fontWeight: FontWeight.bold,
+                                            // fontWeight: FontWeight.bold,
                                             color: Colors.black,
                                           ),
                                           textAlign: TextAlign.left,

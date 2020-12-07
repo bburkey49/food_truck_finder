@@ -215,7 +215,8 @@ class _TruckInfoState extends State<TruckInfo> {
         child: Row(
             children: <Widget>[
               Text(
-                  truck.foodType
+                  truck.foodType,
+                  style: TextStyle(fontStyle: FontStyle.italic),
               )
             ]
         )
@@ -234,6 +235,7 @@ class _TruckInfoState extends State<TruckInfo> {
                       ? Icons.star
                       : Icons.star_border,
                   size: 40,
+                  color: Colors.redAccent,
                 );
               },
             )
