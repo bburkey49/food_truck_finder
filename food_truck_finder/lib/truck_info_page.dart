@@ -123,7 +123,7 @@ class _TruckInfoState extends State<TruckInfo> {
     
 
   Widget _dropdown() {
-    var _truckCategories = ["New", "Visited", "Liked"];
+    var _truckCategories = ["New", "Liked", "Tried"];
 
     return Container(
       child: DropdownButton<String>(
