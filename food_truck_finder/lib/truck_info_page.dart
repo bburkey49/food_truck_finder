@@ -368,7 +368,7 @@ class _TruckInfoState extends State<TruckInfo> {
                         fontFamily: 'OpenSans',
                       )
                     )
-              )
+              ),
             ]
         )
     );
@@ -454,6 +454,8 @@ class _TruckInfoState extends State<TruckInfo> {
                           _menuItems(truck.menu.items[0].name, truck.menu.items[0].price, truck.menu.items[0].desc),
                           _menuItems(truck.menu.items[1].name, truck.menu.items[1].price, truck.menu.items[1].desc),
                           _menuItems(truck.menu.items[2].name, truck.menu.items[2].price, truck.menu.items[2].desc),
+                          _menuItems(truck.menu.items[3].name, truck.menu.items[3].price, truck.menu.items[3].desc),
+                          _menuItems(truck.menu.items[4].name, truck.menu.items[4].price, truck.menu.items[4].desc),
                           
                           // _menuItems('item 2', '9.00'),
                           // _menuItems('item 3', '10.00'),
