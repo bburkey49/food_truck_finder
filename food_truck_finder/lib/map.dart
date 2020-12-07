@@ -364,7 +364,7 @@ class _MapPageState extends State<MapPage> {
               elevation: 0,
                child: ListTile(
                  leading: Image(image: AssetImage('assets/images/triedTruck.png'), height: 25.0, width: 30.0),
-                 title: Text('Saved'),
+                 title: Text('Liked'),
           ),
         )),
         Container(
@@ -373,7 +373,7 @@ class _MapPageState extends State<MapPage> {
               elevation: 0,
               child: ListTile(
                  leading: Image(image: AssetImage('assets/images/savedTruck.png'), height: 25.0, width: 30.0),
-                title: Text('Tried'),
+                title: Text('Visited'),
           ),
         )),
         Container(

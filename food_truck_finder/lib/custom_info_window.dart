@@ -94,10 +94,10 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
 
 
   BitmapDescriptor getIcon(Truck truck) {
-    if(savedTrucks.any((element) => element.name == truck.name)){
+    if(likedTrucks.any((element) => element.name == truck.name)){
       return iconSaved;
     }
-    else if(triedTrucks.any((element) => element.name == truck.name)) {
+    else if(visitedTrucks.any((element) => element.name == truck.name)) {
       return iconTried;
     }
     else {

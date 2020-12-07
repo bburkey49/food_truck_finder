@@ -89,9 +89,9 @@ class _TriedTrucksWidget extends State<TriedTrucksWidget> {
                 child: ListView(
                     padding: EdgeInsets.all(12.0),
                     children: List<Widget>.generate(
-                        triedTrucks.length,
+                        visitedTrucks.length,
                             (index) =>
-                            _buildBlock(context, triedTrucks[index])
+                            _buildBlock(context, visitedTrucks[index])
                     )
                 )
             ),

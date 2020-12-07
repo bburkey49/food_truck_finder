@@ -28,6 +28,10 @@ class _TruckInfoState extends State<TruckInfo> {
   final LatLng _center = LatLng(44.9778, -93.2650);
 
   Truck truck;
+  
+  bool visited;
+  bool liked;
+
 
   _TruckInfoState(Truck truck) {
     this.truck = truck;
@@ -37,21 +41,89 @@ class _TruckInfoState extends State<TruckInfo> {
     return Container(
         alignment: Alignment.centerLeft,
         child: Row(
-            children: <Widget>[
-              ImageIcon(
-                  AssetImage('assets/images/triedTruck.png'),
-                  color: truckCol,
-                  size: 30.0,
-              ),
-              SizedBox(width: 20),
-              _dropdown(),
-            ]
+          children: <Widget>[
+            _truckButtons(),
+            // ImageIcon(
+            //     AssetImage('assets/images/triedTruck.png'),
+            //     color: truckCol,
+            //     size: 30.0,
+            // ),
+            // SizedBox(width: 20),
+            // _dropdown(),
+          ]
         )
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    visited = visitedTrucks.map((t) => t.name.toLowerCase()).toList().contains(this.truck.name.toLowerCase());
+    liked = likedTrucks.map((t) => t.name.toLowerCase()).toList().contains(this.truck.name.toLowerCase());
+    truckCol = visited ? Colors.lime[600] : Colors.grey[800];
+
+  }
+  
+  
+
+  Widget _truckButtons() {
+    return Container(
+        child: Row(
+            children: <Widget>[
+              IconButton(
+                  icon: ImageIcon(
+                    AssetImage('assets/images/triedTruck.png'),
+                    color: truckCol,
+                    size: 30.0,
+                  ),
+                  onPressed: () {
+                    bool prospVisited;
+                    Color color;
+                    if (visited) {
+                      visitedTrucks.remove(visitedTrucks.firstWhere((t) => t.name.toLowerCase() == this.truck.name.toLowerCase()));
+                      prospVisited = false;
+                    }
+                    else {
+                      visitedTrucks.add(this.truck);
+                      prospVisited = true;
+
+                    }
+                    setState(() {
+                      visited = prospVisited;
+                      truckCol = visited ? Colors.yellow[600] : Colors.grey[800];
+                    });
+                  }
+              ),
+              IconButton(
+                icon: Icon(
+                  liked ? Icons.favorite : Icons.favorite_border_rounded,
+                  color: Colors.red[700],
+                  size: 30.0
+                ),
+                onPressed: () {
+                  bool prospLiked;
+                  if (liked) {
+                    likedTrucks.remove(likedTrucks.firstWhere((t) => t.name.toLowerCase() == this.truck.name.toLowerCase()));
+                    prospLiked = false;
+                  }
+                  else {
+                    likedTrucks.add(this.truck);
+                    prospLiked = true;
+
+                  }
+                  setState(() {
+                    liked = prospLiked;
+                  });
+                },
+              ),
+            ]
+        )
+    );
+  }
+    
+
   Widget _dropdown() {
-    var _truckCategories = ["New", "Tried", "Saved"];
+    var _truckCategories = ["New", "Visited", "Liked"];
 
     return Container(
       child: DropdownButton<String>(
@@ -65,39 +137,39 @@ class _TruckInfoState extends State<TruckInfo> {
         onChanged:  (String newValueSelected ) {
           setState(() {
             personalizedTruck = newValueSelected;
-            if(newValueSelected == "Tried"){
+            if(newValueSelected == "Visited"){
               truckCol = Colors.lime[600];
-              if(!triedTrucks.any((element) => element.name == truck.name)){
-                triedTrucks.add(truck);
+              if(!visitedTrucks.any((element) => element.name == truck.name)){
+                visitedTrucks.add(truck);
               }
-              for(int i = 0; i < savedTrucks.length; i++){
-                if(savedTrucks[i].name == truck.name){
-                  savedTrucks.remove(savedTrucks[i]);
+              for(int i = 0; i < likedTrucks.length; i++){
+                if(likedTrucks[i].name == truck.name){
+                  likedTrucks.remove(likedTrucks[i]);
                 }
               }
             }
-            if (newValueSelected == "Saved"){
+            if (newValueSelected == "Liked"){
               truckCol = Colors.redAccent;
-              if(!savedTrucks.any((element) => element.name == truck.name)){
-                savedTrucks.add(truck);
+              if(!likedTrucks.any((element) => element.name == truck.name)){
+                likedTrucks.add(truck);
               }
-              for(int i = 0; i < triedTrucks.length; i++){
-                if(triedTrucks[i].name == truck.name){
-                  triedTrucks.remove(triedTrucks[i]);
+              for(int i = 0; i < visitedTrucks.length; i++){
+                if(visitedTrucks[i].name == truck.name){
+                  visitedTrucks.remove(visitedTrucks[i]);
                 }
               }
 
             }
             if (newValueSelected == "New"){
               truckCol = Colors.grey[800];
-              for(int i = 0; i < savedTrucks.length; i++){
-                if(savedTrucks[i].name == truck.name){
-                  savedTrucks.remove(savedTrucks[i]);
+              for(int i = 0; i < likedTrucks.length; i++){
+                if(likedTrucks[i].name == truck.name){
+                  likedTrucks.remove(likedTrucks[i]);
                 }
               }
-              for(int i = 0; i < triedTrucks.length; i++){
-                if(triedTrucks[i].name == truck.name){
-                  triedTrucks.remove(triedTrucks[i]);
+              for(int i = 0; i < visitedTrucks.length; i++){
+                if(visitedTrucks[i].name == truck.name){
+                  visitedTrucks.remove(visitedTrucks[i]);
                 }
               }
             }
@@ -409,6 +481,8 @@ class _TruckInfoState extends State<TruckInfo> {
         )
     );
   }
+
+
 }
 
 
