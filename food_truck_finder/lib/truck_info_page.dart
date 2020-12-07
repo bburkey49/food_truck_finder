@@ -123,7 +123,7 @@ class _TruckInfoState extends State<TruckInfo> {
     
 
   Widget _dropdown() {
-    var _truckCategories = ["New", "Visited", "Liked"];
+    var _truckCategories = ["New", "Liked", "Tried"];
 
     return Container(
       child: DropdownButton<String>(
@@ -137,7 +137,7 @@ class _TruckInfoState extends State<TruckInfo> {
         onChanged:  (String newValueSelected ) {
           setState(() {
             personalizedTruck = newValueSelected;
-            if(newValueSelected == "Visited"){
+            if(newValueSelected == "Tried"){
               truckCol = Colors.lime[600];
               if(!visitedTrucks.any((element) => element.name == truck.name)){
                 visitedTrucks.add(truck);
