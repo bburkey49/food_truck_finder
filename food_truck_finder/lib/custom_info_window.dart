@@ -276,15 +276,29 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
                                           ),
                                           textAlign: TextAlign.left,
                                         ),
-                                        Text(
-                                          providerObject.truck.computeDistance(_center),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black45,
+                                    Row(
+                                        children: <Widget>[
+                                          Text(
+                                            providerObject.truck.computeDistance(_center),
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black45,
+                                            ),
                                           ),
-                                          textAlign: TextAlign.left,
-                                        ),
+                                          Expanded(
+                                              child: Text(
+                                                'Minneapolis',
+                                                textDirection: TextDirection.ltr,
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black45,
+                                                ),
+                                              )),
+                                        ]
+                                    ),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: <Widget> [

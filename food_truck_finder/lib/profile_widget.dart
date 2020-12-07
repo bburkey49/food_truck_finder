@@ -67,7 +67,9 @@ class _ProfileWidget extends State<ProfileWidget> {
                     color: Colors.redAccent,
                   ),
                   SizedBox(width: 5.0),
+
                   Text('Liked Trucks'),
+
                 ]
             ),
           ),
@@ -105,8 +107,10 @@ class _ProfileWidget extends State<ProfileWidget> {
                     AssetImage('assets/images/triedTruck.png'),
                     color: Colors.lime[600],
                   ),
-                  SizedBox(width: 5.0),
-                  Text('Saved Trucks'),
+
+                  Text("Tried Trucks"),
+
+
                 ]
             ),
           ),

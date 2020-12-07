@@ -106,7 +106,7 @@ class Truck {
 
   String computeDistance(LatLng dest) {
     double lngLat = sqrt(pow(location.latitude - dest.latitude, 2) + pow(location.longitude - dest.latitude, 2)) / 60;
-    return '${lngLat.toStringAsFixed(1)} miles';
+    return '${lngLat.toStringAsFixed(1)} miles away';
   }
 
 

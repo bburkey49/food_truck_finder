@@ -42,14 +42,14 @@ class _TruckInfoState extends State<TruckInfo> {
         alignment: Alignment.centerLeft,
         child: Row(
           children: <Widget>[
-            _truckButtons(),
-            // ImageIcon(
-            //     AssetImage('assets/images/triedTruck.png'),
-            //     color: truckCol,
-            //     size: 30.0,
-            // ),
-            // SizedBox(width: 20),
-            // _dropdown(),
+            //_truckButtons(),
+            ImageIcon(
+                AssetImage('assets/images/triedTruck.png'),
+                color: truckCol,
+                size: 30.0,
+            ),
+            SizedBox(width: 20),
+            _dropdown(),
           ]
         )
     );
