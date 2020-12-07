@@ -335,8 +335,14 @@ class _TruckInfoState extends State<TruckInfo> {
               Row(
                   children: <Widget>[
                     Text(
-                        name
-                    ),
+                        name,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+
+                      ),
                     Expanded(
                         child: Text(
                           "\$" + price,
