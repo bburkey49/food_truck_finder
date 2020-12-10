@@ -1,0 +1,3 @@
+Our app is built using Google's Flutter framework that runs on Dart. It was developed on Android Studio and tested with the Pixel 3. 
+To install Flutter, Dart, and their respective Plugins, follow the link below.
+https://flutter.dev/docs/get-started/install
